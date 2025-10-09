@@ -22,11 +22,12 @@ const Hero = () => {
           {/* Profile Image */}
           <div className="inline-block animate-fade-in">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full blur-2xl opacity-30 animate-pulse" />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full blur-3xl opacity-40 animate-pulse" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-2xl animate-pulse-glow" />
               <img
                 src="https://avatars.githubusercontent.com/u/152396604?v=4"
                 alt="Mahmoud Maher"
-                className="relative w-40 h-40 rounded-full mx-auto border-4 border-background shadow-2xl object-cover"
+                className="relative w-56 h-56 rounded-full mx-auto border-4 border-primary/20 shadow-2xl object-cover ring-4 ring-primary/10"
               />
             </div>
           </div>

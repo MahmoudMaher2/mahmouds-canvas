@@ -67,18 +67,18 @@ const SummariesSection = () => {
           {summaries.map((summary, index) => (
             <Card
               key={summary.id}
-              className={`card-hover overflow-hidden ${
+              className={`group overflow-hidden hover:scale-105 transition-all duration-300 ${
                 isVisible ? "animate-fade-in-up" : "opacity-0"
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-48 overflow-hidden bg-muted/50">
                 <img
                   src={summary.image}
                   alt={summary.title}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
               </div>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">

@@ -74,18 +74,18 @@ const CertificatesGallery = () => {
             <Dialog key={certificate.id}>
               <DialogTrigger asChild>
                 <Card
-                  className={`cursor-pointer card-hover overflow-hidden group ${
+                  className={`cursor-pointer overflow-hidden group hover:scale-105 transition-all duration-300 ${
                     isVisible ? "animate-fade-in-up" : "opacity-0"
                   }`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="relative h-64 overflow-hidden">
+                  <div className="relative h-64 overflow-hidden bg-muted/50">
                     <img
                       src={certificate.image}
                       alt={certificate.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                       <div className="p-6 w-full">
                         <div className="flex items-center gap-2 text-primary mb-2">
                           <Award className="h-5 w-5" />

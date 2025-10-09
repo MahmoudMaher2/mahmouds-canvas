@@ -10,6 +10,10 @@ const AnimatedBackground = () => {
            style={{ animationDelay: '2s' }} />
       <div className="absolute bottom-20 left-1/4 w-64 h-64 bg-gradient-to-br from-primary/25 to-accent/25 rounded-full blur-3xl animate-pulse-glow" 
            style={{ animationDelay: '1s' }} />
+      <div className="absolute top-1/3 left-1/2 w-80 h-80 bg-gradient-to-br from-primary/10 to-accent/10 rounded-full blur-3xl animate-float" 
+           style={{ animationDelay: '3s' }} />
+      <div className="absolute bottom-40 right-1/3 w-56 h-56 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full blur-3xl animate-float-slow" 
+           style={{ animationDelay: '4s' }} />
       
       {/* Geometric Shapes */}
       <svg className="absolute top-1/4 right-1/3 w-32 h-32 text-primary/10 animate-float" style={{ animationDelay: '3s' }}>

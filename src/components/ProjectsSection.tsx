@@ -71,18 +71,18 @@ const ProjectsSection = () => {
           {projects.map((project, index) => (
             <Card
               key={project.id}
-              className={`card-hover overflow-hidden ${
+              className={`group overflow-hidden hover:scale-[1.02] transition-all duration-300 ${
                 isVisible ? "animate-fade-in-up" : "opacity-0"
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative h-56 overflow-hidden bg-muted/50">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
               </div>
               <CardHeader>
                 <CardTitle>{project.title}</CardTitle>
