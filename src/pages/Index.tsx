@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
+import AnimatedBackground from "@/components/AnimatedBackground";
 import LinkedInButton from "@/components/LinkedInButton";
 import Hero from "@/components/Hero";
 import SummariesSection from "@/components/SummariesSection";
@@ -12,7 +13,8 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <AnimatedBackground />
       <ScrollProgress />
       <Navbar />
       <LinkedInButton />
