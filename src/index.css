@@ -304,4 +304,30 @@ All colors MUST be HSL.
   background: hsl(var(--primary));
 }
 
+@keyframes marquee-fast {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-fast {
+  animation: marquee-fast 20s linear infinite;
+}
+
+@keyframes marquee-fast {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-fast {
+  animation: marquee-fast 25s linear infinite;
+}
+
 }

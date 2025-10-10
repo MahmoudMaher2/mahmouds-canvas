@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Download, Mail, FolderOpen, FileText } from "lucide-react";
+import { Download, Mail, FolderOpen, FileText, ArrowRight } from "lucide-react";
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -8,6 +8,40 @@ const Hero = () => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const primaryButtonStyle = `
+    relative gap-2 text-white font-medium 
+    bg-gradient-to-r 
+    from-blue-600 via-blue-500 to-blue-400
+    overflow-hidden
+    shadow-[0_0_8px_rgba(59,130,246,0.4)] 
+    dark:shadow-[0_0_12px_rgba(59,130,246,0.3)] 
+    transition-all duration-500 
+    hover:scale-[1.02] hover:brightness-105
+    before:absolute before:top-0 before:left-[-75%] 
+    before:w-[50%] before:h-full 
+    before:bg-gradient-to-tr before:from-white/30 before:to-white/10
+    before:skew-x-[-20deg]
+    before:animate-none
+    hover:before:animate-[shine_1.5s_ease-in-out_forwards]
+    before:rounded-[inherit]
+  `;
+
+  const secondaryButtonStyle = `
+    relative gap-2 font-medium 
+    bg-background border-2 border-border
+    text-foreground
+    overflow-hidden
+    transition-all duration-500 
+    hover:scale-[1.02] hover:bg-blue-600 hover:text-white hover:border-blue-600
+    before:absolute before:top-0 before:left-[-75%] 
+    before:w-[50%] before:h-full 
+    before:bg-gradient-to-tr before:from-white/30 before:to-white/10
+    before:skew-x-[-20deg]
+    before:animate-none
+    hover:before:animate-[shine_1.5s_ease-in-out_forwards]
+    before:rounded-[inherit]
+  `;
 
   return (
     <section
@@ -57,45 +91,54 @@ const Hero = () => {
             A Passionate Software Tester who loves ensuring Quality and Sharing Knowledge With Others.
           </p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - 4 في صف واحد */}
           <div
-            className="flex flex-wrap items-center justify-center gap-4 animate-fade-in-up"
+            className="flex flex-wrap items-center justify-center gap-3 animate-fade-in-up"
             style={{ animationDelay: "0.6s" }}
           >
+            {/* View My Summaries Button */}
             <Button
               size="lg"
               onClick={() => scrollToSection("summaries")}
-              className="gap-2 shadow-lg hover:shadow-xl transition-all"
+              className={primaryButtonStyle}
             >
               <FileText className="h-5 w-5" />
-              View My Summaries
+              View Summaries
+              <ArrowRight className="h-4 w-4" />
             </Button>
+
+            {/* View My Projects Button */}
             <Button
               size="lg"
               onClick={() => scrollToSection("projects")}
-              className="gap-2 shadow-lg hover:shadow-xl transition-all"
+              className={primaryButtonStyle}
             >
               <FolderOpen className="h-5 w-5" />
-              View My Projects
+              View Projects
+              <ArrowRight className="h-4 w-4" />
             </Button>
+
+            {/* Reach Me Button */}
             <Button
               size="lg"
-              variant="outline"
               onClick={() => scrollToSection("contact")}
-              className="gap-2"
+              className={secondaryButtonStyle}
             >
               <Mail className="h-5 w-5" />
               Reach Me
+              <ArrowRight className="h-4 w-4" />
             </Button>
+
+            {/* Download Resume Button */}
             <Button
               size="lg"
-              variant="outline"
-              className="gap-2"
+              className={secondaryButtonStyle}
               asChild
             >
               <a href="/Mahmoud Maher's Resume.pdf" download>
                 <Download className="h-5 w-5" />
-                Download Resume
+                Download My Resume
+                <ArrowRight className="h-4 w-4" />
               </a>
             </Button>
           </div>

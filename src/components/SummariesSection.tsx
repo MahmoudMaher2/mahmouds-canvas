@@ -1,7 +1,8 @@
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FileText, ArrowRight } from "lucide-react";
+import { FileText, ArrowRight, ExternalLink } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const summaries = [
   {
@@ -20,12 +21,6 @@ const summaries = [
   },
   {
     id: 3,
-    title: "API Testing Guide",
-    description: "Complete guide to testing RESTful APIs and web services with Postman.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop",
-  },
-  {
-    id: 4,
     title: "Part one Embedded Systems",
     description: "Testing strategies and approaches in Agile development environments.",
     image: "/Part One Embedded.jpg",
@@ -60,68 +55,124 @@ const SummariesSection = () => {
           </p>
         </div>
 
-        {/* الشبكة من عمودين */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* عمود واحد فقط */}
+        <div className="grid grid-cols-1 gap-12 max-w-4xl mx-auto">
           {summaries.map((summary, index) => (
-            <Card
-              key={summary.id}
-              className={`group overflow-hidden hover:shadow-lg hover:scale-[1.02] transition-all duration-500 ${
-                isVisible ? "animate-fade-in-up" : "opacity-0"
-              }`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* الصورة */}
-              <div className="relative w-full h-[350px] bg-muted overflow-hidden">
-                <img
-                  src={summary.image}
-                  alt={summary.title}
-                  className="w-full h-full object-contain md:object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
+            <Dialog key={summary.id}>
+              <DialogTrigger asChild>
+                <Card
+                  className={`group overflow-hidden hover:shadow-xl hover:scale-[1.01] transition-all duration-500 cursor-pointer ${
+                    isVisible ? "animate-fade-in-up" : "opacity-0"
+                  }`}
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
+                  <div className="flex flex-col lg:flex-row">
+                    {/* الصورة - أكبر وواضحة */}
+                    <div className="relative lg:w-1/2 h-80 lg:h-96 bg-muted/50 overflow-hidden flex-shrink-0">
+                      <img
+                        src={summary.image}
+                        alt={summary.title}
+                        className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </div>
 
-              {/* المحتوى */}
-              <CardHeader className="p-6">
-                <CardTitle className="flex items-center gap-2 text-2xl font-semibold">
-                  <FileText className="h-6 w-6 text-primary" />
-                  {summary.title}
-                </CardTitle>
-                <CardDescription className="text-base mt-3 text-muted-foreground">
-                  {summary.description}
-                </CardDescription>
-              </CardHeader>
-                <CardFooter className="px-6 pb-6">
-                  <a
-                    href={summary.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full"
-                  >
-                    <Button
-                      variant="ghost"
-                      className="relative w-full gap-2 text-white font-medium 
-                        bg-gradient-to-r 
-                        from-[hsl(var(--gradient-start))] 
-                        via-[hsl(var(--gradient-mid))] 
-                        to-[hsl(var(--gradient-end))] 
-                        overflow-hidden
-                        shadow-[0_0_10px_hsl(var(--gradient-mid)/0.5)] 
-                        dark:shadow-[0_0_14px_hsl(var(--gradient-mid)/0.4)] 
-                        transition-all duration-500 
-                        hover:scale-[1.03] hover:brightness-110
-                        before:absolute before:top-0 before:left-[-75%] 
-                        before:w-[50%] before:h-full 
-                        before:bg-gradient-to-tr before:from-white/40 before:to-white/5
-                        before:skew-x-[-20deg]
-                        before:animate-none
-                        hover:before:animate-[shine_1.2s_ease-in-out_forwards]
-                        before:rounded-[inherit]"
+                    {/* المحتوى */}
+                    <div className="lg:w-1/2 p-8 flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center gap-4 mb-6">
+                          <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                            <FileText className="h-6 w-6 text-primary" />
+                          </div>
+                          <h3 className="text-2xl font-bold text-foreground">
+                            {summary.title}
+                          </h3>
+                        </div>
+                        
+                        <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                          {summary.description}
+                        </p>
+                      </div>
+
+                      {/* زر LinkedIn */}
+                      {summary.link && summary.link !== "#" && (
+                        <a
+                          href={summary.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full block"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Button
+                            variant="ghost"
+                            className="relative w-full gap-3 text-white font-medium text-base py-3
+                              bg-gradient-to-r 
+                              from-[hsl(var(--gradient-start))] 
+                              via-[hsl(var(--gradient-mid))] 
+                              to-[hsl(var(--gradient-end))] 
+                              overflow-hidden
+                              shadow-[0_0_15px_hsl(var(--gradient-mid)/0.6)] 
+                              dark:shadow-[0_0_20px_hsl(var(--gradient-mid)/0.5)] 
+                              transition-all duration-500 
+                              hover:scale-[1.02] hover:brightness-110
+                              before:absolute before:top-0 before:left-[-75%] 
+                              before:w-[50%] before:h-full 
+                              before:bg-gradient-to-tr before:from-white/40 before:to-white/5
+                              before:skew-x-[-20deg]
+                              before:animate-none
+                              hover:before:animate-[shine_1.2s_ease-in-out_forwards]
+                              before:rounded-[inherit]"
+                          >
+                            View on LinkedIn
+                            <ArrowRight className="h-5 w-5" />
+                          </Button>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              </DialogTrigger>
+
+              {/* Dialog للصورة */}
+              <DialogContent className="max-w-6xl p-0 overflow-hidden bg-background">
+                <div className="p-8 border-b border-border">
+                  <h3 className="text-2xl font-bold text-foreground mb-3">
+                    {summary.title}
+                  </h3>
+                  <p className="text-lg text-muted-foreground">
+                    {summary.description}
+                  </p>
+                </div>
+                <div className="p-8 max-h-[80vh] overflow-auto flex items-center justify-center">
+                  <img
+                    src={summary.image}
+                    alt={summary.title}
+                    className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+                  />
+                </div>
+                {summary.link && summary.link !== "#" && (
+                  <div className="p-8 border-t border-border flex justify-center">
+                    <a
+                      href={summary.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full max-w-sm"
                     >
-                      Open PDF
-                      <ArrowRight className="h-4 w-4" />
-                    </Button>
-                  </a>
-                </CardFooter>
-            </Card>
+                      <Button
+                        className="w-full gap-3 text-white font-medium text-base py-3
+                          bg-gradient-to-r 
+                          from-[hsl(var(--gradient-start))] 
+                          via-[hsl(var(--gradient-mid))] 
+                          to-[hsl(var(--gradient-end))] 
+                          hover:brightness-110 transition-all duration-300"
+                      >
+                        View on LinkedIn
+                        <ExternalLink className="h-5 w-5" />
+                      </Button>
+                    </a>
+                  </div>
+                )}
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
       </div>

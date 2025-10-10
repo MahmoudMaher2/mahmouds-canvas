@@ -20,13 +20,33 @@ const Index = () => {
       <LinkedInButton />
       
       <main>
-        <Hero />
-        <SummariesSection />
-        <AboutSection />
-        <SkillsMarquee />
-        <ProjectsSection />
-        <CertificatesGallery />
-        <ContactSection />
+        <section id="home" className="section">
+          <Hero />
+        </section>
+        
+        <section id="summaries" className="section">
+          <SummariesSection />
+        </section>
+        
+        <section id="about" className="section">
+          <AboutSection />
+        </section>
+        
+        <section id="skills" className="section">
+          <SkillsMarquee />
+        </section>
+        
+        <section id="projects" className="section">
+          <ProjectsSection />
+        </section>
+        
+        <section id="certificates" className="section">
+          <CertificatesGallery />
+        </section>
+        
+        <section id="contact" className="section">
+          <ContactSection />
+        </section>
       </main>
       
       <Footer />
