@@ -25,10 +25,17 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full blur-3xl opacity-40 animate-pulse" />
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-2xl animate-pulse-glow" />
               <img
-                src="https://avatars.githubusercontent.com/u/152396604?v=4"
+                src="/Mahmoud Maher.jpg"
                 alt="Mahmoud Maher"
-                className="relative w-56 h-56 rounded-full mx-auto border-4 border-primary/20 shadow-2xl object-cover ring-4 ring-primary/10"
-              />
+                className="
+                  relative w-44 h-44 md:w-56 md:h-56 lg:w-72 lg:h-72
+                  rounded-full mx-auto border-4 border-primary/20 shadow-2xl object-cover
+                  ring-4 ring-primary/10 animate-float
+                  transition-all duration-500
+                  hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]
+                  hover:ring-[rgba(59,130,246,0.5)]
+                "
+            />
             </div>
           </div>
 
@@ -47,7 +54,7 @@ const Hero = () => {
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up"
             style={{ animationDelay: "0.4s" }}
           >
-            A passionate software tester who loves ensuring quality and sharing knowledge with others.
+            A Passionate Software Tester who loves ensuring Quality and Sharing Knowledge With Others.
           </p>
 
           {/* CTA Buttons */}
@@ -86,9 +93,9 @@ const Hero = () => {
               className="gap-2"
               asChild
             >
-              <a href="#" download>
+              <a href="/Mahmoud Maher's Resume.pdf" download>
                 <Download className="h-5 w-5" />
-                Download CV
+                Download Resume
               </a>
             </Button>
           </div>

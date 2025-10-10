@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileText, ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -6,27 +6,30 @@ import { useEffect, useRef, useState } from "react";
 const summaries = [
   {
     id: 1,
-    title: "Software Testing Fundamentals",
+    title: "ISTQB FL V4.0",
     description: "Comprehensive overview of testing principles, methodologies, and best practices.",
-    image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400&h=250&fit=crop",
+    image: "/ISTQB FL Summary.jpg",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7347600961898475520/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7347600961898475520%29",
   },
   {
     id: 2,
-    title: "Test Automation Strategies",
+    title: "ISTQB MAT V1",
     description: "Advanced techniques for implementing effective automated testing frameworks.",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop",
+    image: "/MAT Mocup.png",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7372632879018717184/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7372632879018717184%29",
   },
   {
     id: 3,
     title: "API Testing Guide",
     description: "Complete guide to testing RESTful APIs and web services with Postman.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=250&fit=crop",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop",
   },
   {
     id: 4,
-    title: "Agile Testing Practices",
+    title: "Part one Embedded Systems",
     description: "Testing strategies and approaches in Agile development environments.",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=250&fit=crop",
+    image: "/Part One Embedded.jpg",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7209553266966245376/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7209553266966245376%29",
   },
 ];
 
@@ -37,17 +40,11 @@ const SummariesSection = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
       { threshold: 0.1 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -63,36 +60,67 @@ const SummariesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* الشبكة من عمودين */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {summaries.map((summary, index) => (
             <Card
               key={summary.id}
-              className={`group overflow-hidden hover:scale-105 transition-all duration-300 ${
+              className={`group overflow-hidden hover:shadow-lg hover:scale-[1.02] transition-all duration-500 ${
                 isVisible ? "animate-fade-in-up" : "opacity-0"
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="relative h-48 overflow-hidden bg-muted/50">
+              {/* الصورة */}
+              <div className="relative w-full h-[350px] bg-muted overflow-hidden">
                 <img
                   src={summary.image}
                   alt={summary.title}
-                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
+                  className="w-full h-full object-contain md:object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
               </div>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <FileText className="h-5 w-5 text-primary" />
+
+              {/* المحتوى */}
+              <CardHeader className="p-6">
+                <CardTitle className="flex items-center gap-2 text-2xl font-semibold">
+                  <FileText className="h-6 w-6 text-primary" />
                   {summary.title}
                 </CardTitle>
-                <CardDescription>{summary.description}</CardDescription>
+                <CardDescription className="text-base mt-3 text-muted-foreground">
+                  {summary.description}
+                </CardDescription>
               </CardHeader>
-              <CardFooter>
-                <Button variant="ghost" className="w-full gap-2 group">
-                  View Details
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </CardFooter>
+                <CardFooter className="px-6 pb-6">
+                  <a
+                    href={summary.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full"
+                  >
+                    <Button
+                      variant="ghost"
+                      className="relative w-full gap-2 text-white font-medium 
+                        bg-gradient-to-r 
+                        from-[hsl(var(--gradient-start))] 
+                        via-[hsl(var(--gradient-mid))] 
+                        to-[hsl(var(--gradient-end))] 
+                        overflow-hidden
+                        shadow-[0_0_10px_hsl(var(--gradient-mid)/0.5)] 
+                        dark:shadow-[0_0_14px_hsl(var(--gradient-mid)/0.4)] 
+                        transition-all duration-500 
+                        hover:scale-[1.03] hover:brightness-110
+                        before:absolute before:top-0 before:left-[-75%] 
+                        before:w-[50%] before:h-full 
+                        before:bg-gradient-to-tr before:from-white/40 before:to-white/5
+                        before:skew-x-[-20deg]
+                        before:animate-none
+                        hover:before:animate-[shine_1.2s_ease-in-out_forwards]
+                        before:rounded-[inherit]"
+                    >
+                      Open PDF
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </a>
+                </CardFooter>
             </Card>
           ))}
         </div>

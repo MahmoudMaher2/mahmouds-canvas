@@ -222,6 +222,54 @@ All colors MUST be HSL.
     }
   }
 
+  
+
+  /* === LinkedIn floating & glow animation === */
+@keyframes linkedin-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+  @keyframes linkedin-glow {
+    0%, 100% {
+      filter: drop-shadow(0 0 6px #0077B5);
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      filter: drop-shadow(0 0 12px #00A0DC);
+      transform: scale(1.05);
+      opacity: 1;
+    }
+  }
+
+  @keyframes shine {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+  } 
+  
+
+  .animate-linkedin-glow {
+    animation: linkedin-glow 5s ease-in-out infinite;
+  }
+
+
+/* Combine both effects */
+.animate-linkedin {
+  animation: linkedin-bounce 2s ease-in-out infinite,
+             linkedin-glow 2s ease-in-out infinite;
+  border-radius: 9999px; /* make sure it's circular */
+}
+
+
   .animate-float {
     animation: float 20s ease-in-out infinite;
   }
@@ -233,4 +281,27 @@ All colors MUST be HSL.
   .animate-pulse-glow {
     animation: pulse-glow 4s ease-in-out infinite;
   }
+
+  /* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--gradient-start)),
+    hsl(var(--gradient-end))
+  );
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
 }
