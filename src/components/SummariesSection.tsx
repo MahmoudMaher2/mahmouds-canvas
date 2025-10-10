@@ -32,6 +32,24 @@ const SummariesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
+  const buttonStyle = `
+    relative gap-2 text-white font-medium 
+    bg-gradient-to-r 
+    from-blue-600 via-blue-500 to-blue-400
+    overflow-hidden
+    shadow-[0_0_8px_rgba(59,130,246,0.4)] 
+    dark:shadow-[0_0_12px_rgba(59,130,246,0.3)] 
+    transition-all duration-500 
+    hover:scale-[1.02] hover:brightness-105
+    before:absolute before:top-0 before:left-[-75%] 
+    before:w-[50%] before:h-full 
+    before:bg-gradient-to-tr before:from-white/30 before:to-white/10
+    before:skew-x-[-20deg]
+    before:animate-none
+    hover:before:animate-[shine_1.5s_ease-in-out_forwards]
+    before:rounded-[inherit]
+  `;
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -92,85 +110,46 @@ const SummariesSection = () => {
                           {summary.description}
                         </p>
                       </div>
-
-                      {/* زر LinkedIn */}
-                      {summary.link && summary.link !== "#" && (
-                        <a
-                          href={summary.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full block"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <Button
-                            variant="ghost"
-                            className="relative w-full gap-3 text-white font-medium text-base py-3
-                              bg-gradient-to-r 
-                              from-[hsl(var(--gradient-start))] 
-                              via-[hsl(var(--gradient-mid))] 
-                              to-[hsl(var(--gradient-end))] 
-                              overflow-hidden
-                              shadow-[0_0_15px_hsl(var(--gradient-mid)/0.6)] 
-                              dark:shadow-[0_0_20px_hsl(var(--gradient-mid)/0.5)] 
-                              transition-all duration-500 
-                              hover:scale-[1.02] hover:brightness-110
-                              before:absolute before:top-0 before:left-[-75%] 
-                              before:w-[50%] before:h-full 
-                              before:bg-gradient-to-tr before:from-white/40 before:to-white/5
-                              before:skew-x-[-20deg]
-                              before:animate-none
-                              hover:before:animate-[shine_1.2s_ease-in-out_forwards]
-                              before:rounded-[inherit]"
-                          >
-                            View on LinkedIn
-                            <ArrowRight className="h-5 w-5" />
-                          </Button>
-                        </a>
-                      )}
                     </div>
                   </div>
                 </Card>
               </DialogTrigger>
 
-              {/* Dialog للصورة */}
-              <DialogContent className="max-w-6xl p-0 overflow-hidden bg-background">
-                <div className="p-8 border-b border-border">
-                  <h3 className="text-2xl font-bold text-foreground mb-3">
-                    {summary.title}
-                  </h3>
-                  <p className="text-lg text-muted-foreground">
-                    {summary.description}
-                  </p>
-                </div>
-                <div className="p-8 max-h-[80vh] overflow-auto flex items-center justify-center">
-                  <img
-                    src={summary.image}
-                    alt={summary.title}
-                    className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
-                  />
-                </div>
-                {summary.link && summary.link !== "#" && (
-                  <div className="p-8 border-t border-border flex justify-center">
-                    <a
-                      href={summary.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full max-w-sm"
-                    >
+              {/* Dialog زى الـ Certificates Gallery */}
+              <DialogContent className="max-w-full w-full h-full max-h-screen m-0 p-0 overflow-hidden bg-background">
+                {/* Header مع زر Open PDF */}
+                <div className="p-6 border-b border-border bg-background/95 backdrop-blur-sm">
+                  <div className="container mx-auto flex items-center justify-between">
+                    <div>
+                      <h3 className="text-2xl font-bold text-foreground mb-2">
+                        {summary.title}
+                      </h3>
+                      <p className="text-muted-foreground">
+                        {summary.description}
+                      </p>
+                    </div>
+                    {summary.link && summary.link !== "#" && (
                       <Button
-                        className="w-full gap-3 text-white font-medium text-base py-3
-                          bg-gradient-to-r 
-                          from-[hsl(var(--gradient-start))] 
-                          via-[hsl(var(--gradient-mid))] 
-                          to-[hsl(var(--gradient-end))] 
-                          hover:brightness-110 transition-all duration-300"
+                        className={buttonStyle}
+                        onClick={() => window.open(summary.link, '_blank')}
                       >
-                        View on LinkedIn
-                        <ExternalLink className="h-5 w-5" />
+                        Open PDF
+                        <ExternalLink className="h-4 w-4" />
                       </Button>
-                    </a>
+                    )}
                   </div>
-                )}
+                </div>
+
+                {/* الصورة تاخد كل المساحة */}
+                <div className="flex-1 overflow-auto bg-muted/10">
+                  <div className="min-h-full flex items-center justify-center p-8">
+                    <img
+                      src={summary.image}
+                      alt={summary.title}
+                      className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                    />
+                  </div>
+                </div>
               </DialogContent>
             </Dialog>
           ))}
