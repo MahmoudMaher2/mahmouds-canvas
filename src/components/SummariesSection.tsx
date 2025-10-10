@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FileText, ArrowRight, ExternalLink } from "lucide-react";
+import { FileText, ExternalLink } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
@@ -77,43 +77,56 @@ const SummariesSection = () => {
         <div className="grid grid-cols-1 gap-12 max-w-4xl mx-auto">
           {summaries.map((summary, index) => (
             <Dialog key={summary.id}>
-              <DialogTrigger asChild>
-                <Card
-                  className={`group overflow-hidden hover:shadow-xl hover:scale-[1.01] transition-all duration-500 cursor-pointer ${
-                    isVisible ? "animate-fade-in-up" : "opacity-0"
-                  }`}
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  <div className="flex flex-col lg:flex-row">
-                    {/* الصورة - أكبر وواضحة */}
-                    <div className="relative lg:w-1/2 h-80 lg:h-96 bg-muted/50 overflow-hidden flex-shrink-0">
-                      <img
-                        src={summary.image}
-                        alt={summary.title}
-                        className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
-                      />
+              <Card
+                className={`group overflow-hidden hover:shadow-xl hover:scale-[1.01] transition-all duration-500 ${
+                  isVisible ? "animate-fade-in-up" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                <div className="flex flex-col lg:flex-row">
+                  {/* الصورة - أكبر وواضحة */}
+                  <div className="relative lg:w-1/2 h-80 lg:h-96 bg-muted/50 overflow-hidden flex-shrink-0">
+                    <DialogTrigger asChild>
+                      <button className="w-full h-full cursor-pointer">
+                        <img
+                          src={summary.image}
+                          alt={summary.title}
+                          className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                        />
+                      </button>
+                    </DialogTrigger>
+                  </div>
+
+                  {/* المحتوى */}
+                  <div className="lg:w-1/2 p-8 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                          <FileText className="h-6 w-6 text-primary" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-foreground">
+                          {summary.title}
+                        </h3>
+                      </div>
+                      
+                      <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                        {summary.description}
+                      </p>
                     </div>
 
-                    {/* المحتوى */}
-                    <div className="lg:w-1/2 p-8 flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-center gap-4 mb-6">
-                          <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                            <FileText className="h-6 w-6 text-primary" />
-                          </div>
-                          <h3 className="text-2xl font-bold text-foreground">
-                            {summary.title}
-                          </h3>
-                        </div>
-                        
-                        <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                          {summary.description}
-                        </p>
-                      </div>
-                    </div>
+                    {/* زر Open PDF لوحده */}
+                    {summary.link && summary.link !== "#" && (
+                      <Button
+                        className={`${buttonStyle} w-full gap-2`}
+                        onClick={() => window.open(summary.link, '_blank')}
+                      >
+                        Open PDF
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                    )}
                   </div>
-                </Card>
-              </DialogTrigger>
+                </div>
+              </Card>
 
               {/* Dialog زى الـ Certificates Gallery */}
               <DialogContent className="max-w-full w-full h-full max-h-screen m-0 p-0 overflow-hidden bg-background">

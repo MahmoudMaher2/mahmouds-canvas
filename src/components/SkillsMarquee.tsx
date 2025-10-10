@@ -111,7 +111,7 @@ const SkillsMarquee = () => {
       <div className="container mx-auto mb-16">
         <div className={`text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">Skills & Technologies</span>
+            <span className="gradient-text">Expertise & Toolkit</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Proficient in a wide range of tools and technologies
