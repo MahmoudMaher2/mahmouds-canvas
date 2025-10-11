@@ -98,26 +98,26 @@ const SummariesSection = () => {
                   </div>
 
                   {/* المحتوى */}
-                  <div className="lg:w-1/2 p-8 flex flex-col justify-between">
+                  <div className="lg:w-1/2 p-6 lg:p-8 flex flex-col justify-between">
                     <div>
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                          <FileText className="h-6 w-6 text-primary" />
+                      <div className="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-6">
+                        <div className="flex-shrink-0 w-10 h-10 lg:w-12 lg:h-12 bg-primary/10 rounded-lg lg:rounded-xl flex items-center justify-center">
+                          <FileText className="h-5 w-5 lg:h-6 lg:w-6 text-primary" />
                         </div>
-                        <h3 className="text-2xl font-bold text-foreground">
+                        <h3 className="text-xl lg:text-2xl font-bold text-foreground">
                           {summary.title}
                         </h3>
                       </div>
                       
-                      <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                      <p className="text-base lg:text-lg text-muted-foreground mb-6 lg:mb-8 leading-relaxed">
                         {summary.description}
                       </p>
                     </div>
 
-                    {/* زر Open PDF لوحده */}
+                    {/* زر Open PDF - بره زي ما كان */}
                     {summary.link && summary.link !== "#" && (
                       <Button
-                        className={`${buttonStyle} w-full gap-2`}
+                        className={`${buttonStyle} w-full gap-2 py-3`}
                         onClick={() => window.open(summary.link, '_blank')}
                       >
                         Open PDF
@@ -130,36 +130,40 @@ const SummariesSection = () => {
 
               {/* Dialog زى الـ Certificates Gallery */}
               <DialogContent className="max-w-full w-full h-full max-h-screen m-0 p-0 overflow-hidden bg-background">
-                {/* Header مع زر Open PDF */}
-                <div className="p-6 border-b border-border bg-background/95 backdrop-blur-sm">
-                  <div className="container mx-auto flex items-center justify-between">
-                    <div>
-                      <h3 className="text-2xl font-bold text-foreground mb-2">
+                {/* Header مع زر Open PDF - responsive */}
+                <div className="p-4 lg:p-6 border-b border-border bg-background/95 backdrop-blur-sm">
+                  <div className="container mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                    <div className="flex-1">
+                      <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-2">
                         {summary.title}
                       </h3>
-                      <p className="text-muted-foreground">
+                      <p className="text-sm lg:text-base text-muted-foreground">
                         {summary.description}
                       </p>
                     </div>
                     {summary.link && summary.link !== "#" && (
-                      <Button
-                        className={buttonStyle}
-                        onClick={() => window.open(summary.link, '_blank')}
-                      >
-                        Open PDF
-                        <ExternalLink className="h-4 w-4" />
-                      </Button>
+                      <div className="flex justify-center lg:justify-start">
+                        <Button
+                          className={`${buttonStyle} w-full lg:w-auto px-4 py-2 lg:px-6 lg:py-3 text-sm lg:text-base`}
+                          onClick={() => window.open(summary.link, '_blank')}
+                        >
+                          <span className="flex items-center gap-2">
+                            <ExternalLink className="h-4 w-4" />
+                            Open PDF
+                          </span>
+                        </Button>
+                      </div>
                     )}
                   </div>
                 </div>
 
                 {/* الصورة تاخد كل المساحة */}
                 <div className="flex-1 overflow-auto bg-muted/10">
-                  <div className="min-h-full flex items-center justify-center p-8">
+                  <div className="min-h-full flex items-center justify-center p-4 lg:p-8">
                     <img
                       src={summary.image}
                       alt={summary.title}
-                      className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                      className="max-w-full max-h-full object-contain rounded-lg lg:rounded-xl shadow-lg lg:shadow-2xl"
                     />
                   </div>
                 </div>
