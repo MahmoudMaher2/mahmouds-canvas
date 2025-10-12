@@ -4,17 +4,18 @@ import { ExternalLink, Github, Play, FileText, Building } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Player } from '@lottiefiles/react-lottie-player';
+import { features } from "process";
 
 const projects = [
   {
     id: 1,
     title: "HerokuApp Automation Project",
-    description: "Comprehensive automated testing suite for an e-commerce platform using Selenium and TestNG.",
+    description: "Implemented an automation testing project for the Heroku App website using IntelliJ IDEA. Employed both TestNG and Cucumber frameworks to design and execute automated test cases, ensuring functionality and reliability of the web application.",
     image: "/projects/1-HerokuApp.png",
     technologies: ["Selenium", "Java", "TestNG", "Maven", "Cucumber"],
     links: {
       github: "https://github.com/MahmoudMaher2/HerokuApp-Test-CucumberDemo",
-      live:  null,
+      live:  "https://the-internet.herokuapp.com/login",
       video: null,
       sheet: null
     },
@@ -27,25 +28,6 @@ const projects = [
   },
   {
     id: 2,
-    title: "OpenCart Automation Graduation Project",
-    description: "Comprehensive automated testing suite for an e-commerce platform using Selenium and TestNG.",
-    image: "/projects/2-opencart.png",
-    technologies: ["Selenium", "Java", "TestNG", "Maven", "Cucumber", "POM" , "BDD" ,"Extent Report"],
-    links: {
-      github: "https://github.com/MohanadWael1/depi_grad",
-      live:  null,
-      video: "https://www.linkedin.com/posts/mahmoud-maher74_finally-im-proud-to-present-my-graduation-activity-7253842698674077696-2VlK?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC8ZR_4Bc4J1qHvjF8JxJ4jD4p9JZ5jHZ5o",
-      sheet: null
-    },
-    company: {      
-      name: "DEPI",      
-      logo: "/company/DEPI.jpg",
-      linkedin: "https://www.linkedin.com/company/digital-egypt-pioneers-initiative-depi/"
-    },
-    type: "automation",
-  },
-  {
-    id: 3,
     title: "Talent Kid Website",
     description: "Tested the demo version of the Talent Kid platform, focusing on validating core functionalities and user interface elements. Conducted functional and UI testing to ensure that the prototype behaved as intended and provided a smooth, consistent user experience.",
     image: "/projects/4-talentkid.png",
@@ -58,22 +40,28 @@ const projects = [
     },
     type: "manual"
   },
-  {
-    id: 4,
-    title: "Dorra print Website",
-    description: "Performed in-depth functional and UI testing on the custom-built design editor (canvas) within the Dorra Print platform. The editor was developed from scratch to function similarly to tools like Canva or Photoshop. My testing covered all available tools, features, and keyboard shortcuts, ensuring correct behavior, responsiveness, and smooth user experience across different scenarios. I validated text, shapes, layers, alignment tools, undo/redo actions, drag-and-drop functionality, and export options. Leveraging my background as a graphic designer, I was able to test the system with a user-centered perspective, ensuring both usability and precision in the editor's performance.",
-    image: "/projects/5-dorraprint.png",
-    technologies: ["Test Cases", "Bug Reporting"],
-    links: {        live:  "https://dorraprint.com/"    },
-    company: {      
-      name: "Pixbyte",      
-      logo: "/company/pixbyte.jpg",
-      linkedin: "https://www.linkedin.com/company/pixbyteco/"
+    {
+    id: 3,
+    title: "OpenCart Automation Graduation Project",
+    description: "Developed an automation testing project for the AwesomeQA website using IntelliJ IDEA. Utilized the Cucumber framework to design and execute 30 automated test cases, ensuring the functionality and reliability of the web application. Additionally, generated comprehensive Extent Reports in multiple formats, including HTML, PDF, and screenshots, to document the test results.",
+    image: "/projects/2-opencart.png",
+    technologies: ["Selenium", "Java", "TestNG", "Maven", "Cucumber", "POM" , "BDD" ,"Extent Report"],
+    links: {
+      github: "https://github.com/MohanadWael1/depi_grad",
+      live:  "https://awesomeqa.com/ui/index.php?route=common/home",
+      video: "https://www.linkedin.com/posts/mahmoud-maher74_finally-im-proud-to-present-my-graduation-activity-7253842698674077696-2VlK?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC8ZR_4Bc4J1qHvjF8JxJ4jD4p9JZ5jHZ5o",
+      sheet: null
     },
-    type: "manual"
+    company: {      
+      name: "DEPI",      
+      logo: "/company/DEPI.jpg",
+      linkedin: "https://www.linkedin.com/company/digital-egypt-pioneers-initiative-depi/"
+    },
+    type: "automation",
+    featured: true
   },
   {
-    id: 5,
+    id: 4,
     title: "More English LMS Website",
     description: "Performed functional testing on the More English website, focusing on validating user roles and permissions, including access levels and feature restrictions. Tested the comments and admin reply features on videos to ensure proper interaction and visibility. Also verified the exams and assignments modules, including text styling, exam validation, retake permissions, and timing controls, to ensure all functionalities worked correctly according to user roles.",
     image: "/projects/6-moreenglish.png",
@@ -87,7 +75,39 @@ const projects = [
     type: "manual"
   },
   {
+    id: 5,
+    title: "Buggy Cars Rating Website",
+    description: "Performed comprehensive manual testing on the Buggy Cars Rating website as part of my graduation project at Algoriza. Conducted exploratory testing to identify and document functional, UI, and usability bugs across different modules. All findings and defect details were reported and tracked using Google Sheets to ensure clear and consistent bug documentation.",
+    image: "/projects/8-carbug.png",
+    technologies: ["Bug Reporting"],
+    links: {
+      live: "https://www.google.com/url?q=https://buggy.justtestit.org/&sa=D&source=editors&ust=1760294632664285&usg=AOvVaw22QYBbvcfufo2AO-jIMCii",
+      sheet: "https://docs.google.com/spreadsheets/d/16z0K46qpXTb7D1H0J-6YdgoM-NOvQJUngjk8GNHqTx8/edit?gid=1454934651#gid=1454934651"
+    },
+    company: {      
+      name: "Algoriza",      
+      logo: "/company/algoriza.jpg",
+      linkedin: "https://www.linkedin.com/company/algoriza"
+    },
+    type: "manual"
+  },
+  {
     id: 6,
+    title: "Dorra print Website",
+    description: "Performed in-depth functional and UI testing on the custom-built design editor (canvas) within the Dorra Print platform. The editor was developed from scratch to function similarly to tools like Canva or Photoshop. My testing covered all available tools, features, and keyboard shortcuts, ensuring correct behavior, responsiveness, and smooth user experience across different scenarios. I validated text, shapes, layers, alignment tools, undo/redo actions, drag-and-drop functionality, and export options. Leveraging my background as a graphic designer, I was able to test the system with a user-centered perspective, ensuring both usability and precision in the editor's performance.",
+    image: "/projects/5-dorraprint.png",
+    technologies: ["Test Cases", "Bug Reporting"],
+    links: {        live:  "https://dorraprint.com/"    },
+    company: {      
+      name: "Pixbyte",      
+      logo: "/company/pixbyte.jpg",
+      linkedin: "https://www.linkedin.com/company/pixbyteco/"
+    },
+    type: "manual",
+    featured: true
+  },
+  {
+    id: 7,
     title: "The Pass AI Exams & Interviews Website",
     description: "Participated in a testing bootcamp organized by Algoriza in collaboration with The Pass. The challenge involved performing exploratory testing on The Pass website within a limited time frame of 10 hours to identify valid functional and UI bugs. The discovered issues were documented in a structured Google Sheet based on predefined topics provided by the organizers, focusing on bug details and categorization rather than writing full bug reports.",
     image: "/projects/7-thepass.png",
@@ -103,23 +123,6 @@ const projects = [
     },
     type: "manual",
     featured: true
-  },
-  {
-    id: 7,
-    title: "Buggy Cars Rating Website",
-    description: "Performed comprehensive manual testing on the Buggy Cars Rating website as part of my graduation project at Algoriza. Conducted exploratory testing to identify and document functional, UI, and usability bugs across different modules. All findings and defect details were reported and tracked using Google Sheets to ensure clear and consistent bug documentation.",
-    image: "/projects/8-carbug.png",
-    technologies: ["Bug Reporting"],
-    links: {
-      live: "https://www.google.com/url?q=https://buggy.justtestit.org/&sa=D&source=editors&ust=1760294632664285&usg=AOvVaw22QYBbvcfufo2AO-jIMCii",
-      sheet: "https://docs.google.com/spreadsheets/d/16z0K46qpXTb7D1H0J-6YdgoM-NOvQJUngjk8GNHqTx8/edit?gid=1454934651#gid=1454934651"
-    },
-    company: {      
-      name: "Algoriza",      
-      logo: "/company/algoriza.jpg",
-      linkedin: "https://www.linkedin.com/company/algoriza"
-    },
-    type: "manual"
   },
   {
     id: 8,

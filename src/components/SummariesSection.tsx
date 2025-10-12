@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FileText, ExternalLink, User, LinkIcon } from "lucide-react";
+import { FileText, ExternalLink, User, LinkIcon, Eye } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
@@ -114,24 +114,23 @@ const SummariesSection = () => {
     before:rounded-[inherit]
   `;
 
-// استايل جديد لأزرار الـ References بلون أخضر غامق
-const referenceButtonStyle = `
-  relative gap-2 text-white font-medium 
-  bg-gradient-to-r 
-  from-emerald-700 via-emerald-600 to-emerald-500
-  overflow-hidden
-  shadow-[0_0_8px_rgba(5,150,105,0.4)] 
-  dark:shadow-[0_0_12px_rgba(5,150,105,0.3)] 
-  transition-all duration-500 
-  hover:scale-[1.02] hover:brightness-105
-  before:absolute before:top-0 before:left-[-75%] 
-  before:w-[50%] before:h-full 
-  before:bg-gradient-to-tr before:from-white/30 before:to-white/10
-  before:skew-x-[-40deg]
-  before:animate-none
-  hover:before:animate-[shine_1.2s_ease-in-out_forwards]
-  before:rounded-[inherit]
-`;
+  const referenceButtonStyle = `
+    relative gap-2 text-white font-medium 
+    bg-gradient-to-r 
+    from-emerald-700 via-emerald-600 to-emerald-500
+    overflow-hidden
+    shadow-[0_0_8px_rgba(5,150,105,0.4)] 
+    dark:shadow-[0_0_12px_rgba(5,150,105,0.3)] 
+    transition-all duration-500 
+    hover:scale-[1.02] hover:brightness-105
+    before:absolute before:top-0 before:left-[-75%] 
+    before:w-[50%] before:h-full 
+    before:bg-gradient-to-tr before:from-white/30 before:to-white/10
+    before:skew-x-[-40deg]
+    before:animate-none
+    hover:before:animate-[shine_1.2s_ease-in-out_forwards]
+    before:rounded-[inherit]
+  `;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -144,7 +143,6 @@ const referenceButtonStyle = `
     return () => observer.disconnect();
   }, []);
 
-  // دالة لعمل الـ mentions
   const renderDescriptionWithMentions = (description: string, mentions: typeof summaries[0]['mentions']) => {
     let processedDescription = description;
     
@@ -171,7 +169,6 @@ const referenceButtonStyle = `
           </p>
         </div>
 
-        {/* عمود واحد فقط */}
         <div className="grid grid-cols-1 gap-12 max-w-4xl mx-auto">
           {summaries.map((summary, index) => (
             <Dialog key={summary.id}>
@@ -182,20 +179,27 @@ const referenceButtonStyle = `
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="flex flex-col lg:flex-row">
-                  {/* الصورة - أكبر وواضحة */}
+                  {/* الصورة مع التعديلات المطلوبة فقط */}
                   <div className="relative lg:w-1/2 h-80 lg:h-96 bg-muted/50 overflow-hidden flex-shrink-0">
                     <DialogTrigger asChild>
-                      <button className="w-full h-full cursor-pointer">
+                      <button className="w-full h-full cursor-pointer relative">
                         <img
                           src={summary.image}
                           alt={summary.title}
-                          className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
+                        {/* View Overlay */}
+                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                          <div className="flex items-center gap-2 text-white">
+                            <Eye className="h-6 w-6" />
+                            <span className="text-lg font-semibold">View</span>
+                          </div>
+                        </div>
                       </button>
                     </DialogTrigger>
                   </div>
 
-                  {/* المحتوى */}
+                  {/* المحتوى - كما هو بدون تغيير */}
                   <div className="lg:w-1/2 p-6 lg:p-8 flex flex-col justify-between">
                     <div>
                       <div className="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-6">
@@ -207,12 +211,10 @@ const referenceButtonStyle = `
                         </h3>
                       </div>
                       
-                      {/* الوصف مع الـ Mentions */}
                       <div className="text-base lg:text-lg text-muted-foreground mb-6 lg:mb-8 leading-relaxed">
                         {renderDescriptionWithMentions(summary.description, summary.mentions)}
                       </div>
 
-                      {/* الـ Mentions */}
                       {summary.mentions && summary.mentions.length > 0 && (
                         <div className="mb-4 lg:mb-6">
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
@@ -258,7 +260,6 @@ const referenceButtonStyle = `
                       )}
                     </div>
 
-                    {/* زر Open PDF - بره زي ما كان */}
                     {summary.link && summary.link !== "#" && (
                       <Button
                         className={`${buttonStyle} w-full gap-2 py-3`}
@@ -272,9 +273,8 @@ const referenceButtonStyle = `
                 </div>
               </Card>
 
-              {/* Dialog مع References */}
+              {/* Dialog - كما هو بدون تغيير */}
               <DialogContent className="max-w-full w-full h-full max-h-screen m-0 p-0 overflow-hidden bg-background">
-                {/* Header مع زر Open PDF - responsive */}
                 <div className="p-4 lg:p-6 border-b border-border bg-background/95 backdrop-blur-sm">
                   <div className="container mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                     <div className="flex-1">
@@ -301,10 +301,8 @@ const referenceButtonStyle = `
                   </div>
                 </div>
 
-                {/* الصورة مع References */}
                 <div className="flex-1 overflow-auto bg-muted/10">
                   <div className="min-h-full flex flex-col lg:flex-row">
-                    {/* الصورة */}
                     <div className="flex-1 flex items-center justify-center p-4 lg:p-8">
                       <img
                         src={summary.image}
@@ -313,7 +311,6 @@ const referenceButtonStyle = `
                       />
                     </div>
 
-                    {/* References Panel */}
                     {(summary.references && summary.references.length > 0) && (
                       <div className="lg:w-80 border-t lg:border-t-0 lg:border-l border-border bg-background/50 backdrop-blur-sm">
                         <div className="p-4 lg:p-6">
@@ -337,7 +334,6 @@ const referenceButtonStyle = `
                             </Button>
                             ))}
                           </div>
-                          {/* الـ Mentions في الـ Dialog */}
                           {summary.mentions && summary.mentions.length > 0 && (
                             <div className="mt-6 pt-4 border-t border-border">
                               <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
