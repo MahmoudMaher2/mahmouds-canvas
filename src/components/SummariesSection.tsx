@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FileText, ExternalLink } from "lucide-react";
+import { FileText, ExternalLink, User, LinkIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
@@ -8,23 +8,87 @@ const summaries = [
   {
     id: 1,
     title: "ISTQB FL V4.0",
-    description: "A complete summary of the ISTQB syllabus, including clear explanations and practice questions.Based on materials and sessions from Eng. Rania Mokhtar and Eng. Tarek Rushdy.",
+    description: "Comprehensive ISTQB Foundation Level syllabus summary with clear explanations and practice questions from sample exams.",
     image: "/ISTQB FL Summary.jpg",
-    link: "https://www.linkedin.com/feed/update/urn:li:activity:7347600961898475520/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7347600961898475520%29",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7347600961898475520/",
+    mentions: [
+      {
+        name: "Eng. Rania Mokhtar",
+        profileLink: "https://www.linkedin.com/in/rania-mokhtar-268a07178/"
+      },
+      {
+        name: "Eng. Tarek Rushdy", 
+        profileLink: "https://www.linkedin.com/in/tarekroshdy/"
+      }
+    ],
+    references: [
+      {
+        title: "ISTQB Official Syllabus",
+        url: "https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/"
+      },
+      {
+        title: "ISTQB V4.0 By Eng. Rania Mokhtar",
+        url: "https://www.youtube.com/playlist?list=PL594OqWI4Um7Uk6utSPMBoMqTd7odsSr_"
+      },
+      {
+        title: "ISTQB V4.0 By Eng. Tarek Rushdy",
+        url: "https://www.udemy.com/course/foundation-level-training/"
+      },
+      {
+        title: "Sample Exams Questions By Fatima Mohammed",
+        url: "https://www.linkedin.com/feed/update/urn:li:activity:7374730900602839040/"
+      }
+    ]
   },
   {
     id: 2,
     title: "ISTQB MAT V1",
-    description: "Advanced techniques for implementing effective automated testing frameworks.",
+    description: "Advanced techniques for implementing effective automated testing frameworks. Special thanks to Eng. Ahmed Hassan for his guidance.",
     image: "/MAT Mocup.png",
-    link: "https://www.linkedin.com/feed/update/urn:li:activity:7372632879018717184/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7372632879018717184%29",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7372632879018717184/",
+    mentions: [
+      {
+        name: "Eng. Rania Mokhtar",
+        profileLink: "https://www.linkedin.com/in/rania-mokhtar-268a07178/"
+      },
+      {
+        name: "Eng. Tarek Rushdy", 
+        profileLink: "https://www.linkedin.com/in/tarekroshdy/"
+      }
+    ],
+    references: [
+      {
+        title: "ISTQB Official Syllabus",
+        url: "https://istqb.org/certifications/certified-tester-mobile-application-testing-ct-mat/"
+      },
+      {
+        title: "ISTQB MAT By Eng. Rania Mokhtar",
+        url: "https://www.youtube.com/playlist?list=PL594OqWI4Um7A4MHHeQoRL6AquHHovTUi"
+      },
+      {
+        title: "ISTQB V4.0 By Eng. Tarek Rushdy",
+        url: "https://www.udemy.com/course/istqb-mobile-tester/?couponCode=ACCAGE0923"
+      }
+    ]
   },
   {
     id: 3,
     title: "Part one Embedded Systems",
-    description: "Testing strategies and approaches in Agile development environments.",
+    description: "Testing strategies and approaches in Agile development environments. Created with insights from Dr. Mohamed Ali.",
     image: "/Part One Embedded.jpg",
-    link: "https://www.linkedin.com/feed/update/urn:li:activity:7209553266966245376/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7209553266966245376%29",
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7209553266966245376/",
+    mentions: [
+      {
+        name: "Eng. Ahmed Abd ElGhafar",
+        profileLink: "https://www.linkedin.com/in/ahmedabdelghafarmohammed/"
+      }
+    ],
+    references: [
+      {
+        title: "Embedded Systems Diploma",
+        url: "https://www.linkedin.com/in/ahmedabdelghafarmohammed"
+      }
+    ]
   },
 ];
 
@@ -50,6 +114,25 @@ const SummariesSection = () => {
     before:rounded-[inherit]
   `;
 
+// استايل جديد لأزرار الـ References بلون أخضر غامق
+const referenceButtonStyle = `
+  relative gap-2 text-white font-medium 
+  bg-gradient-to-r 
+  from-emerald-700 via-emerald-600 to-emerald-500
+  overflow-hidden
+  shadow-[0_0_8px_rgba(5,150,105,0.4)] 
+  dark:shadow-[0_0_12px_rgba(5,150,105,0.3)] 
+  transition-all duration-500 
+  hover:scale-[1.02] hover:brightness-105
+  before:absolute before:top-0 before:left-[-75%] 
+  before:w-[50%] before:h-full 
+  before:bg-gradient-to-tr before:from-white/30 before:to-white/10
+  before:skew-x-[-40deg]
+  before:animate-none
+  hover:before:animate-[shine_1.2s_ease-in-out_forwards]
+  before:rounded-[inherit]
+`;
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -60,6 +143,21 @@ const SummariesSection = () => {
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
+
+  // دالة لعمل الـ mentions
+  const renderDescriptionWithMentions = (description: string, mentions: typeof summaries[0]['mentions']) => {
+    let processedDescription = description;
+    
+    mentions?.forEach(mention => {
+      const mentionRegex = new RegExp(mention.name, 'g');
+      processedDescription = processedDescription.replace(
+        mentionRegex, 
+        `<a href="${mention.profileLink}" target="_blank" rel="noopener noreferrer" class="font-bold text-primary hover:text-blue-700 underline underline-offset-2 transition-colors">${mention.name}</a>`
+      );
+    });
+
+    return <div dangerouslySetInnerHTML={{ __html: processedDescription }} />;
+  };
 
   return (
     <section ref={sectionRef} id="summaries" className="py-24 px-4 bg-muted/30">
@@ -109,9 +207,55 @@ const SummariesSection = () => {
                         </h3>
                       </div>
                       
-                      <p className="text-base lg:text-lg text-muted-foreground mb-6 lg:mb-8 leading-relaxed">
-                        {summary.description}
-                      </p>
+                      {/* الوصف مع الـ Mentions */}
+                      <div className="text-base lg:text-lg text-muted-foreground mb-6 lg:mb-8 leading-relaxed">
+                        {renderDescriptionWithMentions(summary.description, summary.mentions)}
+                      </div>
+
+                      {/* الـ Mentions */}
+                      {summary.mentions && summary.mentions.length > 0 && (
+                        <div className="mb-4 lg:mb-6">
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                            <User className="h-4 w-4" />
+                            <span className="font-medium">Special Thanks:</span>
+                          </div>
+                           <div className="flex flex-wrap gap-2">
+                              {summary.mentions.map((mention, idx) => (
+                                <a
+                                  key={idx}
+                                  href={mention.profileLink}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="relative gap-2 font-medium 
+                                            bg-gradient-to-r 
+                                            from-purple-900/20 via-purple-800/20 to-purple-700/20
+                                            text-purple-700 dark:text-purple-300
+                                            border border-purple-500/50
+                                            overflow-hidden
+                                            shadow-[0_0_6px_rgba(147,51,234,0.3)] 
+                                            dark:shadow-[0_0_10px_rgba(147,51,234,0.2)] 
+                                            transition-all duration-500 
+                                            hover:scale-[1.05] hover:brightness-110
+                                            hover:bg-gradient-to-r hover:from-purple-900/30 hover:via-purple-800/30 hover:to-purple-700/30
+                                            hover:border-purple-400
+                                            hover:text-purple-800 dark:hover:text-purple-200
+                                            before:absolute before:top-0 before:left-[-75%] 
+                                            before:w-[50%] before:h-full 
+                                            before:bg-gradient-to-tr before:from-purple-300/40 before:to-purple-200/20
+                                            dark:before:from-white/30 dark:before:to-white/10
+                                            before:skew-x-[-10deg]
+                                            before:animate-none
+                                            hover:before:animate-[shine_1.0s_ease-in-out_forwards]
+                                            before:rounded-[inherit]
+                                            inline-flex items-center px-3 py-2 rounded-full text-sm"
+                                >
+                                  <User className="h-3 w-3" />
+                                  {mention.name}
+                                </a>
+                              ))}
+                            </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* زر Open PDF - بره زي ما كان */}
@@ -128,7 +272,7 @@ const SummariesSection = () => {
                 </div>
               </Card>
 
-              {/* Dialog زى الـ Certificates Gallery */}
+              {/* Dialog مع References */}
               <DialogContent className="max-w-full w-full h-full max-h-screen m-0 p-0 overflow-hidden bg-background">
                 {/* Header مع زر Open PDF - responsive */}
                 <div className="p-4 lg:p-6 border-b border-border bg-background/95 backdrop-blur-sm">
@@ -137,9 +281,9 @@ const SummariesSection = () => {
                       <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-2">
                         {summary.title}
                       </h3>
-                      <p className="text-sm lg:text-base text-muted-foreground">
-                        {summary.description}
-                      </p>
+                      <div className="text-sm lg:text-base text-muted-foreground">
+                        {renderDescriptionWithMentions(summary.description, summary.mentions)}
+                      </div>
                     </div>
                     {summary.link && summary.link !== "#" && (
                       <div className="flex justify-center lg:justify-start">
@@ -157,14 +301,89 @@ const SummariesSection = () => {
                   </div>
                 </div>
 
-                {/* الصورة تاخد كل المساحة */}
+                {/* الصورة مع References */}
                 <div className="flex-1 overflow-auto bg-muted/10">
-                  <div className="min-h-full flex items-center justify-center p-4 lg:p-8">
-                    <img
-                      src={summary.image}
-                      alt={summary.title}
-                      className="max-w-full max-h-full object-contain rounded-lg lg:rounded-xl shadow-lg lg:shadow-2xl"
-                    />
+                  <div className="min-h-full flex flex-col lg:flex-row">
+                    {/* الصورة */}
+                    <div className="flex-1 flex items-center justify-center p-4 lg:p-8">
+                      <img
+                        src={summary.image}
+                        alt={summary.title}
+                        className="max-w-full max-h-full object-contain rounded-lg lg:rounded-xl shadow-lg lg:shadow-2xl"
+                      />
+                    </div>
+
+                    {/* References Panel */}
+                    {(summary.references && summary.references.length > 0) && (
+                      <div className="lg:w-80 border-t lg:border-t-0 lg:border-l border-border bg-background/50 backdrop-blur-sm">
+                        <div className="p-4 lg:p-6">
+                          <div className="flex items-center gap-2 mb-4">
+                            <LinkIcon className="h-5 w-5 text-primary" />
+                            <h4 className="font-bold text-lg text-foreground">References</h4>
+                          </div>
+                          
+                          <div className="space-y-3">
+                            {summary.references.map((reference, idx) => (
+                              <Button
+                              className={`${referenceButtonStyle} w-full justify-start p-4 h-auto`}
+                              onClick={() => window.open(reference.url, '_blank')}
+                            >
+                              <div className="flex items-center gap-3 text-left w-full">
+                                <ExternalLink className="h-4 w-4 flex-shrink-0" />
+                                <span className="text-sm font-medium flex-1 break-words whitespace-normal">
+                                  {reference.title}
+                                </span>
+                              </div>
+                            </Button>
+                            ))}
+                          </div>
+                          {/* الـ Mentions في الـ Dialog */}
+                          {summary.mentions && summary.mentions.length > 0 && (
+                            <div className="mt-6 pt-4 border-t border-border">
+                              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                                <User className="h-4 w-4" />
+                                <span className="font-medium">Special Thanks</span>
+                              </div>
+                              <div className="flex flex-wrap gap-2">
+                                {summary.mentions.map((mention, idx) => (
+                                  <a
+                                    key={idx}
+                                    href={mention.profileLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="relative gap-2 font-medium 
+                                            bg-gradient-to-r 
+                                            from-purple-900/20 via-purple-800/20 to-purple-700/20
+                                            text-purple-700 dark:text-purple-300
+                                            border border-purple-500/50
+                                            overflow-hidden
+                                            shadow-[0_0_6px_rgba(147,51,234,0.3)] 
+                                            dark:shadow-[0_0_10px_rgba(147,51,234,0.2)] 
+                                            transition-all duration-500 
+                                            hover:scale-[1.05] hover:brightness-110
+                                            hover:bg-gradient-to-r hover:from-purple-900/30 hover:via-purple-800/30 hover:to-purple-700/30
+                                            hover:border-purple-400
+                                            hover:text-purple-800 dark:hover:text-purple-200
+                                            before:absolute before:top-0 before:left-[-75%] 
+                                            before:w-[50%] before:h-full 
+                                            before:bg-gradient-to-tr before:from-purple-300/40 before:to-purple-200/20
+                                            dark:before:from-white/30 dark:before:to-white/10
+                                            before:skew-x-[-10deg]
+                                            before:animate-none
+                                            hover:before:animate-[shine_1.0s_ease-in-out_forwards]
+                                            before:rounded-[inherit]
+                                            inline-flex items-center px-3 py-2 rounded-full text-sm"
+                                >
+                                  <User className="h-3 w-3" />
+                                    {mention.name}
+                                  </a>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </DialogContent>
