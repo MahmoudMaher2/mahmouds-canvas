@@ -8,7 +8,11 @@ const summaries = [
   {
     id: 1,
     title: "ISTQB FL V4.0",
-    description: "Comprehensive overview of testing principles, methodologies, and best practices.",
+    description: "A complete summary of the ISTQB syllabus with clear explanations and practice questions.",
+    authors: [
+      { name: "Eng. Rania Mokhtar", url: "https://www.youtube.com/playlist?list=PL594OqWI4Um7Uk6utSPMBoMqTd7odsSr_" },
+      { name: "Eng. Tarek Rushdy", url: "https://www.nezamacademy.com/" },
+    ],
     image: "/ISTQB FL Summary.jpg",
     link: "https://www.linkedin.com/feed/update/urn:li:activity:7347600961898475520/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7347600961898475520%29",
   },
