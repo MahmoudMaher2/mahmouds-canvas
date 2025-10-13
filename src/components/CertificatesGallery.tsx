@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Award, Calendar, Eye, ExternalLink, ChevronLeft, ChevronRight, Hash } from "lucide-react";
+import { Player } from '@lottiefiles/react-lottie-player';
 
 const certificates = [
   {
@@ -12,7 +13,8 @@ const certificates = [
     institution: "International Software Testing Qualifications Board",
     date: "June 2025",
     link: "https://scr.istqb.org/",
-    credentialId: "250528036"
+    credentialId: "250528036",
+    featured: true
   },
   {
     id: 2,
@@ -21,7 +23,8 @@ const certificates = [
     institution: "International Software Testing Qualifications Board", 
     date: "Sep 2025",
     link: "https://scr.istqb.org/",
-    credentialId: "250806035"
+    credentialId: "250806035",
+    featured: true
   },
   {
     id: 3,
@@ -30,7 +33,8 @@ const certificates = [
     institution: "Nezam Academy",
     date: "Sep 2025",
     link: null,
-    credentialId: null
+    credentialId: null,
+    featured: false
   },
   {
     id: 4,
@@ -39,7 +43,8 @@ const certificates = [
     institution: "Udemy - Tarek Roshdy",
     date: "Aug 2025",
     link: "https://www.udemy.com/certificate/UC-3943a2b4-8649-496b-a70b-0b523a69e990/",
-    credentialId: "UC-3943a2b4-8649-496b-a70b-0b523a69e990"
+    credentialId: "UC-3943a2b4-8649-496b-a70b-0b523a69e990",
+    featured: false
   },
   {
     id: 5,
@@ -48,7 +53,8 @@ const certificates = [
     institution: "Digital Egypt Pioneers Initiative [DEPI]",
     date: "Oct 2024",
     link: null,
-    credentialId: null
+    credentialId: null,
+    featured: false
   },
   {
     id: 6,
@@ -57,7 +63,8 @@ const certificates = [
     institution: "Digital Egypt Pioneers Initiative [DEPI]",
     date: "Oct 2024",
     link: null,
-    credentialId: null
+    credentialId: null,
+    featured: false
   },
   {
     id: 7,
@@ -66,7 +73,8 @@ const certificates = [
     institution: "MaharaTech - ITI",
     date: "May 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=355&downloadown=1",
-    credentialId: "9SQbyBz3MU"
+    credentialId: "9SQbyBz3MU",
+    featured: false
   },
   {
     id: 8,
@@ -75,7 +83,8 @@ const certificates = [
     institution: "MaharaTech - ITI",
     date: "July 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=967&downloadown=1",
-    credentialId: "RBIkxEvMEt"
+    credentialId: "RBIkxEvMEt",
+    featured: false
   },
   {
     id: 9,
@@ -84,7 +93,8 @@ const certificates = [
     institution: "MaharaTech - ITI",
     date: "July 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=970&downloadown=1",
-    credentialId: "tQVBfSXdL3"
+    credentialId: "tQVBfSXdL3",
+    featured: false
   },
   {
     id: 10,
@@ -93,7 +103,8 @@ const certificates = [
     institution: "MaharaTech - ITI", 
     date: "Sep 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=16004&downloadown=1",
-    credentialId: "rkFYlKshGs"
+    credentialId: "rkFYlKshGs",
+    featured: false
   },
   {
     id: 11,
@@ -102,7 +113,8 @@ const certificates = [
     institution: "MaharaTech - ITI",
     date: "Sep 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=14866&downloadown=1",
-    credentialId: "HqHnd1TbOm"
+    credentialId: "HqHnd1TbOm",
+    featured: false
   },
   {
     id: 12,
@@ -111,7 +123,8 @@ const certificates = [
     institution: "MaharaTech - ITI",
     date: "Sep 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=7655&downloadown=1",
-    credentialId: "auadg30yKg"
+    credentialId: "auadg30yKg",
+    featured: false
   },
   {
     id: 13,
@@ -120,7 +133,8 @@ const certificates = [
     institution: "Mansoura university",
     date: "May 2024",
     link: null,
-    credentialId: null
+    credentialId: null,
+    featured: false
   },
   {
     id: 14,
@@ -129,12 +143,14 @@ const certificates = [
     institution: "Eng/ Ahmed Abd ElGhafar",
     date: "July 2023",
     link: null,
-    credentialId: null
+    credentialId: null,
+    featured: false
   },
 ];
 
 const CertificatesGallery = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const [currentCertificateIndex, setCurrentCertificateIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -207,6 +223,7 @@ const CertificatesGallery = () => {
   }, []);
 
   const currentCertificate = certificates[currentCertificateIndex];
+  const displayedCertificates = showAll ? certificates : certificates.slice(0, 6); // أول 6 شهادات (3 صفوف)
 
   return (
     <section ref={sectionRef} id="certificates" className="py-24 px-4 bg-muted/30">
@@ -221,16 +238,29 @@ const CertificatesGallery = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {certificates.map((certificate, index) => (
+          {displayedCertificates.map((certificate, index) => (
             <Dialog key={certificate.id}>
               <DialogTrigger asChild>
                 <Card
-                  className={`cursor-pointer group hover:scale-105 transition-all duration-300 overflow-hidden border-border bg-card h-full flex flex-col ${
+                  className={`cursor-pointer group hover:scale-105 transition-all duration-300 overflow-visible border-border bg-card h-full flex flex-col relative ${
                     isVisible ? "animate-fade-in-up" : "opacity-0"
                   }`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                   onClick={() => openDialog(index)}
                 >
+                  {/* Lottie Animation Badge */}
+                  {certificate.featured && (
+                    <div className="absolute -top-6 -left-6 z-20">
+                      <Player
+                        src="/Verified Badge.json"
+                        className="w-16 h-16"
+                        loop
+                        autoplay
+                        speed={0.8}
+                      />
+                    </div>
+                  )}
+
                   {/* صورة مع hover effect */}
                   <div className="relative h-64 overflow-hidden bg-muted/50 flex-shrink-0">
                     <img
@@ -378,6 +408,19 @@ const CertificatesGallery = () => {
             </Dialog>
           ))}
         </div>
+
+        {/* زر View All Certificates */}
+        {!showAll && certificates.length > 6 && (
+          <div className="text-center mt-12">
+            <Button
+              className={`${buttonStyle} px-8 py-3 text-lg`}
+              onClick={() => setShowAll(true)}
+            >
+              View All Certificates
+              <ExternalLink className="h-5 w-5" />
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

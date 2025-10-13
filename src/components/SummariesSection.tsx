@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { FileText, ExternalLink, User, LinkIcon, Eye } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Player } from '@lottiefiles/react-lottie-player';
 
 const summaries = [
   {
@@ -38,7 +39,8 @@ const summaries = [
         title: "Sample Exams Questions By Fatima Mohammed",
         url: "https://www.linkedin.com/feed/update/urn:li:activity:7374730900602839040/"
       }
-    ]
+    ],
+    featured: true
   },
   {
     id: 2,
@@ -69,7 +71,8 @@ const summaries = [
         title: "ISTQB V4.0 By Eng. Tarek Rushdy",
         url: "https://www.udemy.com/course/istqb-mobile-tester/?couponCode=ACCAGE0923"
       }
-    ]
+    ],
+    featured: false
   },
   {
     id: 3,
@@ -88,7 +91,8 @@ const summaries = [
         title: "Embedded Systems Diploma",
         url: "https://www.linkedin.com/in/ahmedabdelghafarmohammed"
       }
-    ]
+    ],
+    featured: false
   },
 ];
 
@@ -173,13 +177,26 @@ const SummariesSection = () => {
           {summaries.map((summary, index) => (
             <Dialog key={summary.id}>
               <Card
-                className={`group overflow-hidden hover:shadow-xl hover:scale-[1.01] transition-all duration-500 ${
+                className={`group overflow-visible hover:shadow-xl hover:scale-[1.01] transition-all duration-500 ${
                   isVisible ? "animate-fade-in-up" : "opacity-0"
                 }`}
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
+                {/* Lottie Animation Badge */}
+                {summary.featured && (
+                  <div className="absolute -top-10 -left-5 z-20">
+                    <Player
+                      src="/star3.json"
+                      className="w-28 h-28"
+                      loop
+                      autoplay
+                      speed={0.8}
+                    />
+                  </div>
+                )}
+
                 <div className="flex flex-col lg:flex-row">
-                  {/* الصورة مع التعديلات المطلوبة فقط */}
+                  {/* الصورة */}
                   <div className="relative lg:w-1/2 h-80 lg:h-96 bg-muted/50 overflow-hidden flex-shrink-0">
                     <DialogTrigger asChild>
                       <button className="w-full h-full cursor-pointer relative">
@@ -199,7 +216,7 @@ const SummariesSection = () => {
                     </DialogTrigger>
                   </div>
 
-                  {/* المحتوى - كما هو بدون تغيير */}
+                  {/* المحتوى */}
                   <div className="lg:w-1/2 p-6 lg:p-8 flex flex-col justify-between">
                     <div>
                       <div className="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-6">
@@ -273,7 +290,7 @@ const SummariesSection = () => {
                 </div>
               </Card>
 
-              {/* Dialog - كما هو بدون تغيير */}
+              {/* Dialog */}
               <DialogContent className="max-w-full w-full h-full max-h-screen m-0 p-0 overflow-hidden bg-background">
                 <div className="p-4 lg:p-6 border-b border-border bg-background/95 backdrop-blur-sm">
                   <div className="container mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">

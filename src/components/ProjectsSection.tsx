@@ -148,7 +148,7 @@ const projects = [
     links: {
       github: "https://github.com/MahmoudMaher2/CartLow-Automation-Project",
       live:   "https://cartlow.com/intl/en.",
-      video: "https://drive.google.com/file/d/1_dxBEHj4xG65eBGSSr92XpzPpSgHP8B_/view?usp=drive_link",
+      video: "https://www.linkedin.com/posts/mahmoud-maher74_excited-to-share-a-new-milestone-in-my-activity-7383410436710236160-_47v?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfONi4B0pCCpxdTkwSiJuxyKYmXLylhGv0",
       sheet: "https://docs.google.com/spreadsheets/d/16z0K46qpXTb7D1H0J-6YdgoM-NOvQJUngjk8GNHqTx8/edit?gid=239239246#gid=239239246"
     },
     company: {      
