@@ -9,7 +9,7 @@ const summaries = [
   {
     id: 1,
     title: "ISTQB FL V4.0",
-    description: "Comprehensive ISTQB Foundation Level syllabus summary with clear explanations and practice questions from sample exams.",
+    description: "Comprehensive ISTQB Foundation Level (FL) V4.0 syllabus summary with clear explanations and practice questions from sample exams.",
     image: "/ISTQB FL Summary.jpg",
     link: "https://www.linkedin.com/feed/update/urn:li:activity:7347600961898475520/",
     mentions: [
@@ -40,12 +40,12 @@ const summaries = [
         url: "https://www.linkedin.com/feed/update/urn:li:activity:7374730900602839040/"
       }
     ],
-    featured: true
+    featured: false
   },
   {
     id: 2,
     title: "ISTQB MAT V1",
-    description: "Advanced techniques for implementing effective automated testing frameworks. Special thanks to Eng. Ahmed Hassan for his guidance.",
+    description: "Comprehensive ISTQB Mobile Application Testing (MAT) syllabus summary with clear explanations and practice questions from sample exams.",
     image: "/MAT Mocup.png",
     link: "https://www.linkedin.com/feed/update/urn:li:activity:7372632879018717184/",
     mentions: [
@@ -77,7 +77,7 @@ const summaries = [
   {
     id: 3,
     title: "Part one Embedded Systems",
-    description: "Testing strategies and approaches in Agile development environments. Created with insights from Dr. Mohamed Ali.",
+    description: "Part one of an Embedded Systems Diploma often focuses on Master C programming, Data Structures, and Algorithms,",
     image: "/Part One Embedded.jpg",
     link: "https://www.linkedin.com/feed/update/urn:li:activity:7209553266966245376/",
     mentions: [

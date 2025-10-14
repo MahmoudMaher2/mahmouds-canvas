@@ -36,8 +36,8 @@ const ContactSection = () => {
     },
     {
       label: "GitHub", 
-      data: "github.com/mahmoudmaher",
-      href: "https://github.com",
+      data: "MahmoudMaher2",
+      href: "https://github.com/MahmoudMaher2",
       icon: "/Github.gif",
       color: "text-gray-700",
       bgColor: "bg-gray-50",
@@ -46,7 +46,7 @@ const ContactSection = () => {
     },
     {
       label: "WhatsApp",
-      data: "+20 114 012 1877",
+      data: "+201140121877",
       href: "https://wa.me/201140121877",
       icon: "/whatsapp loop.gif",
       color: "text-green-600",
@@ -67,11 +67,11 @@ const ContactSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="contact" className="py-20 px-4 bg-muted/30">
-      <div className="container mx-auto max-w-6xl">
-        <div className={`text-center mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Let's Connect
+    <section ref={sectionRef} id="contact" className="py-24 px-4 bg-muted/30">
+      <div className="container mx-auto">
+        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="gradient-text">Let's Connect</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Reach out to me through any of these platforms
@@ -91,7 +91,7 @@ const ContactSection = () => {
                     <img 
                       src={link.icon} 
                       alt={link.label}
-                      className="h-16 w-16 object-contain" // حجم أكبر للصورة
+                      className="h-16 w-16 object-contain"
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
                       }}

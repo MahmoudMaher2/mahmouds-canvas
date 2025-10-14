@@ -5,6 +5,7 @@ import LinkedInButton from "@/components/LinkedInButton";
 import Hero from "@/components/Hero";
 import SummariesSection from "@/components/SummariesSection";
 import AboutSection from "@/components/AboutSection";
+import WorkExperienceSection from "@/components/WorkExperienceSection.tsx";
 import SkillsMarquee from "@/components/SkillsMarquee";
 import ProjectsSection from "@/components/ProjectsSection";
 import CertificatesGallery from "@/components/CertificatesGallery";
@@ -30,6 +31,7 @@ const Index = () => {
         
         <section id="about" className="section">
           <AboutSection />
+          <WorkExperienceSection/>
         </section>
         
         <section id="skills" className="section">

@@ -1,10 +1,9 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Play, FileText, Building } from "lucide-react";
+import { ExternalLink, Github, Play, FileText, Building, ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Player } from '@lottiefiles/react-lottie-player';
-import { features } from "process";
 
 const projects = [
   {
@@ -19,11 +18,13 @@ const projects = [
       video: null,
       sheet: null
     },
-    company: {      
-      name: "DEPI",      
-      logo: "/company/DEPI.jpg",
-      linkedin: "https://www.linkedin.com/company/digital-egypt-pioneers-initiative-depi/"
-    },
+    companies: [    
+      {
+        name: "DEPI",      
+        logo: "/company/DEPI.jpg",
+        linkedin: "https://www.linkedin.com/company/digital-egypt-pioneers-initiative-depi/"
+      }
+    ],
     type: "automation",
   },
   {
@@ -33,14 +34,16 @@ const projects = [
     image: "/projects/4-talentkid.png",
     technologies: ["Test Cases", "Bug Reporting"],
     links: {        live:  "https://talentkid.sa/"    },
-    company: {      
-      name: "Pixbyte",      
-      logo: "/company/pixbyte.jpg",
-      linkedin: "https://www.linkedin.com/company/pixbyteco/"
-    },
+    companies: [    
+      {
+        name: "Pixbyte",      
+        logo: "/company/pixbyte.jpg",
+        linkedin: "https://www.linkedin.com/company/pixbyteco/"
+      }
+    ],
     type: "manual"
   },
-    {
+  {
     id: 3,
     title: "OpenCart Automation Graduation Project",
     description: "Developed an automation testing project for the AwesomeQA website using IntelliJ IDEA. Utilized the Cucumber framework to design and execute 30 automated test cases, ensuring the functionality and reliability of the web application. Additionally, generated comprehensive Extent Reports in multiple formats, including HTML, PDF, and screenshots, to document the test results.",
@@ -52,11 +55,13 @@ const projects = [
       video: "https://www.linkedin.com/posts/mahmoud-maher74_finally-im-proud-to-present-my-graduation-activity-7253842698674077696-2VlK?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC8ZR_4Bc4J1qHvjF8JxJ4jD4p9JZ5jHZ5o",
       sheet: null
     },
-    company: {      
-      name: "DEPI",      
-      logo: "/company/DEPI.jpg",
-      linkedin: "https://www.linkedin.com/company/digital-egypt-pioneers-initiative-depi/"
-    },
+    companies: [    
+      {
+        name: "DEPI",      
+        logo: "/company/DEPI.jpg",
+        linkedin: "https://www.linkedin.com/company/digital-egypt-pioneers-initiative-depi/"
+      }
+    ],
     type: "automation",
     featured: true
   },
@@ -67,11 +72,13 @@ const projects = [
     image: "/projects/6-moreenglish.png",
     technologies: ["Test Cases", "Bug Reporting"],
     links: {        live:  "https://www.more-english.net/"    },
-    company: {      
-      name: "Pixbyte",      
-      logo: "/company/pixbyte.jpg",
-      linkedin: "https://www.linkedin.com/company/pixbyteco/"
-    },
+    companies: [    
+      {
+        name: "Pixbyte",      
+        logo: "/company/pixbyte.jpg",
+        linkedin: "https://www.linkedin.com/company/pixbyteco/"
+      }
+    ],
     type: "manual"
   },
   {
@@ -84,11 +91,18 @@ const projects = [
       live: "https://www.google.com/url?q=https://buggy.justtestit.org/&sa=D&source=editors&ust=1760294632664285&usg=AOvVaw22QYBbvcfufo2AO-jIMCii",
       sheet: "https://docs.google.com/spreadsheets/d/16z0K46qpXTb7D1H0J-6YdgoM-NOvQJUngjk8GNHqTx8/edit?gid=1454934651#gid=1454934651"
     },
-    company: {      
-      name: "Algoriza",      
-      logo: "/company/algoriza.jpg",
-      linkedin: "https://www.linkedin.com/company/algoriza"
-    },
+    companies: [    
+      {
+        name: "Algoriza",      
+        logo: "/company/AZM1.jpg",
+        linkedin: "https://www.linkedin.com/company/algoriza"
+      },
+      {
+        name: "AZM Squad",      
+        logo: "/company/AZM1.jpg",
+        linkedin: "https://www.linkedin.com/company/azmsquad"
+      }
+    ],
     type: "manual"
   },
   {
@@ -98,11 +112,13 @@ const projects = [
     image: "/projects/5-dorraprint.png",
     technologies: ["Test Cases", "Bug Reporting"],
     links: {        live:  "https://dorraprint.com/"    },
-    company: {      
-      name: "Pixbyte",      
-      logo: "/company/pixbyte.jpg",
-      linkedin: "https://www.linkedin.com/company/pixbyteco/"
-    },
+    companies: [    
+      {
+        name: "Pixbyte",      
+        logo: "/company/pixbyte.jpg",
+        linkedin: "https://www.linkedin.com/company/pixbyteco/"
+      }
+    ],
     type: "manual",
     featured: true
   },
@@ -116,11 +132,18 @@ const projects = [
       live:   "https://thepass.sa/",
       sheet:  "https://docs.google.com/spreadsheets/d/1MnLzrbhaqGlrnLQUAqv0Bon7R8JdlXFNx2lQGJBnyiA/edit?usp=drive_link"
     },
-    company: {      
-      name: "Algoriza",      
-      logo: "/company/algoriza.jpg",
-      linkedin: "https://www.linkedin.com/company/algoriza"
-    },
+    companies: [    
+      {
+        name: "Algoriza",      
+        logo: "/company/AZM1.jpg",
+        linkedin: "https://www.linkedin.com/company/algoriza"
+      },
+      {
+        name: "AZM Squad",      
+        logo: "/company/AZM1.jpg",
+        linkedin: "https://www.linkedin.com/company/azmsquad"
+      }
+    ],
     type: "manual",
     featured: true
   },
@@ -131,11 +154,13 @@ const projects = [
     image: "/projects/3-penguin.png",
     technologies: ["Test Cases", "Bug Reporting", "API Testing", "Hoppscotch"],
     links: {        live:  "https://penguin.com.sa/"    },
-    company: {      
-      name: "Pixbyte",      
-      logo: "/company/pixbyte.jpg",
-      linkedin: "https://www.linkedin.com/company/pixbyteco/"
-    },
+    companies: [    
+      {
+        name: "Pixbyte",      
+        logo: "/company/pixbyte.jpg",
+        linkedin: "https://www.linkedin.com/company/pixbyteco/"
+      }
+    ],
     type: "manual",
     featured: true
   },
@@ -151,11 +176,18 @@ const projects = [
       video: "https://www.linkedin.com/posts/mahmoud-maher74_excited-to-share-a-new-milestone-in-my-activity-7383410436710236160-_47v?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfONi4B0pCCpxdTkwSiJuxyKYmXLylhGv0",
       sheet: "https://docs.google.com/spreadsheets/d/16z0K46qpXTb7D1H0J-6YdgoM-NOvQJUngjk8GNHqTx8/edit?gid=239239246#gid=239239246"
     },
-    company: {      
-      name: "Algoriza",      
-      logo: "/company/algoriza.jpg",
-      linkedin: "https://www.linkedin.com/company/algoriza"
-    },
+    companies: [    
+      {
+        name: "Algoriza",      
+        logo: "/company/AZM1.jpg",
+        linkedin: "https://www.linkedin.com/company/algoriza"
+      },
+      {
+        name: "AZM Squad",      
+        logo: "/company/AZM1.jpg",
+        linkedin: "https://www.linkedin.com/company/azmsquad"
+      }
+    ],
     type: ["automation", "manual"],
     featured: true
   }
@@ -163,8 +195,10 @@ const projects = [
 
 const ProjectsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showAllProjects, setShowAllProjects] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
+  // زر View All Projects بنفس الاستايل
   const buttonStyle = `
     relative gap-2 text-white font-medium 
     bg-gradient-to-r 
@@ -200,42 +234,25 @@ const ProjectsSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  // عرض آخر 4 مشاريع (الأحدث) أو كل المشاريع
+  const displayedProjects = showAllProjects 
+    ? projects.slice().reverse() 
+    : projects.slice(-4).reverse();
+
   const getTechColor = (tech: string) => {
     const colors: { [key: string]: string } = {
-      // Java Technologies
       'Java': 'bg-red-500/10 text-red-700 dark:text-red-300 border-red-500/20 dark:border-red-500/30',
       'Selenium': 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/20 dark:border-green-500/30',
       'TestNG': 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20 dark:border-blue-500/30',
-      'JUnit': 'bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-500/20 dark:border-purple-500/30',
       'Maven': 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 border-yellow-500/20 dark:border-yellow-500/30',
       'Cucumber': 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/20 dark:border-emerald-500/30',
       'POM': 'bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border-indigo-500/20 dark:border-indigo-500/30',
       'BDD': 'bg-teal-500/10 text-teal-700 dark:text-teal-300 border-teal-500/20 dark:border-teal-500/30',
       'Extent Report': 'bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/20 dark:border-rose-500/30',
-      
-      // Mobile & Tools
-      'Appium': 'bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border-indigo-500/20 dark:border-indigo-500/30',
-      'Android': 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/20 dark:border-green-500/30',
-      'iOS': 'bg-gray-500/10 text-gray-700 dark:text-gray-300 border-gray-500/20 dark:border-gray-500/30',
-      'CI/CD': 'bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-500/20 dark:border-orange-500/30',
-      
-      // API & Web
-      'Postman': 'bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-500/20 dark:border-orange-500/30',
-      'Hoppscotch': 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20 dark:border-blue-500/30',
-      'REST Assured': 'bg-teal-500/10 text-teal-700 dark:text-teal-300 border-teal-500/20 dark:border-teal-500/30',
-      'REST API': 'bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-500/20 dark:border-cyan-500/30',
-      'API Testing': 'bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-500/20 dark:border-orange-500/30',
-      
-      // Manual Testing
       'Test Cases': 'bg-pink-500/10 text-pink-700 dark:text-pink-300 border-pink-500/20 dark:border-pink-500/30',
       'Bug Reporting': 'bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/20 dark:border-rose-500/30',
-      'JIRA': 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20 dark:border-blue-500/30',
-      'TestRail': 'bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-500/20 dark:border-purple-500/30',
-      'SQL': 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20 dark:border-amber-500/30',
-      
-      // Default
-      'Performance': 'bg-violet-500/10 text-violet-700 dark:text-violet-300 border-violet-500/20 dark:border-violet-500/30',
-      'Jenkins': 'bg-red-500/10 text-red-700 dark:text-red-300 border-red-500/20 dark:border-red-500/30'
+      'API Testing': 'bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-500/20 dark:border-orange-500/30',
+      'Hoppscotch': 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20 dark:border-blue-500/30',
     };
     
     return colors[tech] || 'bg-gray-500/10 text-gray-700 dark:text-gray-300 border-gray-500/20 dark:border-gray-500/30';
@@ -343,8 +360,9 @@ const ProjectsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {projects.slice().reverse().map((project, index) => {
+        {/* عرض المشاريع */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          {displayedProjects.map((project, index) => {
             const typeStyle = getTypeStyle(project.type);
             const allLinks = renderAllLinks(project.links);
             
@@ -361,7 +379,7 @@ const ProjectsSection = () => {
                   <div className="absolute -top-10 -left-10 z-20">
                     <Player
                       src="/star1.json"
-                      className="w-28 h-28"  // حجم أكبر
+                      className="w-28 h-28"
                       loop
                       autoplay
                       speed={0.8}
@@ -392,7 +410,7 @@ const ProjectsSection = () => {
                   }
                 </div>
 
-                {/* Project Image - أول حاجة */}
+                {/* Project Image */}
                 <div className="relative w-full overflow-hidden bg-muted/30">
                   <img
                     src={project.image}
@@ -402,14 +420,14 @@ const ProjectsSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-transparent to-transparent" />
                 </div>
 
-                {/* المحتوى - تحت الصورة */}
-                <div className="p-6">
+                {/* المحتوى */}
+                <CardContent className="p-6">
                   {/* Header with Company Logo */}
                   <div className="flex items-center gap-3 mb-4">
-                    {project.company.logo ? (
+                    {project.companies[0].logo ? (
                       <img 
-                        src={project.company.logo} 
-                        alt={project.company.name}
+                        src={project.companies[0].logo} 
+                        alt={project.companies[0].name}
                         className="w-8 h-8 rounded-full object-cover"
                       />
                     ) : (
@@ -423,14 +441,19 @@ const ProjectsSection = () => {
                       </CardTitle>
                       <p className="text-sm text-muted-foreground">
                         with {" "}
-                        <a 
-                          href={project.company.linkedin} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-primary hover:text-blue-700 underline underline-offset-2 transition-colors"
-                        >
-                          {project.company.name}
-                        </a>
+                        {project.companies.map((company, companyIdx) => (
+                          <span key={company.name}>
+                            <a 
+                              href={company.linkedin} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-primary hover:text-blue-700 underline underline-offset-2 transition-colors"
+                            >
+                              {company.name}
+                            </a>
+                            {companyIdx < project.companies.length - 1 && " & "}
+                          </span>
+                        ))}
                       </p>
                     </div>
                   </div>
@@ -490,11 +513,24 @@ const ProjectsSection = () => {
                       </TooltipProvider>
                     )}
                   </div>
-                </div>
+                </CardContent>
               </Card>
             );
           })}
         </div>
+
+        {/* زر View All Projects - يظهر دائماً إذا كان هناك أكثر من 4 مشاريع */}
+        {projects.length > 4 && (
+          <div className={`text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+            <Button 
+              className={`${buttonStyle} px-8 py-3 text-lg`}
+              onClick={() => setShowAllProjects(!showAllProjects)}
+            >
+              <ChevronDown className={`h-5 w-5 transition-transform ${showAllProjects ? 'rotate-180' : ''}`} />
+              {showAllProjects ? 'Show Less' : `View All Projects (${projects.length - 4} more)`}
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

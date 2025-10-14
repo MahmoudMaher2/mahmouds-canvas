@@ -114,7 +114,7 @@ const SkillsMarquee = () => {
             <span className="gradient-text">Expertise & Toolkit</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Proficient in a wide range of tools and technologies
+            A quick look at the skills and tools that help me deliver reliable testing results.
           </p>
           <p className="text-sm text-muted-foreground mt-2">
             Click and drag to scroll • Hover to zoom
