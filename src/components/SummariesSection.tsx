@@ -34,10 +34,6 @@ const summaries = [
       {
         title: "ISTQB V4.0 By Eng. Tarek Rushdy",
         url: "https://www.udemy.com/course/foundation-level-training/"
-      },
-      {
-        title: "Sample Exams Questions By Fatima Mohammed",
-        url: "https://www.linkedin.com/feed/update/urn:li:activity:7374730900602839040/"
       }
     ],
     featured: false
