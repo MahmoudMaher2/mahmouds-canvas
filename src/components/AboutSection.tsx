@@ -59,7 +59,7 @@ const AboutSection: React.FC = () => {
         {/* soft floating blobs */}
         <motion.div
           className="absolute -left-40 -top-28 w-[420px] h-[420px] rounded-full blur-3xl opacity-30 -z-10"
-          style={{ background: "radial-gradient(circle at 30% 30%, rgba(236,72,153,0.25), transparent 30%)" }}
+          style={{ background: "radial-gradient(circle at 30% 30%, rgba(132, 72, 236, 0.25), transparent 30%)" }}
           animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -72,8 +72,13 @@ const AboutSection: React.FC = () => {
 
         <div className="container mx-auto max-w-6xl relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-bold mb-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-blue-500 to-pink-500">
-              About Me
+            <motion.h2 
+              variants={fadeUp} 
+              className="text-4xl md:text-5xl font-bold mb-4 text-center"
+            >
+              <span className="gradient-text bg-gradient-to-r from-violet-400 via-blue-500 to-pink-500 bg-clip-text text-transparent">
+                About Me
+              </span>
             </motion.h2>
             <motion.p variants={fadeUp} className="text-lg text-muted-foreground max-w-3xl mx-auto text-center mb-12">
               A brief introduction about me and my journey in the world of software testing.

@@ -7,6 +7,7 @@ const skills = [
   { name: "IntelliJ IDEA", image: "/Skills/intellij.png" },
   { name: "Postman", image: "/Skills/postman.png" },
   { name: "Hoppscotch", image: "/Skills/hoppscotch.png" },
+  { name: "JMeter", image: "/Skills/jmeter.svg", darkImage: "/Skills/jmeter-dark.svg"},
   { name: "GitHub", image: "/Skills/github.png", darkImage: "/Skills/github-dark.png" },
   { name: "Photoshop", image: "/Skills/Adobe_Photoshop.png" },
   { name: "Illustrator", image: "/Skills/Adobe_Illustrator.png" },

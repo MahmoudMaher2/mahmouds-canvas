@@ -145,11 +145,13 @@ const WorkExperienceSection: React.FC = () => {
       <div className="container mx-auto max-w-6xl relative z-10">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <motion.div variants={fadeUp} className="text-center mb-12">
-            <h3 className="text-3xl font-bold mb-2 flex items-center justify-center gap-3">
-              <Briefcase className="h-7 w-7 text-primary" />
-              Work Experience
+            <h3 className="text-5xl font-bold mb-2 flex items-center justify-center gap-3">
+              <Briefcase className="h-10 w-10 text-primary" />
+                <span className="gradient-text bg-gradient-to-r from-violet-400 via-blue-500 to-pink-500 bg-clip-text text-transparent">
+                Work Experience
+              </span>
             </h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">My professional journey in software testing and QA.</p>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">My professional journey in software testing.</p>
           </motion.div>
 
           {/* Timeline container */}

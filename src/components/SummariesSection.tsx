@@ -10,7 +10,7 @@ const summaries = [
     id: 1,
     title: "ISTQB FL V4.0",
     description: "Comprehensive ISTQB Foundation Level (FL) V4.0 syllabus summary with clear explanations and practice questions from sample exams.",
-    image: "/ISTQB FL Summary.jpg",
+    image: "/Summaries/ISTQB FL Summary.jpg",
     link: "https://www.linkedin.com/feed/update/urn:li:activity:7347600961898475520/",
     mentions: [
       {
@@ -46,7 +46,7 @@ const summaries = [
     id: 2,
     title: "ISTQB FL V4.0 Sample Exams Questions",
     description: "A compiled collection of ISTQB Foundation Level v4.0 sample exam questions gathered from official sample exams. The file includes only the questions without answers, designed to help learners practice and assess their understanding of ISTQB concepts.",
-    image: "/ISTQB FL Q.png",
+    image: "/Summaries/ISTQB FL Q.png",
     link: "https://drive.google.com/file/d/1ARIhlWtDtsbzEpLdSuxieutx2wiqnHad/view?usp=drive_link",
     references: [
       {
@@ -59,7 +59,7 @@ const summaries = [
     id: 3,
     title: "ISTQB MAT V1",
     description: "Comprehensive ISTQB Mobile Application Testing (MAT) syllabus summary with clear explanations and practice questions from sample exams.",
-    image: "/MAT Mocup.png",
+    image: "/Summaries/MAT Mocup.png",
     link: "https://www.linkedin.com/feed/update/urn:li:activity:7372632879018717184/",
     mentions: [
       {
@@ -90,8 +90,8 @@ const summaries = [
   {
     id: 4,
     title: "Part one Embedded Systems",
-    description: "Part one of an Embedded Systems Diploma often focuses on Master C programming, Data Structures, and Algorithms,",
-    image: "/Part One Embedded.jpg",
+    description: "Part one of an Embedded Systems Diploma often focuses on Master C programming, Data Structures, and Algorithms.",
+    image: "/Summaries/Part One Embedded.jpg",
     link: "https://www.linkedin.com/feed/update/urn:li:activity:7209553266966245376/",
     mentions: [
       {
@@ -103,6 +103,19 @@ const summaries = [
       {
         title: "Embedded Systems Diploma",
         url: "https://www.linkedin.com/in/ahmedabdelghafarmohammed"
+      }
+    ],
+    featured: false
+  },  {
+    id: 5,
+    title: "All My Collage Summaries",
+    description: "A complete collection of my college summaries, including detailed explanations, compiled past exams, and organized law sheets. These materials were created to simplify studying, connect key concepts, and provide a quick and reliable reference for revision.",
+    image: "/Summaries/Mockup Collage.png",
+    link: "https://drive.google.com/drive/folders/1RjEORkCR185KXsl782pHt38dE_GbN0Xs?usp=drive_link",
+    mentions: [
+      {
+        name: "Sameh El-Domyate",
+        profileLink: "https://www.linkedin.com/in/sameh-eldomyate-/"
       }
     ],
     featured: false

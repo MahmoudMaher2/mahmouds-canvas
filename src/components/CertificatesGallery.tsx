@@ -252,7 +252,7 @@ const CertificatesGallery = () => {
                   {certificate.featured && (
                     <div className="absolute -top-6 -left-6 z-20">
                       <Player
-                        src="/Verified Badge.json"
+                        src="/icons/Verified Badge.json"
                         className="w-16 h-16"
                         loop
                         autoplay

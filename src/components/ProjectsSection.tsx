@@ -378,7 +378,7 @@ const ProjectsSection = () => {
                 {project.featured && (
                   <div className="absolute -top-10 -left-10 z-20">
                     <Player
-                      src="/star1.json"
+                      src="/icons/star1.json"
                       className="w-28 h-28"
                       loop
                       autoplay
