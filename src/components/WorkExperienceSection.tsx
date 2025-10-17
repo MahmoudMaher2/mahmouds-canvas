@@ -15,7 +15,7 @@ const experience = [
     ],
     logo: "/company/pixbyte.jpg",
     position: "Software Test Engineer",
-    period: "July 2025 - Oct 2025",
+    period: "July 2024 - Oct 2024",
     location: "Mansoura, Egypt",
     type: "Full-time",
     description:
@@ -34,7 +34,7 @@ const experience = [
     ],
     logo: "/company/AZM1.jpg",
     position: "Manual and Automation Software Testing internship",
-    period: "July 2025 - Sep 2025",
+    period: "July 2024 - Sep 2024",
     location: "Remote",
     type: "Internship",
     description:
@@ -59,27 +59,77 @@ const experience = [
 
 const calculateDuration = (period: string) => {
   const [start, end] = period.split(" - ");
-  const startDate = new Date(start);
-  const endDate = end === "Present" ? new Date() : new Date(end);
-
-  // حساب الفرق بالشهور بطريقة أدق
-  let months = (endDate.getFullYear() - startDate.getFullYear()) * 12;
-  months += endDate.getMonth() - startDate.getMonth();
   
-  // لو اليوم في نهاية الشهر أكبر من أو يساوي اليوم في بداية الشهر، نعتبر الشهر كامل
-  if (endDate.getDate() >= startDate.getDate()) {
-    months += 1;
-  }
+  try {
+    // تحويل الشهور من نص لرقم
+    const monthMap: { [key: string]: number } = {
+      'Jan': 0, 'January': 0,
+      'Feb': 1, 'February': 1,
+      'Mar': 2, 'March': 2,
+      'Apr': 3, 'April': 3,
+      'May': 4,
+      'Jun': 5, 'June': 5,
+      'Jul': 6, 'July': 6,
+      'Aug': 7, 'August': 7,
+      'Sep': 8, 'September': 8,
+      'Oct': 9, 'October': 9,
+      'Nov': 10, 'November': 10,
+      'Dec': 11, 'December': 11
+    };
 
-  const years = Math.floor(months / 12);
-  const remainingMonths = months % 12;
+    const parseDate = (dateStr: string): Date => {
+      // إذا كان "Present" نرجع التاريخ الحالي
+      if (dateStr === 'Present') return new Date();
+      
+      const parts = dateStr.split(' ');
+      const monthName = parts[0];
+      const year = parseInt(parts[1]);
+      
+      if (monthMap[monthName] !== undefined && !isNaN(year)) {
+        return new Date(year, monthMap[monthName], 1);
+      }
+      
+      // إذا فشل التحويل، نجرب الطريقة العادية
+      return new Date(dateStr);
+    };
 
-  if (years === 0) {
-    return `${remainingMonths} month${remainingMonths > 1 ? "s" : ""}`;
-  } else if (remainingMonths === 0) {
-    return `${years} year${years > 1 ? "s" : ""}`;
-  } else {
-    return `${years} year${years > 1 ? "s" : ""} ${remainingMonths} month${remainingMonths > 1 ? "s" : ""}`;
+    const startDate = parseDate(start);
+    const endDate = parseDate(end);
+
+    // التحقق من صحة التواريخ
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+      return "Invalid date";
+    }
+
+    // إذا كانت التواريخ في المستقبل، استخدم التاريخ الحالي
+    const effectiveEndDate = endDate > new Date() ? new Date() : endDate;
+
+    // حساب الفرق بالشهور
+    let months = (effectiveEndDate.getFullYear() - startDate.getFullYear()) * 12;
+    months += effectiveEndDate.getMonth() - startDate.getMonth();
+    
+    // إذا كان الشهر الحالي أكبر من أو يساوي شهر البداية، نضيف شهر
+    if (effectiveEndDate.getDate() >= startDate.getDate()) {
+      months += 1;
+    }
+
+    // التأكد من أن عدد الشهور موجب
+    if (months <= 0) {
+      return "Less than 1 month";
+    }
+
+    const years = Math.floor(months / 12);
+    const remainingMonths = months % 12;
+
+    if (years === 0) {
+      return `${remainingMonths} month${remainingMonths > 1 ? "s" : ""}`;
+    } else if (remainingMonths === 0) {
+      return `${years} year${years > 1 ? "s" : ""}`;
+    } else {
+      return `${years} year${years > 1 ? "s" : ""} ${remainingMonths} month${remainingMonths > 1 ? "s" : ""}`;
+    }
+  } catch (error) {
+    return "Invalid period";
   }
 };
 
