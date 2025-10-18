@@ -1,0 +1,65 @@
+{
+  "name": "Mahmoud Maher - Software Testing Engineer",
+  "short_name": "Mahmoud Maher",
+  "description": "ISTQB Certified Software Testing Engineer & QA Specialist Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#3B82F6",
+  "background_color": "#ffffff",
+  "orientation": "any",
+  "scope": "/",
+  "id": "/",
+  "icons": [
+    {
+      "src": "/icons/letter-m72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/letter-m96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/letter-m128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/letter-m144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/letter-m152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/letter-m192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/letter-m384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/letter-m.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+    "screenshots": [
+    {
+        "src": "/Mahmoud%20Maher.jpg",
+        "sizes": "1524x1674",
+        "type": "image/jpeg",
+        "form_factor": "wide",
+        "label": "Mahmoud Maher - Software Testing Engineer"
+    }
+    ],
+  "categories": ["education", "business", "productivity"],
+  "lang": "en-US"
+}

@@ -109,7 +109,7 @@ const certificates = [
   {
     id: 11,
     title: "Mastering Object-Oriented Programming (OOP) using C++",
-    image: "/Certificates/Mastering Object-Oriented Programming (OOP) using C++.png",
+    image: "/Certificates/Mastering Object-Oriented Programming.png",
     institution: "MaharaTech - ITI",
     date: "Sep 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=14866&downloadown=1",
