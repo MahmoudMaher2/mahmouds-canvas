@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Award, Calendar, Eye, ExternalLink, ChevronLeft, ChevronRight, Hash } from "lucide-react";
+import { Award, Calendar, Eye, ExternalLink, ChevronLeft, ChevronRight, Hash, Image as ImageIcon } from "lucide-react";
 import { Player } from '@lottiefiles/react-lottie-player';
 
 const certificates = [
@@ -152,6 +152,8 @@ const CertificatesGallery = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [currentCertificateIndex, setCurrentCertificateIndex] = useState(0);
+  const [imageErrors, setImageErrors] = useState<{[key: number]: boolean}>({});
+  const [loadedImages, setLoadedImages] = useState<{[key: number]: boolean}>({});
   const sectionRef = useRef<HTMLElement>(null);
 
   const buttonStyle = `
@@ -189,6 +191,41 @@ const CertificatesGallery = () => {
     return () => observer.disconnect();
   }, []);
 
+  // التحقق من وجود الصور
+  const checkImageExists = (url: string): Promise<boolean> => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
+    });
+  };
+
+  // تحميل الصور
+  const loadImage = async (certificate: typeof certificates[0]) => {
+    try {
+      const exists = await checkImageExists(certificate.image);
+      if (exists) {
+        setLoadedImages(prev => ({ ...prev, [certificate.id]: true }));
+      } else {
+        setImageErrors(prev => ({ ...prev, [certificate.id]: true }));
+      }
+    } catch (error) {
+      setImageErrors(prev => ({ ...prev, [certificate.id]: true }));
+    }
+  };
+
+  // تحميل الصور عند تغيير العرض
+  useEffect(() => {
+    const certificatesToLoad = showAll ? certificates : certificates.slice(0, 6);
+    
+    certificatesToLoad.forEach(certificate => {
+      if (!loadedImages[certificate.id] && !imageErrors[certificate.id]) {
+        loadImage(certificate);
+      }
+    });
+  }, [showAll]);
+
   const openDialog = (index: number) => {
     setCurrentCertificateIndex(index);
   };
@@ -203,6 +240,11 @@ const CertificatesGallery = () => {
         prev === certificates.length - 1 ? 0 : prev + 1
       );
     }
+  };
+
+  // معالجة أخطاء الصور
+  const handleImageError = (certificateId: number) => {
+    setImageErrors(prev => ({ ...prev, [certificateId]: true }));
   };
 
   // إضافة event listener للأسهم
@@ -223,7 +265,7 @@ const CertificatesGallery = () => {
   }, []);
 
   const currentCertificate = certificates[currentCertificateIndex];
-  const displayedCertificates = showAll ? certificates : certificates.slice(0, 6); // أول 6 شهادات (3 صفوف)
+  const displayedCertificates = showAll ? certificates : certificates.slice(0, 6);
 
   return (
     <section ref={sectionRef} id="certificates" className="py-24 px-4 bg-muted/30">
@@ -261,15 +303,24 @@ const CertificatesGallery = () => {
                     </div>
                   )}
 
-                  {/* صورة مع hover effect */}
+                  {/* صورة مع fallback */}
                   <div className="relative h-64 overflow-hidden bg-muted/50 flex-shrink-0">
-                    <img
-                      src={certificate.image}
-                      alt={certificate.title}
-                      className="w-full h-full object-contain transition-all duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    {/* View Overlay - خلفية شفافة رمادية */}
+                    {!imageErrors[certificate.id] && loadedImages[certificate.id] ? (
+                      <img
+                        src={certificate.image}
+                        alt={certificate.title}
+                        className="w-full h-full object-contain transition-all duration-500 group-hover:scale-105"
+                        loading="lazy"
+                        onError={() => handleImageError(certificate.id)}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center bg-muted/30 text-muted-foreground">
+                        <ImageIcon className="h-12 w-12 mb-2 opacity-50" />
+                        <span className="text-sm">جاري تحميل الصورة...</span>
+                      </div>
+                    )}
+                    
+                    {/* View Overlay */}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-gray-900/40 transition-all duration-300 flex items-center justify-center">
                       <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 bg-gray-800/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-gray-700/50">
                         <Eye className="h-4 w-4 text-white" />
@@ -303,7 +354,7 @@ const CertificatesGallery = () => {
                           <span>{certificate.date}</span>
                         </div>
                         
-                        {/* زر View Certificate - بنفس الاستايل */}
+                        {/* زر View Certificate */}
                         {certificate.link && (
                           <Button
                             size="sm"
@@ -357,7 +408,7 @@ const CertificatesGallery = () => {
                       </div>
                     </div>
                     
-                    {/* زر View Certificate - بنفس الاستايل */}
+                    {/* زر View Certificate */}
                     {currentCertificate.link && (
                       <Button
                         className={buttonStyle}
@@ -382,12 +433,21 @@ const CertificatesGallery = () => {
                     <ChevronLeft className="h-6 w-6" />
                   </Button>
 
-                  {/* الصورة */}
-                  <img
-                    src={currentCertificate.image}
-                    alt={currentCertificate.title}
-                    className="max-w-full max-h-full object-contain rounded-xl shadow-2xl border border-border/30"
-                  />
+                  {/* الصورة مع fallback */}
+                  {!imageErrors[currentCertificate.id] ? (
+                    <img
+                      src={currentCertificate.image}
+                      alt={currentCertificate.title}
+                      className="max-w-full max-h-full object-contain rounded-xl shadow-2xl border border-border/30"
+                      onError={() => handleImageError(currentCertificate.id)}
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center justify-center p-8 text-center">
+                      <ImageIcon className="h-16 w-16 text-muted-foreground mb-4" />
+                      <p className="text-lg text-muted-foreground mb-2">تعذر تحميل الصورة</p>
+                      <p className="text-sm text-muted-foreground">الرجاء التحقق من اتصال الإنترنت</p>
+                    </div>
+                  )}
 
                   {/* زر التالي */}
                   <Button
@@ -409,19 +469,30 @@ const CertificatesGallery = () => {
           ))}
         </div>
 
-        {/* زر View All Certificates */}
-        {!showAll && certificates.length > 6 && (
+        {/* زر Show More / Show Less */}
+        {certificates.length > 6 && (
           <div className="text-center mt-12">
             <Button
               className={`${buttonStyle} px-8 py-3 text-lg`}
-              onClick={() => setShowAll(true)}
+              onClick={() => setShowAll(!showAll)}
             >
-              View All Certificates
-              <ExternalLink className="h-5 w-5" />
+              {showAll ? 'Show Less' : 'Show More'} Certificates
             </Button>
           </div>
         )}
       </div>
+
+      {/* إضافة أنميشن الـ shine في الـ CSS */}
+      <style jsx>{`
+        @keyframes shine {
+          0% {
+            left: -75%;
+          }
+          100% {
+            left: 125%;
+          }
+        }
+      `}</style>
     </section>
   );
 };
