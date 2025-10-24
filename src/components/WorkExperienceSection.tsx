@@ -6,16 +6,32 @@ import { Badge } from "@/components/ui/badge";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 
 const experience = [
+  // {
+  //   companies: [
+  //     {
+  //       name: "Neop",
+  //       website: "https://www.linkedin.com/company/neopksa"
+  //     }
+  //   ],
+  //   logo: "/company/neop.png",
+  //   // logo: "/company/neop video.mp4",
+  //   position: "Software Test Engineer",
+  //   period: "Nov 2025 - Present",
+  //   location: "Mansoura, Egypt",
+  //   type: "Full-time",
+  //   description:
+  //     "Manual testing for multiple web applications Focused on functional testing, UI/UX testing, and payment system validation.",
+  // },
   {
     companies: [
       {
         name: "Pixbyte",
-        website: "https://www.pixbyte.com"
+        website: "https://www.linkedin.com/company/pixbyteco/"
       }
     ],
     logo: "/company/pixbyte.jpg",
     position: "Software Test Engineer",
-    period: "July 2024 - Oct 2024",
+    period: "July 2025 - Oct 2025",
     location: "Mansoura, Egypt",
     type: "Full-time",
     description:
@@ -34,7 +50,7 @@ const experience = [
     ],
     logo: "/company/AZM1.jpg",
     position: "Manual and Automation Software Testing internship",
-    period: "July 2024 - Sep 2024",
+    period: "July 2025 - Sep 2025",
     location: "Remote",
     type: "Internship",
     description:
@@ -144,6 +160,21 @@ const sectionBgCommon = {
   transition: { duration: 12, repeat: Infinity, ease: "linear" },
 };
 
+// دالة مساعدة لتحديد نوع الميديا
+const getMediaType = (logoPath: string): 'image' | 'video' | 'gif' => {
+  if (!logoPath) return 'image';
+  
+  const extension = logoPath.split('.').pop()?.toLowerCase();
+  
+  if (extension === 'mp4' || extension === 'webm' || extension === 'mov') {
+    return 'video';
+  } else if (extension === 'gif') {
+    return 'gif';
+  } else {
+    return 'image';
+  }
+};
+
 const WorkExperienceSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -177,6 +208,43 @@ const WorkExperienceSection: React.FC = () => {
     });
     return () => observers.forEach(o => o?.disconnect());
   }, [isVisible]);
+
+  // مكون لعرض لوجو الشركة
+  const CompanyLogo = ({ logo, alt }: { logo: string; alt: string }) => {
+    const mediaType = getMediaType(logo);
+
+    if (mediaType === 'video') {
+      return (
+        <video 
+          src={logo} 
+          className="w-full h-full object-cover rounded"
+          autoPlay
+          muted
+          loop
+          playsInline
+          title={alt}
+        />
+      );
+    } else if (mediaType === 'gif') {
+      return (
+        <img 
+          src={logo} 
+          alt={alt} 
+          className="w-full h-full object-cover rounded"
+          loading="lazy"
+        />
+      );
+    } else {
+      return (
+        <img 
+          src={logo} 
+          alt={alt} 
+          className="w-10 h-10 object-contain rounded"
+          loading="lazy"
+        />
+      );
+    }
+  };
 
   return (
     <section ref={sectionRef} id="experience" className="relative overflow-hidden py-20 px-6 sm:px-12">
@@ -227,7 +295,7 @@ const WorkExperienceSection: React.FC = () => {
                         <div className="flex items-start gap-4">
                           <div className="w-14 h-14 rounded-xl bg-bold/50 flex items-center justify-center border border-border overflow-hidden flex-shrink-0">
                             {exp.logo ? (
-                              <img src={exp.logo} alt={exp.companies[0].name} className="w-10 h-10 object-contain rounded" />
+                              <CompanyLogo logo={exp.logo} alt={exp.companies[0].name} />
                             ) : (
                               <Briefcase className="h-6 w-6 text-bold-foreground" />
                             )}
