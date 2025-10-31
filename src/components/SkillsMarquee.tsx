@@ -108,7 +108,7 @@ const SkillsMarquee = () => {
   };
 
   return (
-    <section ref={sectionRef} id="skills" className="py-24 px-4 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <section ref={sectionRef} id="skills" className="py-8 px-4 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto mb-16">
         <div className={`text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">

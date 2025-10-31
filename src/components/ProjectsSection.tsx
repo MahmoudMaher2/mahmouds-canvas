@@ -349,7 +349,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section ref={sectionRef} id="projects" className="py-24 px-4 bg-muted/30">
+    <section ref={sectionRef} id="projects" className="py-8 px-4 bg-muted/30">
       <div className="container mx-auto">
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">

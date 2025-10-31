@@ -247,7 +247,7 @@ const WorkExperienceSection: React.FC = () => {
   };
 
   return (
-    <section ref={sectionRef} id="experience" className="relative overflow-hidden py-20 px-6 sm:px-12">
+    <section ref={sectionRef} id="experience" className="relative overflow-hidden py-8 px-6 sm:px-12">
       <motion.div
         className="absolute inset-0 -z-10"
         style={{ background: "linear-gradient(100deg,#6D28D9 0%, #2563EB 50%, #EC4899 100%)", ...sectionBgCommon.style }}

@@ -49,7 +49,7 @@ const sectionBgCommon = {
 const AboutSection: React.FC = () => {
   return (
     <section id="about" className="relative z-0">
-      <section className="relative overflow-hidden py-16 px-4 sm:px-6 md:px-8 lg:px-10">
+      <section className="relative overflow-hidden py-8 px-4 sm:px-6 md:px-8 lg:px-10">
         {/* animated gradient background (Violet -> Blue -> Pink) */}
         <motion.div
           className="absolute inset-0 -z-10"
