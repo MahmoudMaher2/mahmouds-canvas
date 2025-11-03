@@ -6,22 +6,22 @@ import { Badge } from "@/components/ui/badge";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 
 const experience = [
-  // {
-  //   companies: [
-  //     {
-  //       name: "Neop",
-  //       website: "https://www.linkedin.com/company/neopksa"
-  //     }
-  //   ],
-  //   logo: "/company/neop.png",
-  //   // logo: "/company/neop video.mp4",
-  //   position: "Software Test Engineer",
-  //   period: "Nov 2025 - Present",
-  //   location: "Mansoura, Egypt",
-  //   type: "Full-time",
-  //   description:
-  //     "Manual testing for multiple web applications Focused on functional testing, UI/UX testing, and payment system validation.",
-  // },
+  {
+    companies: [
+      {
+        name: "Neop",
+        website: "https://www.linkedin.com/company/neopksa"
+      }
+    ],
+    logo: "/company/neop.png",
+    // logo: "/company/neop video.mp4",
+    position: "Software Test Engineer",
+    period: "Nov 2025 - Present",
+    location: "Mansoura, Egypt",
+    type: "Full-time",
+    description:
+      "Manual testing for multiple web applications Focused on functional testing, UI/UX testing, and payment system validation.",
+  },
   {
     companies: [
       {

@@ -26,8 +26,17 @@ const certificates = [
     credentialId: "250806035",
     featured: true
   },
-  {
+    {
     id: 3,
+    title: "Manual and Automation Software Testing internship",
+    image: "/Certificates/Azm Squad 337488.png",
+    institution: "Algoriza & AZM Squad", 
+    date: "Nov 2025",
+    link: "https://interns.azmsquad.com/",
+    credentialId: "337488",
+  },
+  {
+    id: 4,
     title: "Java Programming Test Automation Bootcamp Level 1",
     image: "/Certificates/Java Programming Test Automation Bootcamp Level 1 nezam.jpg",
     institution: "Nezam Academy",
@@ -37,7 +46,7 @@ const certificates = [
     featured: false
   },
   {
-    id: 4,
+    id: 5,
     title: "ISTQB Mobile Application Testing Course",
     image: "/Certificates/ISTQB Mobile Application Testing - Become a Mobile Tester.jpg",
     institution: "Udemy - Tarek Roshdy",
@@ -47,7 +56,7 @@ const certificates = [
     featured: false
   },
   {
-    id: 5,
+    id: 6,
     title: "Software Testing Internship - DEPI [R1]",
     image: "/Certificates/Certificate DEPI R1 Mahmoud Maher Khater Abdel Razek.jpg",
     institution: "Digital Egypt Pioneers Initiative [DEPI]",
@@ -57,7 +66,7 @@ const certificates = [
     featured: false
   },
   {
-    id: 6,
+    id: 7,
     title: "Business English - DEPI [R1]",
     image: "/Certificates/Certificate DEPI R1 MAHMOUD MAHER KHATER .jpg",
     institution: "Digital Egypt Pioneers Initiative [DEPI]",
@@ -67,7 +76,7 @@ const certificates = [
     featured: false
   },
   {
-    id: 7,
+    id: 8,
     title: "Introduction to Software Testing Concepts & Techniques",
     image: "/Certificates/Introduction to Software Testing Concepts & Techniques.png",
     institution: "MaharaTech - ITI",
@@ -77,7 +86,7 @@ const certificates = [
     featured: false
   },
   {
-    id: 8,
+    id: 9,
     title: "ISTQB Foundation Level",
     image: "/Certificates/ISTQB Foundation Level.png",
     institution: "MaharaTech - ITI",
@@ -87,7 +96,7 @@ const certificates = [
     featured: false
   },
   {
-    id: 9,
+    id: 10,
     title: "Effective Test Case and Bug Report Writing Techniques",
     image: "/Certificates/Effective Test Case and Bug Report Writing Techniques.png",
     institution: "MaharaTech - ITI",
@@ -97,7 +106,7 @@ const certificates = [
     featured: false
   },
   {
-    id: 10,
+    id: 11,
     title: "C Programming From Basics to Mastery",
     image: "/Certificates/C Programming From Basics to Mastery.png",
     institution: "MaharaTech - ITI", 
@@ -107,7 +116,7 @@ const certificates = [
     featured: false
   },
   {
-    id: 11,
+    id: 12,
     title: "Mastering Object-Oriented Programming (OOP) using C++",
     image: "/Certificates/Mastering Object-Oriented Programming.png",
     institution: "MaharaTech - ITI",
@@ -117,7 +126,7 @@ const certificates = [
     featured: false
   },
   {
-    id: 12,
+    id: 13,
     title: "Database Fundamentals",
     image: "/Certificates/Database Fundamentals.png",
     institution: "MaharaTech - ITI",
@@ -127,7 +136,7 @@ const certificates = [
     featured: false
   },
   {
-    id: 13,
+    id: 14,
     title: "Smart Environment Hackathon",
     image: "/Certificates/Smart Environment Hackathon Certificate.jpg",
     institution: "Mansoura university",
@@ -137,7 +146,7 @@ const certificates = [
     featured: false
   },
   {
-    id: 14,
+    id: 15,
     title: "Part One Embedded Systems Diploma",
     image: "/Certificates/Part 1 certification_Page_1.jpg",
     institution: "Eng/ Ahmed Abd ElGhafar",
