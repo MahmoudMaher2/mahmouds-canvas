@@ -31,129 +31,135 @@ const certificates = [
     title: "Manual and Automation Software Testing internship",
     image: "/Certificates/Azm Squad 337488.png",
     institution: "Algoriza & AZM Squad", 
-    date: "Nov 2025",
+    date: "Oct 2025",
     link: "https://interns.azmsquad.com/",
-    credentialId: "337488",
+    credentialId: "337488"
   },
   {
     id: 4,
-    title: "Java Programming Test Automation Bootcamp Level 1",
-    image: "/Certificates/Java Programming Test Automation Bootcamp Level 1 nezam.jpg",
+    title: "Manual Testing Basics - Testing Bootcamp Level 1",
+    image: "/Certificates/Manual Testing Basics - Testing Bootcamp Level 1.jpg",
     institution: "Nezam Academy",
-    date: "Sep 2025",
-    link: null,
-    credentialId: null,
-    featured: false
+    date: "Nov 2025"
   },
   {
     id: 5,
+    title: "Agile Testing - Testing Bootcamp Level 2",
+    image: "/Certificates/Agile Testing - Testing Bootcamp Level 2.jpg",
+    institution: "Nezam Academy",
+    date: "Sep 2025"
+  },
+  {
+    id: 6,
+    title: "Mobile Application Testing - Testing Bootcamp Level 3",
+    image: "/Certificates/Mobile Application Testing - Testing Bootcamp Level 3.jpg",
+    institution: "Nezam Academy",
+    date: "Sep 2025"
+  },
+  {
+    id: 7,
+    title: "Java Programming Test Automation Bootcamp Level 1",
+    image: "/Certificates/Java Programming Test Automation Bootcamp Level 1 nezam.jpg",
+    institution: "Nezam Academy",
+    date: "Sep 2025"
+  },
+  {
+    id: 8,
     title: "ISTQB Mobile Application Testing Course",
     image: "/Certificates/ISTQB Mobile Application Testing - Become a Mobile Tester.jpg",
     institution: "Udemy - Tarek Roshdy",
     date: "Aug 2025",
     link: "https://www.udemy.com/certificate/UC-3943a2b4-8649-496b-a70b-0b523a69e990/",
-    credentialId: "UC-3943a2b4-8649-496b-a70b-0b523a69e990",
-    featured: false
+    credentialId: "UC-3943a2b4-8649-496b-a70b-0b523a69e990"
   },
   {
-    id: 6,
+    id: 9,
     title: "Software Testing Internship - DEPI [R1]",
     image: "/Certificates/Certificate DEPI R1 Mahmoud Maher Khater Abdel Razek.jpg",
     institution: "Digital Egypt Pioneers Initiative [DEPI]",
-    date: "Oct 2024",
-    link: null,
-    credentialId: null,
-    featured: false
+    date: "Oct 2024"
   },
   {
-    id: 7,
+    id: 10,
     title: "Business English - DEPI [R1]",
     image: "/Certificates/Certificate DEPI R1 MAHMOUD MAHER KHATER .jpg",
     institution: "Digital Egypt Pioneers Initiative [DEPI]",
-    date: "Oct 2024",
-    link: null,
-    credentialId: null,
-    featured: false
+    date: "Oct 2024"
   },
   {
-    id: 8,
+    id: 11,
     title: "Introduction to Software Testing Concepts & Techniques",
     image: "/Certificates/Introduction to Software Testing Concepts & Techniques.png",
     institution: "MaharaTech - ITI",
     date: "May 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=355&downloadown=1",
-    credentialId: "9SQbyBz3MU",
-    featured: false
+    credentialId: "9SQbyBz3MU"
   },
   {
-    id: 9,
+    id: 12,
     title: "ISTQB Foundation Level",
     image: "/Certificates/ISTQB Foundation Level.png",
     institution: "MaharaTech - ITI",
     date: "July 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=967&downloadown=1",
-    credentialId: "RBIkxEvMEt",
-    featured: false
+    credentialId: "RBIkxEvMEt"
   },
   {
-    id: 10,
+    id: 13,
     title: "Effective Test Case and Bug Report Writing Techniques",
     image: "/Certificates/Effective Test Case and Bug Report Writing Techniques.png",
     institution: "MaharaTech - ITI",
     date: "July 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=970&downloadown=1",
-    credentialId: "tQVBfSXdL3",
-    featured: false
+    credentialId: "tQVBfSXdL3"
   },
   {
-    id: 11,
+    id: 14,
     title: "C Programming From Basics to Mastery",
     image: "/Certificates/C Programming From Basics to Mastery.png",
     institution: "MaharaTech - ITI", 
     date: "Sep 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=16004&downloadown=1",
-    credentialId: "rkFYlKshGs",
-    featured: false
+    credentialId: "rkFYlKshGs"
   },
   {
-    id: 12,
+    id: 15,
     title: "Mastering Object-Oriented Programming (OOP) using C++",
     image: "/Certificates/Mastering Object-Oriented Programming.png",
     institution: "MaharaTech - ITI",
     date: "Sep 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=14866&downloadown=1",
-    credentialId: "HqHnd1TbOm",
-    featured: false
+    credentialId: "HqHnd1TbOm"
   },
   {
-    id: 13,
+    id: 16,
     title: "Database Fundamentals",
     image: "/Certificates/Database Fundamentals.png",
     institution: "MaharaTech - ITI",
     date: "Sep 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=7655&downloadown=1",
-    credentialId: "auadg30yKg",
-    featured: false
+    credentialId: "auadg30yKg"
   },
   {
-    id: 14,
+    id: 17,
     title: "Smart Environment Hackathon",
     image: "/Certificates/Smart Environment Hackathon Certificate.jpg",
     institution: "Mansoura university",
-    date: "May 2024",
-    link: null,
-    credentialId: null,
-    featured: false
+    date: "May 2024"
   },
   {
-    id: 15,
+    id: 18,
     title: "Part One Embedded Systems Diploma",
     image: "/Certificates/Part 1 certification_Page_1.jpg",
     institution: "Eng/ Ahmed Abd ElGhafar",
-    date: "July 2023",
-    link: null,
-    credentialId: null,
-    featured: false
+    date: "July 2023"
+  },
+   {
+    id: 19,
+    title: "Practical Antenna Design: From Theory to Practice",
+    image: "/Certificates/Practical Antenna Design.jpeg",
+    institution: "Electronics Research Institute",
+    date: "Aug 2022"
   },
 ];
 
