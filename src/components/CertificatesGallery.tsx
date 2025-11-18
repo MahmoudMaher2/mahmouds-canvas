@@ -19,7 +19,7 @@ const certificates = [
   {
     id: 2,
     title: "ISTQB MAT Mobile Application Testing V1.0",
-    image: "/Certificates/certificate.png",
+    image: "/Certificates/ISTQB MAT Certificate.png",
     institution: "International Software Testing Qualifications Board", 
     date: "Sep 2025",
     link: "https://scr.istqb.org/",
