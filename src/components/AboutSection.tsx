@@ -3,14 +3,41 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Award, Code, Users, GraduationCap } from "lucide-react";
+import { Award, Code, Users, GraduationCap, Briefcase } from "lucide-react";
+
+const businessDomains = [
+  "Education & E-Learning",        // التعليم والتعلم الإلكتروني
+  "Creative & Design Tools",       // أدوات التصميم والإبداع
+  "SaaS Products",                 // برامج كخدمة (حضور وانصراف، توصيل، لاندينج بيدج)
+  "FinTech",                       // التكنولوجيا المالية
+  "E-Commerce & Retail",           // منصات التجارة الإلكترونية والمتاجر
+  "Healthcare & Medical",          // أنظمة الرعاية الصحية والطبية
+  "AI services",          // أنظمة الرعاية الصحية والطبية
+  // "Financial Services",            // الخدمات المالية
+  // "Insurance",                     // التأمين
+  // "Travel & Hospitality",          // السفر والسياحة والفنادق
+  // "Real Estate",                   // العقارات
+  // "Logistics & Supply Chain",      // اللوجستيات وسلسلة التوريد
+  // "Telecommunications",            // الاتصالات
+  // "Media & Entertainment",         // الإعلام والترفيه
+  // "Food & Delivery",               // الطعام والتوصيل
+  // "Social Media & Networking",     // التواصل الاجتماعي
+  // "CRM & ERP Systems",             // أنظمة إدارة العملاء والموارد
+  // "HR & Recruitment",              // الموارد البشرية والتوظيف
+  // "Automotive",                    // السيارات
+  // "Gaming",                        // الألعاب
+  // "IoT & Smart Devices",           // إنترنت الأشياء والأجهزة الذكية
+  // "Government & Public Sector",    // الحكومة والقطاع العام
+];
 
 const technicalSkills = [
   "Manual Testing",
+  "API Testing",
+  "Performance Testing",
+  "Automation Testing",
+  "Agile Methodology",
   "Test Case Design",
   "Bug Reporting",
-  "Agile Methodology",
-  "API Testing",
   "Selenium WebDriver",
   "Java programming",
   "C programming",
@@ -72,8 +99,8 @@ const AboutSection: React.FC = () => {
 
         <div className="container mx-auto max-w-5xl relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <motion.h2 
-              variants={fadeUp} 
+            <motion.h2
+              variants={fadeUp}
               className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-center"
             >
               <span className="gradient-text bg-gradient-to-r from-violet-400 via-blue-500 to-pink-500 bg-clip-text text-transparent">
@@ -119,8 +146,8 @@ const AboutSection: React.FC = () => {
                                 <p className="text-foreground font-semibold text-sm md:text-base">Bachelor's Degree in Electronics & Communication</p>
                                 <p className="text-muted-foreground text-xs md:text-sm">Faculty of Engineering — Mansoura University</p>
                               </div>
-                              <Badge 
-                                variant="secondary" 
+                              <Badge
+                                variant="secondary"
                                 className="bg-blue-500/15 text-blue-700 dark:text-blue-300 border-blue-500/30 hover:bg-blue-500/25 hover:scale-105 transition-all duration-300 text-xs md:text-sm px-2 py-1 font-medium cursor-pointer whitespace-nowrap flex-shrink-0 self-start mt-1 sm:mt-0"
                               >
                                 Graduated: 2024
@@ -161,7 +188,7 @@ const AboutSection: React.FC = () => {
                                 </h4>
                               </div>
                             </div>
-                            
+
                             {/* الجزء الأيمن: التاريخ في مربع */}
                             <div className="flex-shrink-0 self-start sm:self-center">
                               <div className="px-2 py-1 md:px-3 md:py-1.5 rounded-md bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-500/30">
@@ -171,7 +198,7 @@ const AboutSection: React.FC = () => {
                               </div>
                             </div>
                           </div>
-                          
+
                           {/* خط فاصل */}
                           <div className="absolute bottom-0 left-3 right-3 md:left-4 md:right-4 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent" />
                         </div>
@@ -227,6 +254,35 @@ const AboutSection: React.FC = () => {
                             hover:bg-green-500/20 hover:scale-105 transition-all duration-300 text-xs md:text-sm px-3 py-1.5 md:px-4 md:py-2 cursor-pointer"
                           >
                             {skill}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+
+                {/* Business Domains Card */}
+                <motion.div variants={fadeUp}>
+                  <Card className="bg-background/70 backdrop-blur-md border border-border/40 shadow-lg">
+                    <CardHeader className="pb-3 md:pb-4">
+                      <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
+                        <Briefcase className="h-5 w-5 md:h-6 md:w-6 text-primary" />
+                        Business Domains
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground text-sm mb-4">
+                        Industries and business types I've worked with in software testing:
+                      </p>
+                      <div className="flex flex-wrap gap-2 md:gap-3">
+                        {businessDomains.map((domain) => (
+                          <Badge
+                            key={domain}
+                            variant="secondary"
+                            className="bg-purple-500/15 text-purple-700 dark:text-purple-300 border-purple-500/30
+                            hover:bg-purple-500/25 hover:scale-105 transition-all duration-300 text-xs md:text-sm px-3 py-1.5 md:px-4 md:py-2 font-medium cursor-pointer"
+                          >
+                            {domain}
                           </Badge>
                         ))}
                       </div>

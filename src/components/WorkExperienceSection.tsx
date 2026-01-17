@@ -13,8 +13,8 @@ const experience = [
         website: "https://www.linkedin.com/company/neopksa"
       }
     ],
-    logo: "/company/neop.png",
-    // logo: "/company/neop video.mp4",
+    // logo: "/company/neop.png",
+    logo: "/company/neop video.mp4",
     position: "Software Test Engineer",
     period: "Nov 2025 - Present",
     location: "Mansoura, Egypt",
@@ -31,7 +31,7 @@ const experience = [
     ],
     logo: "/company/pixbyte.jpg",
     position: "Software Test Engineer",
-    period: "July 2025 - Oct 2025",
+    period: "May 2025 - Oct 2025",
     location: "Mansoura, Egypt",
     type: "Full-time",
     description:
@@ -44,7 +44,7 @@ const experience = [
         website: "https://www.linkedin.com/company/algoriza"
       },
       {
-        name: "AZM Squad", 
+        name: "AZM Squad",
         website: "https://www.linkedin.com/company/azmsquad"
       }
     ],
@@ -75,7 +75,7 @@ const experience = [
 
 const calculateDuration = (period: string) => {
   const [start, end] = period.split(" - ");
-  
+
   try {
     // تحويل الشهور من نص لرقم
     const monthMap: { [key: string]: number } = {
@@ -96,15 +96,15 @@ const calculateDuration = (period: string) => {
     const parseDate = (dateStr: string): Date => {
       // إذا كان "Present" نرجع التاريخ الحالي
       if (dateStr === 'Present') return new Date();
-      
+
       const parts = dateStr.split(' ');
       const monthName = parts[0];
       const year = parseInt(parts[1]);
-      
+
       if (monthMap[monthName] !== undefined && !isNaN(year)) {
         return new Date(year, monthMap[monthName], 1);
       }
-      
+
       // إذا فشل التحويل، نجرب الطريقة العادية
       return new Date(dateStr);
     };
@@ -123,7 +123,7 @@ const calculateDuration = (period: string) => {
     // حساب الفرق بالشهور
     let months = (effectiveEndDate.getFullYear() - startDate.getFullYear()) * 12;
     months += effectiveEndDate.getMonth() - startDate.getMonth();
-    
+
     // إذا كان الشهر الحالي أكبر من أو يساوي شهر البداية، نضيف شهر
     if (effectiveEndDate.getDate() >= startDate.getDate()) {
       months += 1;
@@ -163,9 +163,9 @@ const sectionBgCommon = {
 // دالة مساعدة لتحديد نوع الميديا
 const getMediaType = (logoPath: string): 'image' | 'video' | 'gif' => {
   if (!logoPath) return 'image';
-  
+
   const extension = logoPath.split('.').pop()?.toLowerCase();
-  
+
   if (extension === 'mp4' || extension === 'webm' || extension === 'mov') {
     return 'video';
   } else if (extension === 'gif') {
@@ -215,8 +215,8 @@ const WorkExperienceSection: React.FC = () => {
 
     if (mediaType === 'video') {
       return (
-        <video 
-          src={logo} 
+        <video
+          src={logo}
           className="w-full h-full object-cover rounded"
           autoPlay
           muted
@@ -227,18 +227,18 @@ const WorkExperienceSection: React.FC = () => {
       );
     } else if (mediaType === 'gif') {
       return (
-        <img 
-          src={logo} 
-          alt={alt} 
+        <img
+          src={logo}
+          alt={alt}
           className="w-full h-full object-cover rounded"
           loading="lazy"
         />
       );
     } else {
       return (
-        <img 
-          src={logo} 
-          alt={alt} 
+        <img
+          src={logo}
+          alt={alt}
           className="w-10 h-10 object-contain rounded"
           loading="lazy"
         />
@@ -265,7 +265,7 @@ const WorkExperienceSection: React.FC = () => {
           <motion.div variants={fadeUp} className="text-center mb-12">
             <h3 className="text-5xl font-bold mb-2 flex items-center justify-center gap-3">
               <Briefcase className="h-10 w-10 text-primary" />
-                <span className="gradient-text bg-gradient-to-r from-violet-400 via-blue-500 to-pink-500 bg-clip-text text-transparent">
+              <span className="gradient-text bg-gradient-to-r from-violet-400 via-blue-500 to-pink-500 bg-clip-text text-transparent">
                 Work Experience
               </span>
             </h3>
@@ -307,10 +307,10 @@ const WorkExperienceSection: React.FC = () => {
                               {exp.position} | {" "}
                               {exp.companies.map((company, companyIdx) => (
                                 <span key={company.name}>
-                                  <a 
-                                    href={company.website} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
+                                  <a
+                                    href={company.website}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="text-primary hover:underline"
                                   >
                                     {company.name}

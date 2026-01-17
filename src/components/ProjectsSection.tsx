@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Play, FileText, Building, ChevronDown } from "lucide-react";
+import { ExternalLink, Github, Play, FileText, Building, ChevronDown, Smartphone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Player } from '@lottiefiles/react-lottie-player';
@@ -14,13 +14,13 @@ const projects = [
     technologies: ["Selenium", "Java", "TestNG", "Maven", "Cucumber"],
     links: {
       github: "https://github.com/MahmoudMaher2/HerokuApp-Test-CucumberDemo",
-      live:  "https://the-internet.herokuapp.com/login",
+      live: "https://the-internet.herokuapp.com/login",
       video: null,
       sheet: null
     },
-    companies: [    
+    companies: [
       {
-        name: "DEPI",      
+        name: "DEPI",
         logo: "/company/DEPI.jpg",
         linkedin: "https://www.linkedin.com/company/digital-egypt-pioneers-initiative-depi/"
       }
@@ -33,10 +33,10 @@ const projects = [
     description: "Tested the demo version of the Talent Kid platform, focusing on validating core functionalities and user interface elements. Conducted functional and UI testing to ensure that the prototype behaved as intended and provided a smooth, consistent user experience.",
     image: "/projects/4-talentkid.png",
     technologies: ["Test Cases", "Bug Reporting"],
-    links: {        live:  "https://talentkid.sa/"    },
-    companies: [    
+    links: { live: "https://talentkid.sa/" },
+    companies: [
       {
-        name: "Pixbyte",      
+        name: "Pixbyte",
         logo: "/company/pixbyte.jpg",
         linkedin: "https://www.linkedin.com/company/pixbyteco/"
       }
@@ -48,16 +48,16 @@ const projects = [
     title: "OpenCart Automation Graduation Project",
     description: "Developed an automation testing project for the AwesomeQA website using IntelliJ IDEA. Utilized the Cucumber framework to design and execute 30 automated test cases, ensuring the functionality and reliability of the web application. Additionally, generated comprehensive Extent Reports in multiple formats, including HTML, PDF, and screenshots, to document the test results.",
     image: "/projects/2-opencart.png",
-    technologies: ["Selenium", "Java", "TestNG", "Maven", "Cucumber", "POM" , "BDD" ,"Extent Report"],
+    technologies: ["Selenium", "Java", "TestNG", "Maven", "Cucumber", "POM", "BDD", "Extent Report"],
     links: {
       github: "https://github.com/MohanadWael1/depi_grad",
-      live:  "https://awesomeqa.com/ui/index.php?route=common/home",
+      live: "https://awesomeqa.com/ui/index.php?route=common/home",
       video: "https://www.linkedin.com/posts/mahmoud-maher74_finally-im-proud-to-present-my-graduation-activity-7253842698674077696-2VlK?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC8ZR_4Bc4J1qHvjF8JxJ4jD4p9JZ5jHZ5o",
       sheet: null
     },
-    companies: [    
+    companies: [
       {
-        name: "DEPI",      
+        name: "DEPI",
         logo: "/company/DEPI.jpg",
         linkedin: "https://www.linkedin.com/company/digital-egypt-pioneers-initiative-depi/"
       }
@@ -71,10 +71,10 @@ const projects = [
     description: "Performed functional testing on the More English website, focusing on validating user roles and permissions, including access levels and feature restrictions. Tested the comments and admin reply features on videos to ensure proper interaction and visibility. Also verified the exams and assignments modules, including text styling, exam validation, retake permissions, and timing controls, to ensure all functionalities worked correctly according to user roles.",
     image: "/projects/6-moreenglish.png",
     technologies: ["Test Cases", "Bug Reporting"],
-    links: {        live:  "https://www.more-english.net/"    },
-    companies: [    
+    links: { live: "https://www.more-english.net/" },
+    companies: [
       {
-        name: "Pixbyte",      
+        name: "Pixbyte",
         logo: "/company/pixbyte.jpg",
         linkedin: "https://www.linkedin.com/company/pixbyteco/"
       }
@@ -91,14 +91,14 @@ const projects = [
       live: "https://www.google.com/url?q=https://buggy.justtestit.org/&sa=D&source=editors&ust=1760294632664285&usg=AOvVaw22QYBbvcfufo2AO-jIMCii",
       sheet: "https://docs.google.com/spreadsheets/d/16z0K46qpXTb7D1H0J-6YdgoM-NOvQJUngjk8GNHqTx8/edit?gid=1454934651#gid=1454934651"
     },
-    companies: [    
+    companies: [
       {
-        name: "Algoriza",      
+        name: "Algoriza",
         logo: "/company/AZM1.jpg",
         linkedin: "https://www.linkedin.com/company/algoriza"
       },
       {
-        name: "AZM Squad",      
+        name: "AZM Squad",
         logo: "/company/AZM1.jpg",
         linkedin: "https://www.linkedin.com/company/azmsquad"
       }
@@ -111,10 +111,10 @@ const projects = [
     description: "Performed in-depth functional and UI testing on the custom-built design editor (canvas) within the Dorra Print platform. The editor was developed from scratch to function similarly to tools like Canva or Photoshop. My testing covered all available tools, features, and keyboard shortcuts, ensuring correct behavior, responsiveness, and smooth user experience across different scenarios. I validated text, shapes, layers, alignment tools, undo/redo actions, drag-and-drop functionality, and export options. Leveraging my background as a graphic designer, I was able to test the system with a user-centered perspective, ensuring both usability and precision in the editor's performance.",
     image: "/projects/5-dorraprint.png",
     technologies: ["Test Cases", "Bug Reporting"],
-    links: {        live:  "https://dorraprint.com/"    },
-    companies: [    
+    links: { live: "https://dorraprint.com/" },
+    companies: [
       {
-        name: "Pixbyte",      
+        name: "Pixbyte",
         logo: "/company/pixbyte.jpg",
         linkedin: "https://www.linkedin.com/company/pixbyteco/"
       }
@@ -129,17 +129,17 @@ const projects = [
     image: "/projects/7-thepass.png",
     technologies: ["Bug Reporting"],
     links: {
-      live:   "https://thepass.sa/",
-      sheet:  "https://docs.google.com/spreadsheets/d/1MnLzrbhaqGlrnLQUAqv0Bon7R8JdlXFNx2lQGJBnyiA/edit?usp=drive_link"
+      live: "https://thepass.sa/",
+      sheet: "https://docs.google.com/spreadsheets/d/1MnLzrbhaqGlrnLQUAqv0Bon7R8JdlXFNx2lQGJBnyiA/edit?usp=drive_link"
     },
-    companies: [    
+    companies: [
       {
-        name: "Algoriza",      
+        name: "Algoriza",
         logo: "/company/AZM1.jpg",
         linkedin: "https://www.linkedin.com/company/algoriza"
       },
       {
-        name: "AZM Squad",      
+        name: "AZM Squad",
         logo: "/company/AZM1.jpg",
         linkedin: "https://www.linkedin.com/company/azmsquad"
       }
@@ -153,10 +153,10 @@ const projects = [
     description: "Performed extensive testing on the Penguin educational platform, focusing heavily on the payment and discount systems. Tested multiple pricing scenarios, coupon rules, and course-specific discount logic to ensure accurate calculations before and after applying offers. Conducted backend API testing to validate the discount and coupon logic, followed by frontend testing to confirm proper integration and accurate user experience. Validated edge cases such as overlapping discounts, expired coupons, and dynamic price updates across different user roles. Also tested the WhatsApp integration and the live sessions feature, which included a custom-built platform inside the website with integration to Zoom. Tested the switching between both systems to ensure stable connectivity and smooth user experience. For the teacher role, I verified functionalities added from the admin side such as creating and correcting exams, managing sessions, and accessing the dashboard. This project was one of the most challenging, requiring detailed analysis and precise validation across multiple integrated systems.",
     image: "/projects/3-penguin.png",
     technologies: ["Test Cases", "Bug Reporting", "API Testing", "Hoppscotch"],
-    links: {        live:  "https://penguin.com.sa/"    },
-    companies: [    
+    links: { live: "https://penguin.com.sa/" },
+    companies: [
       {
-        name: "Pixbyte",      
+        name: "Pixbyte",
         logo: "/company/pixbyte.jpg",
         linkedin: "https://www.linkedin.com/company/pixbyteco/"
       }
@@ -169,26 +169,46 @@ const projects = [
     title: "CartLow E-Commerce Website",
     description: "Developed a complete automation testing framework for CartLow's e-commerce platform as part of my graduation project at Algoriza. The project involved creating and executing manual test cases for selected pages, reporting discovered bugs, and implementing automated test scenarios using Selenium WebDriver. The framework was built following the BDD approach and implemented using the Page Object Model (POM) design pattern, with Maven for dependency management and GitHub for version control.",
     image: "/projects/9-cartlow.png",
-    technologies: ["Test Cases", "Bug Reporting","Selenium", "Java", "TestNG", "Maven", "Cucumber", "POM" , "BDD"],
+    technologies: ["Test Cases", "Bug Reporting", "Selenium", "Java", "TestNG", "Maven", "Cucumber", "POM", "BDD"],
     links: {
       github: "https://github.com/MahmoudMaher2/CartLow-Automation-Project",
-      live:   "https://cartlow.com/intl/en.",
+      live: "https://cartlow.com/intl/en.",
       video: "https://www.linkedin.com/posts/mahmoud-maher74_excited-to-share-a-new-milestone-in-my-activity-7383410436710236160-_47v?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfONi4B0pCCpxdTkwSiJuxyKYmXLylhGv0",
       sheet: "https://docs.google.com/spreadsheets/d/16z0K46qpXTb7D1H0J-6YdgoM-NOvQJUngjk8GNHqTx8/edit?gid=239239246#gid=239239246"
     },
-    companies: [    
+    companies: [
       {
-        name: "Algoriza",      
+        name: "Algoriza",
         logo: "/company/AZM1.jpg",
         linkedin: "https://www.linkedin.com/company/algoriza"
       },
       {
-        name: "AZM Squad",      
+        name: "AZM Squad",
         logo: "/company/AZM1.jpg",
         linkedin: "https://www.linkedin.com/company/azmsquad"
       }
     ],
     type: ["automation", "manual"],
+    featured: true
+  },
+  {
+    id: 10,
+    title: "SECU Security",
+    description: "Executed comprehensive testing for the Secu platform, covering the Web Dashboard, Mobile Apps (iOS & Android), and backend APIs. I performed extensive API testing to validate business logic, response codes, and data accuracy independent of the user interface. The scope included validating all functional and UI requirements, alongside rigorous performance testing to ensure data integrity and system stability during high-concurrency user scenarios.",
+    image: "/projects/10- SECU3.png",
+    technologies: ["Test Cases", "Bug Reporting", "API Testing", "Performance Testing", "Mobile Testing"],
+    links: {
+      appStore: "https://apps.apple.com/sa/app/secu-security/id6503944413?l=ar",
+      playStore: "https://play.google.com/store/apps/details?id=secu.sa&hl=en",
+    },
+    companies: [
+      {
+        name: "Neop",
+        logo: "/company/neop.png",
+        linkedin: "https://www.linkedin.com/company/neopksa"
+      }
+    ],
+    type: ["manual", "mobile", "api", "performance"],
     featured: true
   }
 ];
@@ -235,8 +255,8 @@ const ProjectsSection = () => {
   }, []);
 
   // عرض آخر 4 مشاريع (الأحدث) أو كل المشاريع
-  const displayedProjects = showAllProjects 
-    ? projects.slice().reverse() 
+  const displayedProjects = showAllProjects
+    ? projects.slice().reverse()
     : projects.slice(-4).reverse();
 
   const getTechColor = (tech: string) => {
@@ -253,66 +273,77 @@ const ProjectsSection = () => {
       'Bug Reporting': 'bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/20 dark:border-rose-500/30',
       'API Testing': 'bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-500/20 dark:border-orange-500/30',
       'Hoppscotch': 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20 dark:border-blue-500/30',
+      'Performance Testing': 'bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/20 dark:border-rose-500/30',
+      'Mobile Testing': 'bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-500/20 dark:border-purple-500/30',
+      'Manual Testing': 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20 dark:border-blue-500/30',
     };
-    
+
     return colors[tech] || 'bg-gray-500/10 text-gray-700 dark:text-gray-300 border-gray-500/20 dark:border-gray-500/30';
   };
 
   const getTypeStyle = (type: string) => {
     const typeConfig: { [key: string]: { label: string, gradient: string } } = {
-      'automation': { 
-        label: 'Automation', 
-        gradient: 'from-emerald-500 to-emerald-600' 
+      'automation': {
+        label: 'Automation',
+        gradient: 'from-emerald-500 to-emerald-600'
       },
-      'manual': { 
-        label: 'Manual', 
-        gradient: 'from-blue-500 to-blue-600' 
+      'manual': {
+        label: 'Manual',
+        gradient: 'from-blue-500 to-blue-600'
       },
-      'mobile': { 
-        label: 'Mobile', 
-        gradient: 'from-purple-500 to-purple-600' 
+      'mobile': {
+        label: 'Mobile',
+        gradient: 'from-purple-500 to-purple-600'
       },
-      'api': { 
-        label: 'API', 
-        gradient: 'from-orange-500 to-orange-600' 
+      'api': {
+        label: 'API',
+        gradient: 'from-orange-500 to-orange-600'
+      },
+      'performance': {
+        label: 'Performance',
+        gradient: 'from-rose-500 to-rose-600'
       }
     };
-    
-    return typeConfig[type] || { 
-      label: type, 
-      gradient: 'from-gray-500 to-gray-600' 
+
+    return typeConfig[type] || {
+      label: type,
+      gradient: 'from-gray-500 to-gray-600'
     };
   };
 
   const getDualTypeStyle = (types: string[]) => {
     const typeConfig: { [key: string]: { label: string, gradient: string } } = {
-      'automation': { 
-        label: 'Automation', 
-        gradient: 'from-emerald-500 to-emerald-600' 
+      'automation': {
+        label: 'Automation',
+        gradient: 'from-emerald-500 to-emerald-600'
       },
-      'manual': { 
-        label: 'Manual', 
-        gradient: 'from-blue-500 to-blue-600' 
+      'manual': {
+        label: 'Manual',
+        gradient: 'from-blue-500 to-blue-600'
       },
-      'mobile': { 
-        label: 'Mobile', 
-        gradient: 'from-purple-500 to-purple-600' 
+      'mobile': {
+        label: 'Mobile',
+        gradient: 'from-purple-500 to-purple-600'
       },
-      'api': { 
-        label: 'API', 
-        gradient: 'from-orange-500 to-orange-600' 
+      'api': {
+        label: 'API',
+        gradient: 'from-orange-500 to-orange-600'
+      },
+      'performance': {
+        label: 'Performance',
+        gradient: 'from-rose-500 to-rose-600'
       }
     };
 
-    return types.map(type => typeConfig[type] || { 
-      label: type, 
-      gradient: 'from-gray-500 to-gray-600' 
+    return types.map(type => typeConfig[type] || {
+      label: type,
+      gradient: 'from-gray-500 to-gray-600'
     });
   };
 
   const renderAllLinks = (links: typeof projects[0]['links']) => {
     const availableLinks = [];
-    
+
     if (links.video) availableLinks.push({
       icon: <Play className="h-4 w-4" />,
       label: "Watch Demo",
@@ -320,7 +351,7 @@ const ProjectsSection = () => {
       onClick: () => window.open(links.video, '_blank'),
       className: "hover:bg-purple-50 dark:hover:bg-purple-950"
     });
-    
+
     if (links.live) availableLinks.push({
       icon: <ExternalLink className="h-4 w-4" />,
       label: "View Live",
@@ -328,7 +359,7 @@ const ProjectsSection = () => {
       onClick: () => window.open(links.live, '_blank'),
       className: "hover:bg-green-50 dark:hover:bg-green-950"
     });
-    
+
     if (links.sheet) availableLinks.push({
       icon: <FileText className="h-4 w-4" />,
       label: "Test Cases",
@@ -336,7 +367,7 @@ const ProjectsSection = () => {
       onClick: () => window.open(links.sheet, '_blank'),
       className: "hover:bg-orange-50 dark:hover:bg-orange-950"
     });
-    
+
     if (links.github) availableLinks.push({
       icon: <Github className="h-4 w-4" />,
       label: "View Code",
@@ -344,6 +375,37 @@ const ProjectsSection = () => {
       onClick: () => window.open(links.github, '_blank'),
       className: "hover:bg-blue-50 dark:hover:bg-blue-950"
     });
+
+    // Smart App Store detection
+    if (links.appStore || links.playStore) {
+      const handleAppStoreClick = () => {
+        const userAgent = navigator.userAgent || navigator.vendor;
+
+        // Check if iOS
+        if (/iPad|iPhone|iPod/.test(userAgent)) {
+          if (links.appStore) window.open(links.appStore, '_blank');
+          else if (links.playStore) window.open(links.playStore, '_blank');
+        }
+        // Check if Android
+        else if (/android/i.test(userAgent)) {
+          if (links.playStore) window.open(links.playStore, '_blank');
+          else if (links.appStore) window.open(links.appStore, '_blank');
+        }
+        // Desktop - open Play Store by default or show both
+        else {
+          if (links.playStore) window.open(links.playStore, '_blank');
+          else if (links.appStore) window.open(links.appStore, '_blank');
+        }
+      };
+
+      availableLinks.push({
+        icon: <Smartphone className="h-4 w-4" />,
+        label: "Download App",
+        tooltip: "Get the mobile app",
+        onClick: handleAppStoreClick,
+        className: "hover:bg-violet-50 dark:hover:bg-violet-950"
+      });
+    }
 
     return availableLinks;
   };
@@ -365,13 +427,12 @@ const ProjectsSection = () => {
           {displayedProjects.map((project, index) => {
             const typeStyle = getTypeStyle(project.type);
             const allLinks = renderAllLinks(project.links);
-            
+
             return (
               <Card
                 key={project.id}
-                className={`group overflow-visible hover:shadow-xl hover:border-primary/30 transition-all duration-300 border-border bg-card relative aspect-auto h-auto ${
-                  isVisible ? "animate-fade-in-up" : "opacity-0"
-                }`}
+                className={`group overflow-visible hover:shadow-xl hover:border-primary/30 transition-all duration-300 border-border bg-card relative aspect-auto h-auto ${isVisible ? "animate-fade-in-up" : "opacity-0"
+                  }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Lottie Animation Badge */}
@@ -389,17 +450,17 @@ const ProjectsSection = () => {
 
                 {/* Dual Type Ribbons */}
                 <div className="absolute -top-1 -right-1 flex flex-col gap-1 z-10">
-                  {Array.isArray(project.type) 
+                  {Array.isArray(project.type)
                     ? getDualTypeStyle(project.type).map((typeStyle, idx) => (
-                        <div 
-                          key={idx}
-                          className={`bg-gradient-to-r ${typeStyle.gradient} text-white px-3 py-1 rounded-bl-lg rounded-tr-lg shadow-lg`}
-                        >
-                          <span className="text-xs font-bold uppercase tracking-wide">
-                            {typeStyle.label}
-                          </span>
-                        </div>
-                      ))
+                      <div
+                        key={idx}
+                        className={`bg-gradient-to-r ${typeStyle.gradient} text-white px-3 py-1 rounded-bl-lg rounded-tr-lg shadow-lg`}
+                      >
+                        <span className="text-xs font-bold uppercase tracking-wide">
+                          {typeStyle.label}
+                        </span>
+                      </div>
+                    ))
                     : (
                       <div className={`bg-gradient-to-r ${typeStyle.gradient} text-white px-4 py-1 rounded-bl-lg rounded-tr-lg shadow-lg`}>
                         <span className="text-xs font-bold uppercase tracking-wide">
@@ -425,8 +486,8 @@ const ProjectsSection = () => {
                   {/* Header with Company Logo */}
                   <div className="flex items-center gap-3 mb-4">
                     {project.companies[0].logo ? (
-                      <img 
-                        src={project.companies[0].logo} 
+                      <img
+                        src={project.companies[0].logo}
                         alt={project.companies[0].name}
                         className="w-8 h-8 rounded-full object-cover"
                       />
@@ -443,9 +504,9 @@ const ProjectsSection = () => {
                         with {" "}
                         {project.companies.map((company, companyIdx) => (
                           <span key={company.name}>
-                            <a 
-                              href={company.linkedin} 
-                              target="_blank" 
+                            <a
+                              href={company.linkedin}
+                              target="_blank"
                               rel="noopener noreferrer"
                               className="text-primary hover:text-blue-700 underline underline-offset-2 transition-colors"
                             >
@@ -479,7 +540,7 @@ const ProjectsSection = () => {
                   <div className="flex gap-2">
                     {/* Main Action Button */}
                     {allLinks.length > 0 && (
-                      <Button 
+                      <Button
                         className={`${buttonStyle} flex-1 gap-2`}
                         onClick={allLinks[0].onClick}
                       >
@@ -495,8 +556,8 @@ const ProjectsSection = () => {
                           {allLinks.slice(1).map((link, idx) => (
                             <Tooltip key={idx}>
                               <TooltipTrigger asChild>
-                                <Button 
-                                  variant="outline" 
+                                <Button
+                                  variant="outline"
                                   size="icon"
                                   onClick={link.onClick}
                                   className={link.className}
@@ -522,7 +583,7 @@ const ProjectsSection = () => {
         {/* زر View All Projects - يظهر دائماً إذا كان هناك أكثر من 4 مشاريع */}
         {projects.length > 4 && (
           <div className={`text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-            <Button 
+            <Button
               className={`${buttonStyle} px-8 py-3 text-lg`}
               onClick={() => setShowAllProjects(!showAllProjects)}
             >

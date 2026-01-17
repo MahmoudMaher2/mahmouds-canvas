@@ -4,11 +4,12 @@ const skills = [
   { name: "Java", image: "/Skills/java.png" },
   { name: "C", image: "/Skills/C_Programming.png" },
   { name: "SQL", image: "/Skills/sql.png" },
-  { name: "IntelliJ IDEA", image: "/Skills/intellij.png" },
   { name: "Postman", image: "/Skills/postman.png" },
   { name: "Hoppscotch", image: "/Skills/hoppscotch.png" },
-  { name: "JMeter", image: "/Skills/jmeter.svg", darkImage: "/Skills/jmeter-dark.svg"},
+  { name: "JMeter", image: "/Skills/jmeter.svg", darkImage: "/Skills/jmeter-dark.svg" },
   { name: "GitHub", image: "/Skills/github.png", darkImage: "/Skills/github-dark.png" },
+  { name: " IntelliJ IDEA", image: "/Skills/intellij.png" },
+  { name: "Antigravity", image: "/Skills/google-antigravity-logo-icon-hd.png" },
   { name: "Photoshop", image: "/Skills/Adobe_Photoshop.png" },
   { name: "Illustrator", image: "/Skills/Adobe_Illustrator.png" },
   { name: "Word", image: "/Skills/Word.png" },
@@ -83,7 +84,7 @@ const SkillsMarquee = () => {
   // Drag functions
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!marqueeRef.current) return;
-    
+
     setIsDragging(true);
     setStartX(e.pageX - marqueeRef.current.offsetLeft);
     setScrollLeft(marqueeRef.current.scrollLeft);
@@ -100,7 +101,7 @@ const SkillsMarquee = () => {
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging || !marqueeRef.current) return;
-    
+
     e.preventDefault();
     const x = e.pageX - marqueeRef.current.offsetLeft;
     const walk = (x - startX) * 2; // scroll-fast
@@ -125,7 +126,7 @@ const SkillsMarquee = () => {
 
       <div className="relative">
         {/* Main marquee container مع drag support */}
-        <div 
+        <div
           ref={marqueeRef}
           className={`flex overflow-x-auto scrollbar-hide py-8 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
           onMouseDown={handleMouseDown}
