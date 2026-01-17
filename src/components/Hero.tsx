@@ -87,11 +87,11 @@ const Hero = () => {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 60 + 40;
-        
+
         // حركة بطيئة
         this.speedX = Math.random() * 0.1 - 0.05;
         this.speedY = Math.random() * 0.1 - 0.05;
-        
+
         // ألوان مختلفة لـ Dark و Light mode
         const darkModeColors = [
           'rgba(59, 130, 246, 0.4)',   // أزرق غامق
@@ -99,17 +99,17 @@ const Hero = () => {
           'rgba(14, 165, 233, 0.4)',   // سايان
           'rgba(99, 102, 241, 0.4)',   // إنديجو
         ];
-        
+
         const lightModeColors = [
           'rgba(37, 99, 235, 0.3)',    // أزرق فاتح
           'rgba(124, 58, 237, 0.3)',   // بنفسجي فاتح
           'rgba(2, 132, 199, 0.3)',    // سايان فاتح
           'rgba(79, 70, 229, 0.3)',    // إنديجو فاتح
         ];
-        
+
         const colors = darkMode ? darkModeColors : lightModeColors;
         this.color = colors[Math.floor(Math.random() * colors.length)];
-        
+
         this.opacity = Math.random() * 0.3 + 0.2;
         this.originalX = this.x;
         this.originalY = this.y;
@@ -138,33 +138,33 @@ const Hero = () => {
 
       draw() {
         if (!ctx) return;
-        
+
         // حواف حادة - بدون تدرج
         ctx.fillStyle = this.color;
-        
+
         // بدون shadow أو glow - حواف حادة
         ctx.shadowColor = 'transparent';
         ctx.shadowBlur = 0;
         ctx.shadowOffsetX = 0;
         ctx.shadowOffsetY = 0;
-        
+
         // رسم أشكال هندسية مختلفة
         ctx.beginPath();
-        
-        switch(this.shapeType) {
+
+        switch (this.shapeType) {
           case 0:
             // مثلث
-            ctx.moveTo(this.x, this.y - this.size/2);
-            ctx.lineTo(this.x - this.size/2, this.y + this.size/2);
-            ctx.lineTo(this.x + this.size/2, this.y + this.size/2);
+            ctx.moveTo(this.x, this.y - this.size / 2);
+            ctx.lineTo(this.x - this.size / 2, this.y + this.size / 2);
+            ctx.lineTo(this.x + this.size / 2, this.y + this.size / 2);
             ctx.closePath();
             break;
           case 1:
             // دائرة (بحواف حادة)
-            ctx.arc(this.x, this.y, this.size/2, 0, Math.PI * 2);
+            ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
             break;
         }
-        
+
         ctx.fill();
       }
 
@@ -176,14 +176,14 @@ const Hero = () => {
           'rgba(14, 165, 233, 0.4)',
           'rgba(99, 102, 241, 0.4)',
         ];
-        
+
         const lightModeColors = [
           'rgba(37, 99, 235, 0.3)',
           'rgba(124, 58, 237, 0.3)',
           'rgba(2, 132, 199, 0.3)',
           'rgba(79, 70, 229, 0.3)',
         ];
-        
+
         const colors = darkMode ? darkModeColors : lightModeColors;
         this.color = colors[Math.floor(Math.random() * colors.length)];
       }
@@ -218,10 +218,10 @@ const Hero = () => {
     // Animation loop
     const animate = () => {
       if (!ctx || !canvas) return;
-      
+
       // مسح الشاشة بخلفية شفافة
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       particles.forEach(particle => {
         particle.update();
         particle.draw();
@@ -247,14 +247,14 @@ const Hero = () => {
       <canvas
         ref={canvasRef}
         className="absolute inset-0 -z-10 pointer-events-none"
-        style={{ 
+        style={{
           background: 'transparent',
         }}
       />
 
       {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5 -z-20" />
-      
+
       <div className="container mx-auto text-center relative z-10">
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Profile Image */}
@@ -273,7 +273,7 @@ const Hero = () => {
                   hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]
                   hover:ring-[rgba(59,130,246,0.5)]
                 "
-            />
+              />
             </div>
           </div>
 
@@ -335,7 +335,7 @@ const Hero = () => {
               className={secondaryButtonStyle}
               asChild
             >
-              <a href="/Mahmoud Maher's Resume.pdf" download>
+              <a href="https://drive.google.com/file/d/1oBGsPkvEQ9EYh2duBztZzVcyobKDwANi/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
                 <Download className="h-5 w-5" />
                 Download My Resume
                 <ArrowRight className="h-4 w-4" />
