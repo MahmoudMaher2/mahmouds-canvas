@@ -336,7 +336,7 @@ const SummariesPage = () => {
         window.scrollTo(0, 0);
 
         // Update document title
-        document.title = "My Summaries | Mahmoud Maher - Software Testing Engineer";
+        document.title = "Maher Summaries | Mahmoud Maher - Software Testing Engineer";
 
         // Update meta tags for Open Graph
         const updateMetaTag = (property: string, content: string, isName = false) => {
@@ -351,13 +351,13 @@ const SummariesPage = () => {
         };
 
         // Open Graph tags
-        updateMetaTag('og:title', 'My Summaries | Mahmoud Maher');
+        updateMetaTag('og:title', 'Maher Summaries | Mahmoud Maher');
         updateMetaTag('og:description', 'A complete collection of all my technical summaries, and educational resources - ISTQB, Mobile Testing, and more.');
         updateMetaTag('og:url', 'https://mahmoud-maher-portfolio.vercel.app/Summaries');
         updateMetaTag('og:image', 'https://mahmoud-maher-portfolio.vercel.app/Mahmoud%20Maher.jpg?version=3');
 
         // Twitter tags
-        updateMetaTag('twitter:title', 'My Summaries | Mahmoud Maher', true);
+        updateMetaTag('twitter:title', 'Maher Summaries | Mahmoud Maher', true);
         updateMetaTag('twitter:description', 'A complete collection of all my technical summaries, and educational resources.', true);
         updateMetaTag('twitter:image', 'https://mahmoud-maher-portfolio.vercel.app/Mahmoud%20Maher.jpg?version=3', true);
 
