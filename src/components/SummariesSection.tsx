@@ -1,126 +1,18 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FileText, ExternalLink, User, LinkIcon, Eye } from "lucide-react";
+import { FileText, ExternalLink, User, LinkIcon, Eye, ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Player } from '@lottiefiles/react-lottie-player';
-
-const summaries = [
-  {
-    id: 1,
-    title: "ISTQB FL V4.0",
-    description: "Comprehensive ISTQB Foundation Level (FL) V4.0 syllabus summary with clear explanations and practice questions from sample exams.",
-    image: "/Summaries/ISTQB FL Summary.jpg",
-    link: "https://www.linkedin.com/feed/update/urn:li:activity:7347600961898475520/",
-    mentions: [
-      {
-        name: "Eng. Rania Mokhtar",
-        profileLink: "https://www.linkedin.com/in/rania-mokhtar-268a07178/"
-      },
-      {
-        name: "Eng. Tarek Rushdy", 
-        profileLink: "https://www.linkedin.com/in/tarekroshdy/"
-      }
-    ],
-    references: [
-      {
-        title: "ISTQB Official Syllabus",
-        url: "https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/"
-      },
-      {
-        title: "ISTQB V4.0 By Eng. Rania Mokhtar",
-        url: "https://www.youtube.com/playlist?list=PL594OqWI4Um7Uk6utSPMBoMqTd7odsSr_"
-      },
-      {
-        title: "ISTQB V4.0 By Eng. Tarek Rushdy",
-        url: "https://www.udemy.com/course/foundation-level-training/"
-      }
-    ],
-    featured: false
-  },
-  {
-    id: 2,
-    title: "ISTQB FL V4.0 Sample Exams Questions",
-    description: "A compiled collection of ISTQB Foundation Level v4.0 sample exam questions gathered from official sample exams. The file includes only the questions without answers, designed to help learners practice and assess their understanding of ISTQB concepts.",
-    image: "/Summaries/ISTQB FL Q.png",
-    link: "https://drive.google.com/file/d/1ARIhlWtDtsbzEpLdSuxieutx2wiqnHad/view?usp=drive_link",
-    references: [
-      {
-        title: "ISTQB Official Sample Exams",
-        url: "https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/"
-      }
-    ]
-  },
-  {
-    id: 3,
-    title: "ISTQB MAT V1",
-    description: "Comprehensive ISTQB Mobile Application Testing (MAT) syllabus summary with clear explanations and practice questions from sample exams.",
-    image: "/Summaries/MAT Mocup.png",
-    link: "https://www.linkedin.com/feed/update/urn:li:activity:7372632879018717184/",
-    mentions: [
-      {
-        name: "Eng. Rania Mokhtar",
-        profileLink: "https://www.linkedin.com/in/rania-mokhtar-268a07178/"
-      },
-      {
-        name: "Eng. Tarek Rushdy", 
-        profileLink: "https://www.linkedin.com/in/tarekroshdy/"
-      }
-    ],
-    references: [
-      {
-        title: "ISTQB Official Syllabus",
-        url: "https://istqb.org/certifications/certified-tester-mobile-application-testing-ct-mat/"
-      },
-      {
-        title: "ISTQB MAT By Eng. Rania Mokhtar",
-        url: "https://www.youtube.com/playlist?list=PL594OqWI4Um7A4MHHeQoRL6AquHHovTUi"
-      },
-      {
-        title: "ISTQB V4.0 By Eng. Tarek Rushdy",
-        url: "https://www.udemy.com/course/istqb-mobile-tester/?couponCode=ACCAGE0923"
-      }
-    ],
-    featured: false
-  },
-  {
-    id: 4,
-    title: "Part one Embedded Systems",
-    description: "Part one of an Embedded Systems Diploma often focuses on Master C programming, Data Structures, and Algorithms.",
-    image: "/Summaries/Part One Embedded.jpg",
-    link: "https://www.linkedin.com/feed/update/urn:li:activity:7209553266966245376/",
-    mentions: [
-      {
-        name: "Eng. Ahmed Abd ElGhafar",
-        profileLink: "https://www.linkedin.com/in/ahmedabdelghafarmohammed/"
-      }
-    ],
-    references: [
-      {
-        title: "Embedded Systems Diploma",
-        url: "https://www.linkedin.com/in/ahmedabdelghafarmohammed"
-      }
-    ],
-    featured: false
-  },  {
-    id: 5,
-    title: "All My Collage Summaries",
-    description: "A complete collection of my college summaries, including detailed explanations, compiled past exams, and organized law sheets. These materials were created to simplify studying, connect key concepts, and provide a quick and reliable reference for revision.",
-    image: "/Summaries/Mockup Collage.png",
-    link: "https://drive.google.com/drive/folders/1RjEORkCR185KXsl782pHt38dE_GbN0Xs?usp=drive_link",
-    mentions: [
-      {
-        name: "Sameh El-Domyate",
-        profileLink: "https://www.linkedin.com/in/sameh-eldomyate-/"
-      }
-    ],
-    featured: false
-  },
-];
+import { Link } from "react-router-dom";
+import { summaries } from "@/pages/Summaries";
 
 const SummariesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+
+  // Filter only summaries that should appear on home page
+  const homeSummaries = summaries.filter(s => s.showOnHome);
 
   const buttonStyle = `
     relative gap-2 text-white font-medium 
@@ -158,6 +50,25 @@ const SummariesSection = () => {
     before:rounded-[inherit]
   `;
 
+  const showMoreButtonStyle = `
+    relative gap-2 text-white font-medium 
+    bg-gradient-to-r 
+    from-blue-600 via-blue-500 to-blue-400
+    overflow-hidden
+    shadow-[0_0_8px_rgba(59,130,246,0.4)] 
+    dark:shadow-[0_0_12px_rgba(59,130,246,0.3)] 
+    transition-all duration-500 
+    hover:scale-[1.02] hover:brightness-105
+    before:absolute before:top-0 before:left-[-75%] 
+    before:w-[50%] before:h-full 
+    before:bg-gradient-to-tr before:from-white/30 before:to-white/10
+    before:skew-x-[-20deg]
+    before:animate-none
+    hover:before:animate-[shine_1.5s_ease-in-out_forwards]
+    before:rounded-[inherit]
+    px-8 py-3 text-lg
+  `;
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -171,11 +82,11 @@ const SummariesSection = () => {
 
   const renderDescriptionWithMentions = (description: string, mentions: typeof summaries[0]['mentions']) => {
     let processedDescription = description;
-    
+
     mentions?.forEach(mention => {
       const mentionRegex = new RegExp(mention.name, 'g');
       processedDescription = processedDescription.replace(
-        mentionRegex, 
+        mentionRegex,
         `<a href="${mention.profileLink}" target="_blank" rel="noopener noreferrer" class="font-bold text-primary hover:text-blue-700 underline underline-offset-2 transition-colors">${mention.name}</a>`
       );
     });
@@ -196,19 +107,18 @@ const SummariesSection = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-12 max-w-4xl mx-auto">
-          {summaries.map((summary, index) => (
+          {homeSummaries.map((summary, index) => (
             <Dialog key={summary.id}>
               <Card
-                className={`group overflow-visible hover:shadow-xl hover:scale-[1.01] transition-all duration-500 ${
-                  isVisible ? "animate-fade-in-up" : "opacity-0"
-                }`}
+                className={`group overflow-visible hover:shadow-xl hover:scale-[1.01] transition-all duration-500 ${isVisible ? "animate-fade-in-up" : "opacity-0"
+                  }`}
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 {/* Lottie Animation Badge */}
                 {summary.featured && (
                   <div className="absolute -top-10 -left-5 z-20">
                     <Player
-                      src="/star3.json"
+                      src="/icons/star3.json"
                       className="w-28 h-28"
                       loop
                       autoplay
@@ -249,7 +159,7 @@ const SummariesSection = () => {
                           {summary.title}
                         </h3>
                       </div>
-                      
+
                       <div className="text-base lg:text-lg text-muted-foreground mb-6 lg:mb-8 leading-relaxed">
                         {renderDescriptionWithMentions(summary.description, summary.mentions)}
                       </div>
@@ -260,14 +170,14 @@ const SummariesSection = () => {
                             <User className="h-4 w-4" />
                             <span className="font-medium">Special Thanks:</span>
                           </div>
-                           <div className="flex flex-wrap gap-2">
-                              {summary.mentions.map((mention, idx) => (
-                                <a
-                                  key={idx}
-                                  href={mention.profileLink}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="relative gap-2 font-medium 
+                          <div className="flex flex-wrap gap-2">
+                            {summary.mentions.map((mention, idx) => (
+                              <a
+                                key={idx}
+                                href={mention.profileLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="relative gap-2 font-medium 
                                             bg-gradient-to-r 
                                             from-purple-900/20 via-purple-800/20 to-purple-700/20
                                             text-purple-700 dark:text-purple-300
@@ -289,12 +199,12 @@ const SummariesSection = () => {
                                             hover:before:animate-[shine_1.0s_ease-in-out_forwards]
                                             before:rounded-[inherit]
                                             inline-flex items-center px-3 py-2 rounded-full text-sm"
-                                >
-                                  <User className="h-3 w-3" />
-                                  {mention.name}
-                                </a>
-                              ))}
-                            </div>
+                              >
+                                <User className="h-3 w-3" />
+                                {mention.name}
+                              </a>
+                            ))}
+                          </div>
                         </div>
                       )}
                     </div>
@@ -357,20 +267,21 @@ const SummariesSection = () => {
                             <LinkIcon className="h-5 w-5 text-primary" />
                             <h4 className="font-bold text-lg text-foreground">References</h4>
                           </div>
-                          
+
                           <div className="space-y-3">
                             {summary.references.map((reference, idx) => (
                               <Button
-                              className={`${referenceButtonStyle} w-full justify-start p-4 h-auto`}
-                              onClick={() => window.open(reference.url, '_blank')}
-                            >
-                              <div className="flex items-center gap-3 text-left w-full">
-                                <ExternalLink className="h-4 w-4 flex-shrink-0" />
-                                <span className="text-sm font-medium flex-1 break-words whitespace-normal">
-                                  {reference.title}
-                                </span>
-                              </div>
-                            </Button>
+                                key={idx}
+                                className={`${referenceButtonStyle} w-full justify-start p-4 h-auto`}
+                                onClick={() => window.open(reference.url, '_blank')}
+                              >
+                                <div className="flex items-center gap-3 text-left w-full">
+                                  <ExternalLink className="h-4 w-4 flex-shrink-0" />
+                                  <span className="text-sm font-medium flex-1 break-words whitespace-normal">
+                                    {reference.title}
+                                  </span>
+                                </div>
+                              </Button>
                             ))}
                           </div>
                           {summary.mentions && summary.mentions.length > 0 && (
@@ -408,8 +319,8 @@ const SummariesSection = () => {
                                             hover:before:animate-[shine_1.0s_ease-in-out_forwards]
                                             before:rounded-[inherit]
                                             inline-flex items-center px-3 py-2 rounded-full text-sm"
-                                >
-                                  <User className="h-3 w-3" />
+                                  >
+                                    <User className="h-3 w-3" />
                                     {mention.name}
                                   </a>
                                 ))}
@@ -425,6 +336,18 @@ const SummariesSection = () => {
             </Dialog>
           ))}
         </div>
+
+        {/* Show More Button */}
+        {summaries.length > homeSummaries.length && (
+          <div className={`text-center mt-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: `${homeSummaries.length * 0.2 + 0.2}s` }}>
+            <Link to="/Summaries">
+              <Button className={showMoreButtonStyle}>
+                <ChevronDown className="h-5 w-5" />
+                View All Summaries ({summaries.length - homeSummaries.length} more)
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

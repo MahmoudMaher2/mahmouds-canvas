@@ -20,17 +20,17 @@ const certificates = [
     id: 2,
     title: "ISTQB MAT Mobile Application Testing V1.0",
     image: "/Certificates/ISTQB MAT Certificate.png",
-    institution: "International Software Testing Qualifications Board", 
+    institution: "International Software Testing Qualifications Board",
     date: "Sep 2025",
     link: "https://scr.istqb.org/",
     credentialId: "250806035",
     featured: true
   },
-    {
+  {
     id: 3,
     title: "Manual and Automation Software Testing internship",
     image: "/Certificates/Azm Squad 337488.png",
-    institution: "Algoriza & AZM Squad", 
+    institution: "Algoriza & AZM Squad",
     date: "Oct 2025",
     link: "https://interns.azmsquad.com/",
     credentialId: "337488"
@@ -117,7 +117,7 @@ const certificates = [
     id: 14,
     title: "C Programming From Basics to Mastery",
     image: "/Certificates/C Programming From Basics to Mastery.png",
-    institution: "MaharaTech - ITI", 
+    institution: "MaharaTech - ITI",
     date: "Sep 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=16004&downloadown=1",
     credentialId: "rkFYlKshGs"
@@ -154,7 +154,7 @@ const certificates = [
     institution: "Eng/ Ahmed Abd ElGhafar",
     date: "July 2023"
   },
-   {
+  {
     id: 19,
     title: "Practical Antenna Design: From Theory to Practice",
     image: "/Certificates/Practical Antenna Design.jpeg",
@@ -167,9 +167,10 @@ const CertificatesGallery = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [currentCertificateIndex, setCurrentCertificateIndex] = useState(0);
-  const [imageErrors, setImageErrors] = useState<{[key: number]: boolean}>({});
-  const [loadedImages, setLoadedImages] = useState<{[key: number]: boolean}>({});
+  const [imageErrors, setImageErrors] = useState<{ [key: number]: boolean }>({});
+  const [loadedImages, setLoadedImages] = useState<{ [key: number]: boolean }>({});
   const sectionRef = useRef<HTMLElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const buttonStyle = `
     relative gap-2 text-white font-medium 
@@ -188,6 +189,169 @@ const CertificatesGallery = () => {
     hover:before:animate-[shine_1.5s_ease-in-out_forwards]
     before:rounded-[inherit]
   `;
+
+  // Canvas animation effect
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const isDarkMode = () => {
+      return document.documentElement.classList.contains('dark');
+    };
+
+    const setCanvasSize = () => {
+      const section = sectionRef.current;
+      if (section) {
+        canvas.width = section.offsetWidth;
+        canvas.height = section.offsetHeight;
+      }
+    };
+
+    setCanvasSize();
+    window.addEventListener('resize', setCanvasSize);
+
+    class Particle {
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      color: string;
+      opacity: number;
+      originalX: number;
+      originalY: number;
+      angle: number;
+      amplitude: number;
+      frequency: number;
+      shapeType: number;
+
+      constructor(darkMode: boolean) {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 50 + 30;
+        this.speedX = Math.random() * 0.08 - 0.04;
+        this.speedY = Math.random() * 0.08 - 0.04;
+
+        const darkModeColors = [
+          'rgba(59, 130, 246, 0.25)',
+          'rgba(139, 92, 246, 0.25)',
+          'rgba(14, 165, 233, 0.25)',
+          'rgba(99, 102, 241, 0.25)',
+        ];
+
+        const lightModeColors = [
+          'rgba(37, 99, 235, 0.2)',
+          'rgba(124, 58, 237, 0.2)',
+          'rgba(2, 132, 199, 0.2)',
+          'rgba(79, 70, 229, 0.2)',
+        ];
+
+        const colors = darkMode ? darkModeColors : lightModeColors;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.opacity = Math.random() * 0.3 + 0.1;
+        this.originalX = this.x;
+        this.originalY = this.y;
+        this.angle = Math.random() * Math.PI * 2;
+        this.amplitude = Math.random() * 60 + 30;
+        this.frequency = Math.random() * 0.002 + 0.001;
+        this.shapeType = Math.floor(Math.random() * 3);
+      }
+
+      update() {
+        this.angle += this.frequency;
+        this.x = this.originalX + Math.cos(this.angle) * this.amplitude;
+        this.y = this.originalY + Math.sin(this.angle * 0.7) * this.amplitude;
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < -100) this.x = canvas.width + 100;
+        if (this.x > canvas.width + 100) this.x = -100;
+        if (this.y < -100) this.y = canvas.height + 100;
+        if (this.y > canvas.height + 100) this.y = -100;
+      }
+
+      draw() {
+        if (!ctx) return;
+        ctx.fillStyle = this.color;
+        ctx.shadowColor = 'transparent';
+        ctx.shadowBlur = 0;
+        ctx.beginPath();
+
+        switch (this.shapeType) {
+          case 0:
+            ctx.moveTo(this.x, this.y - this.size / 2);
+            ctx.lineTo(this.x - this.size / 2, this.y + this.size / 2);
+            ctx.lineTo(this.x + this.size / 2, this.y + this.size / 2);
+            ctx.closePath();
+            break;
+          case 1:
+            ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+            break;
+        }
+        ctx.fill();
+      }
+
+      updateColor(darkMode: boolean) {
+        const darkModeColors = [
+          'rgba(59, 130, 246, 0.25)',
+          'rgba(139, 92, 246, 0.25)',
+          'rgba(14, 165, 233, 0.25)',
+          'rgba(99, 102, 241, 0.25)',
+        ];
+        const lightModeColors = [
+          'rgba(37, 99, 235, 0.2)',
+          'rgba(124, 58, 237, 0.2)',
+          'rgba(2, 132, 199, 0.2)',
+          'rgba(79, 70, 229, 0.2)',
+        ];
+        const colors = darkMode ? darkModeColors : lightModeColors;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+      }
+    }
+
+    const particles: Particle[] = [];
+    const particleCount = 12;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle(isDarkMode()));
+    }
+
+    const updateColors = () => {
+      const darkMode = isDarkMode();
+      particles.forEach(particle => {
+        particle.updateColor(darkMode);
+      });
+    };
+
+    const observer = new MutationObserver(() => {
+      updateColors();
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    const animate = () => {
+      if (!ctx || !canvas) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', setCanvasSize);
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -233,7 +397,7 @@ const CertificatesGallery = () => {
   // تحميل الصور عند تغيير العرض
   useEffect(() => {
     const certificatesToLoad = showAll ? certificates : certificates.slice(0, 6);
-    
+
     certificatesToLoad.forEach(certificate => {
       if (!loadedImages[certificate.id] && !imageErrors[certificate.id]) {
         loadImage(certificate);
@@ -247,11 +411,11 @@ const CertificatesGallery = () => {
 
   const navigateCertificate = (direction: 'prev' | 'next') => {
     if (direction === 'prev') {
-      setCurrentCertificateIndex(prev => 
+      setCurrentCertificateIndex(prev =>
         prev === 0 ? certificates.length - 1 : prev - 1
       );
     } else {
-      setCurrentCertificateIndex(prev => 
+      setCurrentCertificateIndex(prev =>
         prev === certificates.length - 1 ? 0 : prev + 1
       );
     }
@@ -273,7 +437,7 @@ const CertificatesGallery = () => {
     };
 
     document.addEventListener('keydown', handleKeyDown);
-    
+
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
@@ -283,8 +447,15 @@ const CertificatesGallery = () => {
   const displayedCertificates = showAll ? certificates : certificates.slice(0, 6);
 
   return (
-    <section ref={sectionRef} id="certificates" className="py-8 px-4 bg-muted/30">
-      <div className="container mx-auto">
+    <section ref={sectionRef} id="certificates" className="py-8 px-4 bg-muted/30 relative overflow-hidden">
+      {/* Canvas Background */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 -z-10 pointer-events-none"
+        style={{ background: 'transparent' }}
+      />
+
+      <div className="container mx-auto relative z-10">
         <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="gradient-text">Certificates Gallery</span>
@@ -299,9 +470,8 @@ const CertificatesGallery = () => {
             <Dialog key={certificate.id}>
               <DialogTrigger asChild>
                 <Card
-                  className={`cursor-pointer group hover:scale-105 transition-all duration-300 overflow-visible border-border bg-card h-full flex flex-col relative ${
-                    isVisible ? "animate-fade-in-up" : "opacity-0"
-                  }`}
+                  className={`cursor-pointer group hover:scale-105 transition-all duration-300 overflow-visible border-border bg-card h-full flex flex-col relative ${isVisible ? "animate-fade-in-up" : "opacity-0"
+                    }`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                   onClick={() => openDialog(index)}
                 >
@@ -334,7 +504,7 @@ const CertificatesGallery = () => {
                         <span className="text-sm">جاري تحميل الصورة...</span>
                       </div>
                     )}
-                    
+
                     {/* View Overlay */}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-gray-900/40 transition-all duration-300 flex items-center justify-center">
                       <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 bg-gray-800/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-gray-700/50">
@@ -343,7 +513,7 @@ const CertificatesGallery = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* محتوى الكارد */}
                   <div className="p-5 flex-1 flex flex-col">
                     <div className="flex items-start gap-3 mb-4 flex-1">
@@ -368,7 +538,7 @@ const CertificatesGallery = () => {
                           <Calendar className="h-4 w-4 flex-shrink-0" />
                           <span>{certificate.date}</span>
                         </div>
-                        
+
                         {/* زر View Certificate */}
                         {certificate.link && (
                           <Button
@@ -396,7 +566,7 @@ const CertificatesGallery = () => {
                   </div>
                 </Card>
               </DialogTrigger>
-              
+
               {/* Dialog مع navigation */}
               <DialogContent className="max-w-5xl p-0 overflow-hidden bg-background/95 backdrop-blur-xl border border-border/50 shadow-2xl">
                 <div className="p-8 border-b border-border/50 bg-gradient-to-r from-primary/5 to-accent/5">
@@ -422,7 +592,7 @@ const CertificatesGallery = () => {
                         )}
                       </div>
                     </div>
-                    
+
                     {/* زر View Certificate */}
                     {currentCertificate.link && (
                       <Button
