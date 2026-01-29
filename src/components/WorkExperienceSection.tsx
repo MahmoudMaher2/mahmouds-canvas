@@ -17,10 +17,10 @@ const experience = [
     logo: "/company/neop video.mp4",
     position: "Software Test Engineer",
     period: "Nov 2025 - Present",
-    location: "Mansoura, Egypt",
+    location: "Egypt",
     type: "Full-time",
     description:
-      "Manual testing for multiple web applications Focused on functional testing, UI/UX testing, and payment system validation.",
+      "Software QC Engineer | Web, Mobile, API & Performance Testing | Agile & Jira Practitioner",
   },
   {
     companies: [
@@ -32,7 +32,7 @@ const experience = [
     logo: "/company/pixbyte.jpg",
     position: "Software Test Engineer",
     period: "May 2025 - Oct 2025",
-    location: "Mansoura, Egypt",
+    location: "Egypt",
     type: "Full-time",
     description:
       "Manual testing for multiple web applications including Talent Kid, Penguin LMS, Dorra Print, and More English. Focused on functional testing, UI/UX testing, and payment system validation.",
