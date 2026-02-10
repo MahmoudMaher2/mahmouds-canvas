@@ -209,21 +209,79 @@ const WorkExperienceSection: React.FC = () => {
     return () => observers.forEach(o => o?.disconnect());
   }, [isVisible]);
 
+  // Helper to get a fallback image path from a video path
+  const getVideoFallbackImage = (videoPath: string): string | null => {
+    // Try to find a matching image by replacing the extension and removing extra words
+    const basePath = videoPath.substring(0, videoPath.lastIndexOf('/') + 1);
+    const fileName = videoPath.substring(videoPath.lastIndexOf('/') + 1);
+    // Extract the first word of the filename as the base name
+    const baseName = fileName.split(/[\s.]/)[0];
+    // Try common image extensions
+    return `${basePath}${baseName}.png`;
+  };
+
   // مكون لعرض لوجو الشركة
   const CompanyLogo = ({ logo, alt }: { logo: string; alt: string }) => {
     const mediaType = getMediaType(logo);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [videoFailed, setVideoFailed] = useState(false);
+
+    useEffect(() => {
+      if (mediaType === 'video' && videoRef.current) {
+        // Set webkit-playsinline for older iOS Safari versions
+        videoRef.current.setAttribute('webkit-playsinline', '');
+        videoRef.current.setAttribute('x5-playsinline', '');
+
+        // Attempt to play the video programmatically (needed for some iOS versions)
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Autoplay was prevented - show fallback image
+            setVideoFailed(true);
+          });
+        }
+      }
+    }, [mediaType]);
 
     if (mediaType === 'video') {
+      const fallbackImage = getVideoFallbackImage(logo);
+
+      // If video failed to play, show fallback image
+      if (videoFailed && fallbackImage) {
+        return (
+          <img
+            src={fallbackImage}
+            alt={alt}
+            className="w-full h-full object-cover rounded"
+            loading="lazy"
+          />
+        );
+      }
+
       return (
         <video
-          src={logo}
+          ref={videoRef}
           className="w-full h-full object-cover rounded"
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
+          poster={fallbackImage || undefined}
           title={alt}
-        />
+          onError={() => setVideoFailed(true)}
+        >
+          {/* MP4 source with explicit type */}
+          <source src={logo} type="video/mp4" />
+          {/* Fallback for browsers that don't support video */}
+          {fallbackImage && (
+            <img
+              src={fallbackImage}
+              alt={alt}
+              className="w-full h-full object-cover rounded"
+            />
+          )}
+        </video>
       );
     } else if (mediaType === 'gif') {
       return (
