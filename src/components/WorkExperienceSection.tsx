@@ -14,7 +14,7 @@ const experience = [
       }
     ],
     // logo: "/company/neop.png",
-    logo: "/company/neop video.mp4",
+    logo: "/company/neop-video.mp4",
     position: "Software Test Engineer",
     period: "Nov 2025 - Present",
     location: "Egypt",
@@ -215,7 +215,7 @@ const WorkExperienceSection: React.FC = () => {
     const basePath = videoPath.substring(0, videoPath.lastIndexOf('/') + 1);
     const fileName = videoPath.substring(videoPath.lastIndexOf('/') + 1);
     // Extract the first word of the filename as the base name
-    const baseName = fileName.split(/[\s.]/)[0];
+    const baseName = fileName.split(/[\s.-]/)[0];
     // Try common image extensions
     return `${basePath}${baseName}.png`;
   };
@@ -228,16 +228,20 @@ const WorkExperienceSection: React.FC = () => {
 
     useEffect(() => {
       if (mediaType === 'video' && videoRef.current) {
-        // Set webkit-playsinline for older iOS Safari versions
+        // Set attributes for better mobile support
         videoRef.current.setAttribute('webkit-playsinline', '');
         videoRef.current.setAttribute('x5-playsinline', '');
+        videoRef.current.setAttribute('playsinline', '');
 
-        // Attempt to play the video programmatically (needed for some iOS versions)
+        // Attempt to play the video programmatically
         const playPromise = videoRef.current.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
-            // Autoplay was prevented - show fallback image
-            setVideoFailed(true);
+            // Autoplay was prevented or failed
+            console.warn("Video autoplay prevented");
+            // We don't necessarily fail here, as the poster might show, or user interaction might start it.
+            // But for a background logo, we might want to fallback if it never plays.
+            // For now, let's keep the video element but rely on poster.
           });
         }
       }
@@ -246,42 +250,44 @@ const WorkExperienceSection: React.FC = () => {
     if (mediaType === 'video') {
       const fallbackImage = getVideoFallbackImage(logo);
 
-      // If video failed to play, show fallback image
+      // If video failed (onError), show fallback image tag directly
       if (videoFailed && fallbackImage) {
         return (
           <img
             src={fallbackImage}
             alt={alt}
             className="w-full h-full object-cover rounded"
-            loading="lazy"
           />
         );
       }
 
       return (
-        <video
-          ref={videoRef}
-          className="w-full h-full object-cover rounded"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster={fallbackImage || undefined}
-          title={alt}
-          onError={() => setVideoFailed(true)}
-        >
-          {/* MP4 source with explicit type */}
-          <source src={logo} type="video/mp4" />
-          {/* Fallback for browsers that don't support video */}
-          {fallbackImage && (
-            <img
-              src={fallbackImage}
-              alt={alt}
-              className="w-full h-full object-cover rounded"
-            />
-          )}
-        </video>
+        <div className="relative w-full h-full">
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover rounded"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={fallbackImage || undefined}
+            onError={(e) => {
+              console.error("Video error:", e);
+              setVideoFailed(true);
+            }}
+          >
+            <source src={logo} type="video/mp4" />
+            {/* Fallback content for older browsers */}
+            {fallbackImage && (
+              <img
+                src={fallbackImage}
+                alt={alt}
+                className="w-full h-full object-cover rounded"
+              />
+            )}
+          </video>
+        </div>
       );
     } else if (mediaType === 'gif') {
       return (
@@ -289,7 +295,6 @@ const WorkExperienceSection: React.FC = () => {
           src={logo}
           alt={alt}
           className="w-full h-full object-cover rounded"
-          loading="lazy"
         />
       );
     } else {
@@ -298,7 +303,6 @@ const WorkExperienceSection: React.FC = () => {
           src={logo}
           alt={alt}
           className="w-10 h-10 object-contain rounded"
-          loading="lazy"
         />
       );
     }
