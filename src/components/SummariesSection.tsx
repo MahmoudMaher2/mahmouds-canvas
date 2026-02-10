@@ -214,7 +214,7 @@ const SummariesSection = () => {
                         className={`${buttonStyle} w-full gap-2 py-3`}
                         onClick={() => window.open(summary.link, '_blank')}
                       >
-                        Open PDF
+                        {summary.title === "Test Genius" ? "Open Website" : "Open PDF"}
                         <ExternalLink className="h-4 w-4" />
                       </Button>
                     )}
@@ -242,7 +242,7 @@ const SummariesSection = () => {
                         >
                           <span className="flex items-center gap-2">
                             <ExternalLink className="h-4 w-4" />
-                            Open PDF
+                            {summary.title === "Test Genius" ? "Open Website" : "Open PDF"}
                           </span>
                         </Button>
                       </div>

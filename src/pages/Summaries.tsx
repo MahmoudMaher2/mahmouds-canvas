@@ -12,6 +12,21 @@ import LinkedInButton from "@/components/LinkedInButton";
 export const summaries = [
     {
         id: 1,
+        title: "Test Genius",
+        description: "Prepare, Practice, Pass. A specialized platform offering simulated ISTQB exams to enhance software testing skills.",
+        image: "/Summaries/Test Genius.png",
+        link: "https://istqb.top",
+        references: [
+            {
+                title: "ISTQB Official Exams",
+                url: "https://istqb.org/"
+            },
+        ],
+        featured: false,
+        showOnHome: true
+    },
+    {
+        id: 2,
         title: "ISTQB FL V4.0",
         description: "Comprehensive ISTQB Foundation Level (FL) V4.0 syllabus summary with clear explanations and practice questions from sample exams.",
         image: "/Summaries/ISTQB FL Summary.jpg",
@@ -44,7 +59,7 @@ export const summaries = [
         showOnHome: true
     },
     {
-        id: 2,
+        id: 3,
         title: "ISTQB FL V4.0 Sample Exams Questions",
         description: "A compiled collection of ISTQB Foundation Level v4.0 sample exam questions gathered from official sample exams. The file includes only the questions without answers, designed to help learners practice and assess their understanding of ISTQB concepts.",
         image: "/Summaries/ISTQB FL Q.png",
@@ -58,7 +73,7 @@ export const summaries = [
         showOnHome: true
     },
     {
-        id: 3,
+        id: 4,
         title: "ISTQB MAT V1",
         description: "Comprehensive ISTQB Mobile Application Testing (MAT) syllabus summary with clear explanations and practice questions from sample exams.",
         image: "/Summaries/MAT Mocup.png",
@@ -91,7 +106,7 @@ export const summaries = [
         showOnHome: true
     },
     {
-        id: 4,
+        id: 5,
         title: "Part one Embedded Systems",
         description: "Part one of an Embedded Systems Diploma often focuses on Master C programming, Data Structures, and Algorithms.",
         image: "/Summaries/Part One Embedded.jpg",
@@ -112,7 +127,7 @@ export const summaries = [
         showOnHome: false
     },
     {
-        id: 5,
+        id: 6,
         title: "All My Collage Summaries",
         description: "A complete collection of my college summaries, including detailed explanations, compiled past exams, and organized law sheets. These materials were created to simplify studying, connect key concepts, and provide a quick and reliable reference for revision.",
         image: "/Summaries/Mockup Collage.png",
@@ -555,7 +570,7 @@ const SummariesPage = () => {
                                                     className={`${buttonStyle} w-full gap-2 py-3`}
                                                     onClick={() => window.open(summary.link, '_blank')}
                                                 >
-                                                    Open PDF
+                                                    {summary.title === "Test Genius" ? "Open Website" : "Open PDF"}
                                                     <ExternalLink className="h-4 w-4" />
                                                 </Button>
                                             )}
@@ -583,7 +598,7 @@ const SummariesPage = () => {
                                                     >
                                                         <span className="flex items-center gap-2">
                                                             <ExternalLink className="h-4 w-4" />
-                                                            Open PDF
+                                                            {summary.title === "Test Genius" ? "Open Website" : "Open PDF"}
                                                         </span>
                                                     </Button>
                                                 </div>

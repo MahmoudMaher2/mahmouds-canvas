@@ -333,17 +333,17 @@ const WorkExperienceSection: React.FC = () => {
           {/* Timeline container */}
           <div className="relative max-w-5xl mx-auto">
             {/* vertical line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-[2px] bg-gradient-to-b from-violet-400 to-pink-400 opacity-60 hidden lg:block" />
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-[2px] bg-gradient-to-b from-violet-400 to-pink-400 opacity-60 block -z-10" />
 
             <div className="space-y-12">
               {experience.map((exp, idx) => (
                 <div
                   key={exp.companies.map(c => c.name).join('-') + idx}
                   ref={(el) => (experienceRefs.current[idx] = el)}
-                  className={`relative flex flex-col lg:flex-row items-start ${idx % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"}`}
+                  className={`relative flex flex-col lg:flex-row items-center ${idx % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"}`}
                 >
-                  {/* dot */}
-                  <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 top-6 w-5 h-5 rounded-full bg-gradient-to-br from-violet-500 via-blue-500 to-pink-500 border-4 border-background z-10 shadow" />
+                  {/* dot - Hidden on mobile if you want it BEHIND the card, but visible if part of design. Keeping it centered. */}
+                  <div className="flex absolute left-1/2 transform -translate-x-1/2 top-6 w-5 h-5 rounded-full bg-gradient-to-br from-violet-500 via-blue-500 to-pink-500 border-4 border-background z-0 shadow" />
 
                   {/* card */}
                   <div className={`flex-1 w-full max-w-xl ${idx % 2 === 0 ? "lg:pr-12" : "lg:pl-12"}`}>
