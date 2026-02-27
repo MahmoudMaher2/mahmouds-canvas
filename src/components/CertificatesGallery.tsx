@@ -654,6 +654,53 @@ const CertificatesGallery = () => {
           ))}
         </div>
 
+        {/* HackerRank Badges Section */}
+        <div className={`mt-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: '0.6s' }}>
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <img
+                src="/Certificates/hackerrank/logo-new-dark-green-a5cb16e0ae.svg"
+                alt="HackerRank"
+                className="h-8 md:h-10 dark:hidden object-contain"
+              />
+              <img
+                src="/Certificates/hackerrank/logo-new-white-green-a5cb16e0ae.svg"
+                alt="HackerRank"
+                className="h-8 md:h-10 hidden dark:block object-contain"
+              />
+            </div>
+            <p className="text-sm text-muted-foreground">Skill verification from HackerRank</p>
+          </div>
+
+          <div className="flex flex-wrap gap-6 justify-center">
+            <a
+              href="https://www.hackerrank.com/profile/MaherQC"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/badge relative flex flex-col items-center gap-3 p-5 rounded-2xl border border-border/50 bg-card/60 backdrop-blur-sm transition-all duration-400 hover:scale-110 hover:bg-[#2EC866]/10 hover:border-[#2EC866]/40 hover:shadow-[0_0_30px_rgba(46,200,102,0.15)] cursor-pointer"
+              title="View HackerRank Profile"
+            >
+              {/* Glow effect on hover */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#2EC866]/0 to-[#2EC866]/0 group-hover/badge:from-[#2EC866]/5 group-hover/badge:to-[#2EC866]/10 transition-all duration-400" />
+
+              <div className="relative">
+                <img
+                  src="/Certificates/hackerrank/C Badge.png"
+                  alt="HackerRank C Language Badge"
+                  className="w-28 h-28 md:w-32 md:h-32 object-contain drop-shadow-lg group-hover/badge:drop-shadow-[0_0_16px_rgba(46,200,102,0.5)] transition-all duration-400"
+                />
+              </div>
+              <div className="relative text-center">
+                <span className="font-semibold text-sm text-foreground group-hover/badge:text-[#2EC866] transition-colors duration-300">C Language</span>
+                <div className="flex items-center gap-1 justify-center mt-1 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300">
+                  <ExternalLink className="h-3 w-3 text-[#2EC866]" />
+                  <span className="text-xs text-[#2EC866]">View Profile</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
         {/* زر Show More / Show Less */}
         {certificates.length > 6 && (
           <div className="text-center mt-12">
