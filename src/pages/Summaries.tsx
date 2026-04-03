@@ -378,9 +378,9 @@ const SummariesPage = () => {
 
         // Cleanup: restore original meta tags when leaving the page
         return () => {
-            document.title = "Mahmoud Maher | Software Testing Engineer & QA Specialist | ISTQB Certified";
-            updateMetaTag('og:title', 'Mahmoud Maher | Software Testing Engineer & QA Specialist');
-            updateMetaTag('og:description', 'ISTQB Certified Software Testing Engineer & QA Specialist with expertise in manual testing, test automation, and mobile application testing.');
+            document.title = "Mahmoud Maher | Software Testing Engineer & QC/QA Specialist | ISTQB Certified";
+            updateMetaTag('og:title', 'Mahmoud Maher | Software Testing Engineer & QC/QA Specialist');
+            updateMetaTag('og:description', 'ISTQB Certified Software Testing Engineer & QC/QA Specialist with expertise in manual testing, test automation, and mobile application testing.');
             updateMetaTag('og:url', 'https://mahmoud-maher-portfolio.vercel.app');
         };
     }, []);

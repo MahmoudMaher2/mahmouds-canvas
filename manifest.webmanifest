@@ -1,7 +1,7 @@
 {
   "name": "Mahmoud Maher - Software Testing Engineer",
   "short_name": "Mahmoud Maher",
-  "description": "ISTQB Certified Software Testing Engineer & QA Specialist Portfolio",
+  "description": "ISTQB Certified Software Testing Engineer & QC/QA Specialist Portfolio",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#3B82F6",
@@ -51,15 +51,19 @@
       "type": "image/png"
     }
   ],
-    "screenshots": [
+  "screenshots": [
     {
-        "src": "/Mahmoud%20Maher.jpg",
-        "sizes": "1524x1674",
-        "type": "image/jpeg",
-        "form_factor": "wide",
-        "label": "Mahmoud Maher - Software Testing Engineer"
+      "src": "/Mahmoud%20Maher.jpg",
+      "sizes": "1524x1674",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Mahmoud Maher - Software Testing Engineer"
     }
-    ],
-  "categories": ["education", "business", "productivity"],
+  ],
+  "categories": [
+    "education",
+    "business",
+    "productivity"
+  ],
   "lang": "en-US"
 }
