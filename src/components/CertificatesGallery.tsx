@@ -851,17 +851,6 @@ const CertificatesGallery = () => {
         )}
       </div>
 
-      {/* إضافة أنميشن الـ shine في الـ CSS */}
-      <style jsx>{`
-        @keyframes shine {
-          0% {
-            left: -75%;
-          }
-          100% {
-            left: 125%;
-          }
-        }
-      `}</style>
     </section>
   );
 };

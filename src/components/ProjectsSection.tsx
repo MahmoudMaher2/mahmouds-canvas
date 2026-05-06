@@ -341,7 +341,7 @@ const ProjectsSection = () => {
     });
   };
 
-  const renderAllLinks = (links: typeof projects[0]['links']) => {
+  const renderAllLinks = (links: (typeof projects)[number]['links']) => {
     const availableLinks = [];
 
     if (links.video) availableLinks.push({
@@ -425,7 +425,7 @@ const ProjectsSection = () => {
         {/* عرض المشاريع */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {displayedProjects.map((project, index) => {
-            const typeStyle = getTypeStyle(project.type);
+            const typeStyle = getTypeStyle(Array.isArray(project.type) ? project.type[0] : project.type);
             const allLinks = renderAllLinks(project.links);
 
             return (

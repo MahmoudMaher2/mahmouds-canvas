@@ -4,6 +4,8 @@ const skills = [
   { name: "Java", image: "/Skills/java.png" },
   { name: "C", image: "/Skills/C_Programming.png" },
   { name: "SQL", image: "/Skills/sql.png" },
+  { name: "Stripe", image: "/Skills/stripe-logo.png" },
+  { name: "Jira", image: "/Skills/jira-1.svg" },
   { name: "Postman", image: "/Skills/postman.png" },
   { name: "Hoppscotch", image: "/Skills/hoppscotch.png" },
   { name: "JMeter", image: "/Skills/jmeter.svg", darkImage: "/Skills/jmeter-dark.svg" },
