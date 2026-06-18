@@ -160,7 +160,7 @@ const Navbar = () => {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-muted"
+              className="rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-accent text-foreground hover:text-foreground"
             >
               {theme === "light" ? (
                 <Moon className="h-4 w-4" />
