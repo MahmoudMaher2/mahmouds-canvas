@@ -163,6 +163,15 @@ const Hero = () => {
             // دائرة (بحواف حادة)
             ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
             break;
+          case 2:
+            // مستطيل
+            ctx.rect(
+              this.x - this.size / 2,
+              this.y - this.size / 3,
+              this.size,
+              this.size * 0.65
+            );
+            break;
         }
 
         ctx.fill();

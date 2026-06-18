@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mahmoud-maher-portfolio.netlify.app/sitemap.xml
+Sitemap: https://mahmoud-maher-portfolio.vercel.app/sitemap.xml

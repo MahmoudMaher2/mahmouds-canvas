@@ -129,7 +129,7 @@ const ContactSection = () => {
                       
                       {/* أيقونة الزر */}
                       <img 
-                        src={link.label} 
+                        src={link.icon} 
                         alt=""
                         className="h-5 w-5 object-contain filter brightness-0 invert"
                         onError={(e) => {
