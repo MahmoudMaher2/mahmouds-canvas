@@ -85,7 +85,7 @@ const projects = [
   {
     id: 5,
     title: "Buggy Cars Rating Website",
-    description: "Performed exploratory testing on the Buggy Cars Rating website during the AZM Squad/AZM Squad internship, identifying 15 functional, UI, and usability bugs across multiple modules within a defined testing window. All findings were documented and tracked in Google Sheets for clear, consistent defect reporting.",
+    description: "Performed exploratory testing on the Buggy Cars Rating website during the Algoriza/AZM Squad internship, identifying 15 functional, UI, and usability bugs across multiple modules within a defined testing window. All findings were documented and tracked in Google Sheets for clear, consistent defect reporting.",
     image: "/projects/8-carbug.png",
     technologies: ["Bug Reporting", "Exploratory Testing"],
     links: {
@@ -128,7 +128,7 @@ const projects = [
   {
     id: 7,
     title: "The Pass AI Exams & Interviews Website",
-    description: "Took on a fast-paced testing challenge during the AZM Squad x The Pass bootcamp: exploratory testing of an AI-powered interview platform, where an AI model conducts full live interview conversations with candidates. Within a strict 10-hour window, identified and documented 11 valid functional and UI bugs in a structured Google Sheet organized by predefined categories — testing under time pressure on a non-traditional, AI-driven product.",
+    description: "Took on a fast-paced testing challenge during the Algoriza x The Pass bootcamp: exploratory testing of an AI-powered interview platform, where an AI model conducts full live interview conversations with candidates. Within a strict 10-hour window, identified and documented 11 valid functional and UI bugs in a structured Google Sheet organized by predefined categories — testing under time pressure on a non-traditional, AI-driven product.",
     image: "/projects/7-thepass.png",
     technologies: ["Bug Reporting"],
     links: {
