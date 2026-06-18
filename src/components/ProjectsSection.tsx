@@ -88,7 +88,7 @@ const projects = [
     image: "/projects/8-carbug.png",
     technologies: ["Bug Reporting"],
     links: {
-      live: "https://www.google.com/url?q=https://buggy.justtestit.org/&sa=D&source=editors&ust=1760294632664285&usg=AOvVaw22QYBbvcfufo2AO-jIMCii",
+      live: "https://buggy.justtestit.org/",
       sheet: "https://docs.google.com/spreadsheets/d/16z0K46qpXTb7D1H0J-6YdgoM-NOvQJUngjk8GNHqTx8/edit?gid=1454934651#gid=1454934651"
     },
     companies: [

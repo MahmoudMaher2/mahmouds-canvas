@@ -626,7 +626,7 @@ const SummariesPage = () => {
                 type="text"
                 placeholder="Search resources, tags, topics…"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 className="w-full pl-11 pr-10 py-3.5 rounded-2xl
                   bg-card/80 backdrop-blur-sm border border-border
                   text-foreground placeholder:text-muted-foreground
@@ -636,7 +636,7 @@ const SummariesPage = () => {
               />
               {searchQuery && (
                 <button
-                  onClick={() => setSearchQuery("")}
+                  onClick={() => { handleSearchChange(""); }}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <X className="h-4 w-4" />
@@ -712,19 +712,16 @@ const SummariesPage = () => {
               {filtered.map((summary, index) => (
                 <Dialog
                   key={summary.id}
-                  onOpenChange={(open) =>
-                    setSelectedSummary(open ? summary : null)
-                  }
                 >
                   {/* ── Card ── */}
                   <div
-                    className={`group relative flex flex-col rounded-2xl overflow-hidden
+                    className={`marketplace-card group relative flex flex-col rounded-2xl overflow-hidden
                       bg-card border border-border/60
                       shadow-sm hover:shadow-xl hover:shadow-primary/10
                       hover:-translate-y-1 hover:border-primary/30
-                      transition-all duration-400
+                      [transition:transform_0.3s_ease,box-shadow_0.3s_ease,border-color_0.3s_ease]
+                      [contain:layout_style_paint]
                       ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
-                    style={{ animationDelay: `${index * 0.08}s` }}
                   >
                     {/* Featured star badge */}
                     {summary.featured && (
@@ -743,31 +740,36 @@ const SummariesPage = () => {
                     <DialogTrigger asChild>
                       <button className="relative w-full h-52 overflow-hidden bg-muted/50 flex-shrink-0 cursor-pointer">
                         <img
-                          src={summary.image}
+                          src={summary.imageWebp || summary.image}
                           alt={summary.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          loading={index < 3 ? "eager" : "lazy"}
+                          decoding="async"
+                          fetchPriority={index === 0 ? "high" : "low"}
+                          width={900}
+                          height={520}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                        {/* Hover overlay */}
-                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                          <div className="flex items-center gap-2 text-white bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
+                        {/* Hover overlay - use opacity transition only, no backdrop-blur */}
+                        <div className="absolute inset-0 bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                          <div className="flex items-center gap-2 text-white bg-black/40 px-4 py-2 rounded-full border border-white/20">
                             <Eye className="h-4 w-4" />
                             <span className="text-sm font-semibold">
                               Preview
                             </span>
                           </div>
                         </div>
-                        {/* Category badge on image */}
+                        {/* Category badge on image - solid bg, no backdrop-blur */}
                         <div className="absolute top-3 left-3">
                           <span
-                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold border backdrop-blur-sm
+                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold border
                               ${categoryBadgeColors[summary.category]}`}
                           >
                             {summary.category}
                           </span>
                         </div>
-                        {/* Type badge */}
+                        {/* Type badge - solid bg, no backdrop-blur */}
                         <div className="absolute top-3 right-3">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-black/50 text-white border border-white/20 backdrop-blur-sm">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-black/70 text-white border border-white/10">
                             {typeIcon(summary.type)}
                             {summary.type}
                           </span>
@@ -899,8 +901,10 @@ const SummariesPage = () => {
                         {/* Image */}
                         <div className="flex-1 flex items-center justify-center p-4 lg:p-8 bg-muted/10">
                           <img
-                            src={summary.image}
+                            src={summary.imageOriginal || summary.image}
                             alt={summary.title}
+                            loading="lazy"
+                            decoding="async"
                             className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
                           />
                         </div>
@@ -908,7 +912,7 @@ const SummariesPage = () => {
                         {/* Sidebar */}
                         {(summary.references?.length ||
                           summary.mentions?.length) && (
-                          <div className="lg:w-80 border-t lg:border-t-0 lg:border-l border-border bg-background/60 backdrop-blur-sm">
+                          <div className="lg:w-80 border-t lg:border-t-0 lg:border-l border-border bg-background/95">
                             <div className="p-4 lg:p-6 space-y-6">
                               {/* References */}
                               {summary.references &&

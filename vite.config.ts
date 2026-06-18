@@ -20,6 +20,23 @@ export default defineConfig({
         main: path.resolve(__dirname, "index.html"),
         summaries: path.resolve(__dirname, "summaries.html"),
       },
+      output: {
+        manualChunks: {
+          // React core — cached forever after first load
+          "vendor-react": ["react", "react-dom", "react-router-dom"],
+          // Radix + shadcn UI components
+          "vendor-ui": [
+            "@radix-ui/react-dialog",
+            "@radix-ui/react-slot",
+            "@radix-ui/react-toast",
+            "@radix-ui/react-tooltip",
+          ],
+          // Heavy Lottie player (only used in Summaries)
+          "vendor-lottie": ["@lottiefiles/react-lottie-player"],
+          // Lucide icons
+          "vendor-icons": ["lucide-react"],
+        },
+      },
     },
   },
 });

@@ -374,8 +374,35 @@ All colors MUST be HSL.
   }
 }
 
+
 .animate-marquee-fast {
   animation: marquee-fast 25s linear infinite;
+}
+
+/* ── Marketplace performance ─────────────────────────────────────────────── */
+
+/* Defer offscreen card rendering — biggest perf win for long grids */
+.marketplace-card {
+  content-visibility: auto;
+  /* Estimated card height to prevent scroll-bar jumping */
+  contain-intrinsic-size: auto none auto 420px;
+}
+
+/* Promote image to own compositor layer so hover scale doesn't repaint parent */
+.marketplace-card img {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .marketplace-card {
+    transition: none !important;
+  }
+  .marketplace-card img {
+    transition: none !important;
+    will-change: auto;
+  }
 }
 
 }
