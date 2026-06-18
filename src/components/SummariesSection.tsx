@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Player } from '@lottiefiles/react-lottie-player';
 import { Link } from "react-router-dom";
-import { summaries } from "@/pages/Summaries";
+import { summaries } from "@/data/summaries.data";
 
 const SummariesSection = () => {
   const [isVisible, setIsVisible] = useState(false);

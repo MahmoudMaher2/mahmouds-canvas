@@ -44,6 +44,8 @@ const technicalSkills = [
   "TestNG",
   "Cucumber BDD",
   "Git/GitHub",
+  "Jira",
+  "Team Project",
 ];
 
 const certifications = [

@@ -9,7 +9,7 @@ const projects = [
   {
     id: 1,
     title: "HerokuApp Automation Project",
-    description: "Implemented an automation testing project for the Heroku App website using IntelliJ IDEA. Employed both TestNG and Cucumber frameworks to design and execute automated test cases, ensuring functionality and reliability of the web application.",
+    description: "My first hands-on automation testing project, built to apply core automation fundamentals on The Internet (Heroku App) demo site. Designed and executed automated test cases using the TestNG and Cucumber frameworks in IntelliJ IDEA, covering key functional flows and laying the foundation for the automation skills used in later projects.",
     image: "/projects/1-HerokuApp.png",
     technologies: ["Selenium", "Java", "TestNG", "Maven", "Cucumber"],
     links: {
@@ -30,7 +30,7 @@ const projects = [
   {
     id: 2,
     title: "Talent Kid Website",
-    description: "Tested the demo version of the Talent Kid platform, focusing on validating core functionalities and user interface elements. Conducted functional and UI testing to ensure that the prototype behaved as intended and provided a smooth, consistent user experience.",
+    description: "Tested the demo version of the Talent Kid platform — a landing page paired with an admin dashboard for managing course data. Conducted functional and UI testing on a straightforward but business-critical flow, verifying that data entered through the dashboard reflected correctly and consistently on the public-facing pages.",
     image: "/projects/4-talentkid.png",
     technologies: ["Test Cases", "Bug Reporting"],
     links: { live: "https://talentkid.sa/" },
@@ -46,7 +46,7 @@ const projects = [
   {
     id: 3,
     title: "OpenCart Automation Graduation Project",
-    description: "Developed an automation testing project for the AwesomeQA website using IntelliJ IDEA. Utilized the Cucumber framework to design and execute 30 automated test cases, ensuring the functionality and reliability of the web application. Additionally, generated comprehensive Extent Reports in multiple formats, including HTML, PDF, and screenshots, to document the test results.",
+    description: "Graduation project for the DEPI (Digital Egypt Pioneers Initiative) program, built in a 3-person team for the AwesomeQA e-commerce platform. Of 15 automated test scenarios split across the team, owned and implemented 5 end-to-end using the Cucumber framework with the Page Object Model (POM), and collaborated closely with teammates to debug shared blockers. Generated comprehensive Extent Reports in HTML, PDF, and screenshot formats to document results.",
     image: "/projects/2-opencart.png",
     technologies: ["Selenium", "Java", "TestNG", "Maven", "Cucumber", "POM", "BDD", "Extent Report"],
     links: {
@@ -62,16 +62,17 @@ const projects = [
         linkedin: "https://www.linkedin.com/company/digital-egypt-pioneers-initiative-depi/"
       }
     ],
-    type: "automation",
+    type: ["automation", "Team Project"],
     featured: true
   },
   {
     id: 4,
     title: "More English LMS Website",
-    description: "Performed functional testing on the More English website, focusing on validating user roles and permissions, including access levels and feature restrictions. Tested the comments and admin reply features on videos to ensure proper interaction and visibility. Also verified the exams and assignments modules, including text styling, exam validation, retake permissions, and timing controls, to ensure all functionalities worked correctly according to user roles.",
+    description: "Returned to a previously tested LMS platform to validate two major additions: a role-based permissions system (access levels and feature restrictions) and a rebuilt examination engine covering text styling, exam validation, retake permissions, and timing controls. Also tested a new video-comments feature supporting student-to-admin replies. Identified and reported 56 bugs across these modules through structured functional testing.",
     image: "/projects/6-moreenglish.png",
     technologies: ["Test Cases", "Bug Reporting"],
     links: { live: "https://www.more-english.net/" },
+    bugCount: 56,
     companies: [
       {
         name: "Pixbyte",
@@ -84,13 +85,14 @@ const projects = [
   {
     id: 5,
     title: "Buggy Cars Rating Website",
-    description: "Performed comprehensive manual testing on the Buggy Cars Rating website as part of my graduation project at Algoriza. Conducted exploratory testing to identify and document functional, UI, and usability bugs across different modules. All findings and defect details were reported and tracked using Google Sheets to ensure clear and consistent bug documentation.",
+    description: "Performed exploratory testing on the Buggy Cars Rating website during the AZM Squad/AZM Squad internship, identifying 15 functional, UI, and usability bugs across multiple modules within a defined testing window. All findings were documented and tracked in Google Sheets for clear, consistent defect reporting.",
     image: "/projects/8-carbug.png",
-    technologies: ["Bug Reporting"],
+    technologies: ["Bug Reporting", "Exploratory Testing"],
     links: {
       live: "https://buggy.justtestit.org/",
       sheet: "https://docs.google.com/spreadsheets/d/16z0K46qpXTb7D1H0J-6YdgoM-NOvQJUngjk8GNHqTx8/edit?gid=1454934651#gid=1454934651"
     },
+    bugCount: 15,
     companies: [
       {
         name: "Algoriza",
@@ -107,11 +109,12 @@ const projects = [
   },
   {
     id: 6,
-    title: "Dorra print Website",
-    description: "Performed in-depth functional and UI testing on the custom-built design editor (canvas) within the Dorra Print platform. The editor was developed from scratch to function similarly to tools like Canva or Photoshop. My testing covered all available tools, features, and keyboard shortcuts, ensuring correct behavior, responsiveness, and smooth user experience across different scenarios. I validated text, shapes, layers, alignment tools, undo/redo actions, drag-and-drop functionality, and export options. Leveraging my background as a graphic designer, I was able to test the system with a user-centered perspective, ensuring both usability and precision in the editor's performance.",
+    title: "Dorra Print Website",
+    description: "Owned functional and UI testing for Dorra Print's custom-built design editor — a from-scratch canvas tool comparable to Canva or Photoshop. Tested every available tool, feature, and keyboard shortcut, validating text, shapes, layers, alignment, undo/redo, drag-and-drop, and export behavior across multiple scenarios. A graphic design background brought a user-centered testing perspective beyond pure functional checks. Identified 100 bugs throughout the editor, making this one of the most demanding manual testing assignments to date.",
     image: "/projects/5-dorraprint.png",
-    technologies: ["Test Cases", "Bug Reporting"],
+    technologies: ["Test Cases", "Bug Reporting", "Exploratory Testing"],
     links: { live: "https://dorraprint.com/" },
+    bugCount: 100,
     companies: [
       {
         name: "Pixbyte",
@@ -125,13 +128,14 @@ const projects = [
   {
     id: 7,
     title: "The Pass AI Exams & Interviews Website",
-    description: "Participated in a testing bootcamp organized by Algoriza in collaboration with The Pass. The challenge involved performing exploratory testing on The Pass website within a limited time frame of 10 hours to identify valid functional and UI bugs. The discovered issues were documented in a structured Google Sheet based on predefined topics provided by the organizers, focusing on bug details and categorization rather than writing full bug reports.",
+    description: "Took on a fast-paced testing challenge during the AZM Squad x The Pass bootcamp: exploratory testing of an AI-powered interview platform, where an AI model conducts full live interview conversations with candidates. Within a strict 10-hour window, identified and documented 11 valid functional and UI bugs in a structured Google Sheet organized by predefined categories — testing under time pressure on a non-traditional, AI-driven product.",
     image: "/projects/7-thepass.png",
     technologies: ["Bug Reporting"],
     links: {
       live: "https://thepass.sa/",
       sheet: "https://docs.google.com/spreadsheets/d/1MnLzrbhaqGlrnLQUAqv0Bon7R8JdlXFNx2lQGJBnyiA/edit?usp=drive_link"
     },
+    bugCount: 11,
     companies: [
       {
         name: "Algoriza",
@@ -150,10 +154,11 @@ const projects = [
   {
     id: 8,
     title: "Penguin LMS Website",
-    description: "Performed extensive testing on the Penguin educational platform, focusing heavily on the payment and discount systems. Tested multiple pricing scenarios, coupon rules, and course-specific discount logic to ensure accurate calculations before and after applying offers. Conducted backend API testing to validate the discount and coupon logic, followed by frontend testing to confirm proper integration and accurate user experience. Validated edge cases such as overlapping discounts, expired coupons, and dynamic price updates across different user roles. Also tested the WhatsApp integration and the live sessions feature, which included a custom-built platform inside the website with integration to Zoom. Tested the switching between both systems to ensure stable connectivity and smooth user experience. For the teacher role, I verified functionalities added from the admin side such as creating and correcting exams, managing sessions, and accessing the dashboard. This project was one of the most challenging, requiring detailed analysis and precise validation across multiple integrated systems.",
+    description: "One of the most demanding projects at Pixbyte, covering the full payment and discount system for an educational platform. Tested complex pricing logic — including cart-value-triggered discounts and different rules for individually purchased versus bundled courses — validating backend calculations through API testing in Hoppscotch and frontend behavior across multiple pricing scenarios. Covered edge cases such as overlapping discounts, expired coupons, and dynamic price updates across user roles. Validated a WhatsApp integration and a dual live-session system supporting both Zoom and a custom-built in-house meeting platform, including the switch between them. For the teacher role, verified exam creation/correction, session management, and dashboard access. Identified and reported 160 bugs across these modules.",
     image: "/projects/3-penguin.png",
     technologies: ["Test Cases", "Bug Reporting", "API Testing", "Hoppscotch"],
     links: { live: "https://penguin.com.sa/" },
+    bugCount: 160,
     companies: [
       {
         name: "Pixbyte",
@@ -276,6 +281,7 @@ const ProjectsSection = () => {
       'Performance Testing': 'bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/20 dark:border-rose-500/30',
       'Mobile Testing': 'bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-500/20 dark:border-purple-500/30',
       'Manual Testing': 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20 dark:border-blue-500/30',
+      'Exploratory Testing': 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20 dark:border-amber-500/30',
     };
 
     return colors[tech] || 'bg-gray-500/10 text-gray-700 dark:text-gray-300 border-gray-500/20 dark:border-gray-500/30';
@@ -349,7 +355,7 @@ const ProjectsSection = () => {
       label: "Watch Demo",
       tooltip: "Watch project demo video",
       onClick: () => window.open(links.video, '_blank'),
-      className: "hover:bg-purple-50 dark:hover:bg-purple-950"
+      className: "text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-950 hover:text-purple-600 dark:hover:text-purple-300 hover:border-purple-300"
     });
 
     if (links.live) availableLinks.push({
@@ -357,7 +363,7 @@ const ProjectsSection = () => {
       label: "View Live",
       tooltip: "live website",
       onClick: () => window.open(links.live, '_blank'),
-      className: "hover:bg-green-50 dark:hover:bg-green-950"
+      className: "text-gray-600 dark:text-gray-300 hover:bg-green-50 dark:hover:bg-green-950 hover:text-green-600 dark:hover:text-green-300 hover:border-green-300"
     });
 
     if (links.sheet) availableLinks.push({
@@ -365,7 +371,7 @@ const ProjectsSection = () => {
       label: "Test Cases",
       tooltip: "View sheet",
       onClick: () => window.open(links.sheet, '_blank'),
-      className: "hover:bg-orange-50 dark:hover:bg-orange-950"
+      className: "text-gray-600 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-orange-950 hover:text-orange-600 dark:hover:text-orange-300 hover:border-orange-300"
     });
 
     if (links.github) availableLinks.push({
@@ -373,7 +379,7 @@ const ProjectsSection = () => {
       label: "View Code",
       tooltip: "GitHub",
       onClick: () => window.open(links.github, '_blank'),
-      className: "hover:bg-blue-50 dark:hover:bg-blue-950"
+      className: "text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-950 hover:text-blue-600 dark:hover:text-blue-300 hover:border-blue-300"
     });
 
     // Smart App Store detection
@@ -403,7 +409,7 @@ const ProjectsSection = () => {
         label: "Download App",
         tooltip: "Get the mobile app",
         onClick: handleAppStoreClick,
-        className: "hover:bg-violet-50 dark:hover:bg-violet-950"
+        className: "text-gray-600 dark:text-gray-300 hover:bg-violet-50 dark:hover:bg-violet-950 hover:text-violet-600 dark:hover:text-violet-300 hover:border-violet-300"
       });
     }
 
@@ -431,7 +437,7 @@ const ProjectsSection = () => {
             return (
               <Card
                 key={project.id}
-                className={`group overflow-visible hover:shadow-xl hover:border-primary/30 transition-all duration-300 border-border bg-card relative aspect-auto h-auto ${isVisible ? "animate-fade-in-up" : "opacity-0"
+                className={`group overflow-visible hover:shadow-xl hover:border-primary/30 transition-all duration-300 border-border bg-card relative flex flex-col ${isVisible ? "animate-fade-in-up" : "opacity-0"
                   }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
@@ -482,7 +488,7 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* المحتوى */}
-                <CardContent className="p-6">
+                <CardContent className="p-6 flex flex-col flex-1">
                   {/* Header with Company Logo */}
                   <div className="flex items-center gap-3 mb-4">
                     {project.companies[0].logo ? (
@@ -520,12 +526,12 @@ const ProjectsSection = () => {
                   </div>
 
                   {/* Description */}
-                  <CardDescription className="text-base mb-4">
+                  <CardDescription className="text-base mb-4 flex-1">
                     {project.description}
                   </CardDescription>
 
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  {/* Technologies + Bug Badge */}
+                  <div className="flex flex-wrap gap-2 mb-3 mt-auto">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
@@ -534,6 +540,14 @@ const ProjectsSection = () => {
                         {tech}
                       </span>
                     ))}
+                    {/* Bug count badge */}
+                    {"bugCount" in project && project.bugCount && (
+                      <span className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border font-bold
+                        bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/25
+                        ring-1 ring-red-500/20 shadow-sm">
+                        🐛 {project.bugCount} bugs found
+                      </span>
+                    )}
                   </div>
 
                   {/* Buttons */}
