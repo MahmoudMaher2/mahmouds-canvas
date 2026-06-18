@@ -14,6 +14,10 @@ import {
   Bell,
   Filter,
   X,
+  Award,
+  Cpu,
+  GraduationCap,
+  Laptop,
 } from "lucide-react";
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -28,7 +32,6 @@ import { summaries, type Summary, type SummaryCategory, type SummaryType } from 
 const CATEGORIES: SummaryCategory[] = [
   "All",
   "ISTQB",
-  "Mobile",
   "Embedded",
   "College",
   "Platform",
@@ -43,26 +46,62 @@ const categoryColors: Record<SummaryCategory, string> = {
   Platform: "from-pink-600 to-rose-400",
 };
 
-const categoryBadgeColors: Record<SummaryCategory, string> = {
-  All: "bg-blue-500/15 text-blue-400 border-blue-500/30",
-  ISTQB: "bg-blue-500/15 text-blue-400 border-blue-500/30",
-  Mobile: "bg-violet-500/15 text-violet-400 border-violet-500/30",
-  Embedded: "bg-orange-500/15 text-orange-400 border-orange-500/30",
-  College: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
-  Platform: "bg-pink-500/15 text-pink-400 border-pink-500/30",
+const categoryConfigs: Record<
+  SummaryCategory,
+  {
+    icon: React.ReactNode;
+    badgeClass: string;
+  }
+> = {
+  All: {
+    icon: <Award className="h-3.5 w-3.5" />,
+    badgeClass: "bg-white/95 dark:bg-slate-950/95 text-blue-600 dark:text-blue-300 border-blue-200 dark:border-blue-500/30",
+  },
+  ISTQB: {
+    icon: <Award className="h-3.5 w-3.5" />,
+    badgeClass: "bg-white/95 dark:bg-slate-950/95 text-blue-600 dark:text-blue-300 border-blue-200 dark:border-blue-500/30",
+  },
+  Mobile: {
+    icon: <Laptop className="h-3.5 w-3.5" />,
+    badgeClass: "bg-white/95 dark:bg-slate-950/95 text-violet-600 dark:text-violet-300 border-violet-200 dark:border-violet-500/30",
+  },
+  Embedded: {
+    icon: <Cpu className="h-3.5 w-3.5" />,
+    badgeClass: "bg-white/95 dark:bg-slate-950/95 text-orange-600 dark:text-orange-300 border-orange-200 dark:border-orange-500/30",
+  },
+  College: {
+    icon: <GraduationCap className="h-3.5 w-3.5" />,
+    badgeClass: "bg-white/95 dark:bg-slate-950/95 text-emerald-600 dark:text-emerald-300 border-emerald-200 dark:border-emerald-500/30",
+  },
+  Platform: {
+    icon: <Laptop className="h-3.5 w-3.5" />,
+    badgeClass: "bg-white/95 dark:bg-slate-950/95 text-pink-600 dark:text-pink-300 border-pink-200 dark:border-pink-500/30",
+  },
 };
 
-const typeIcon = (type: SummaryType) => {
-  switch (type) {
-    case "PDF":
-      return <FileText className="h-3.5 w-3.5" />;
-    case "Website":
-      return <Globe className="h-3.5 w-3.5" />;
-    case "Folder":
-      return <FolderOpen className="h-3.5 w-3.5" />;
-    case "Book":
-      return <BookOpen className="h-3.5 w-3.5" />;
+const typeConfigs: Record<
+  SummaryType,
+  {
+    icon: React.ReactNode;
+    badgeClass: string;
   }
+> = {
+  PDF: {
+    icon: <FileText className="h-3.5 w-3.5" />,
+    badgeClass: "bg-white/95 dark:bg-slate-950/95 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-500/30",
+  },
+  Website: {
+    icon: <Globe className="h-3.5 w-3.5" />,
+    badgeClass: "bg-white/95 dark:bg-slate-950/95 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-500/30",
+  },
+  Folder: {
+    icon: <FolderOpen className="h-3.5 w-3.5" />,
+    badgeClass: "bg-white/95 dark:bg-slate-950/95 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-500/30",
+  },
+  Book: {
+    icon: <BookOpen className="h-3.5 w-3.5" />,
+    badgeClass: "bg-white/95 dark:bg-slate-950/95 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-500/30",
+  },
 };
 
 const typeLabel = (s: Summary) => {
@@ -106,7 +145,6 @@ const SummariesPage = () => {
   // Stats
   const stats = [
     { label: "Resources", value: summaries.length, icon: "📚" },
-    { label: "Categories", value: CATEGORIES.length - 1, icon: "🗂️" },
     { label: "Free", value: "100%", icon: "🎁" },
   ];
 
@@ -346,7 +384,7 @@ const SummariesPage = () => {
       <Navbar />
 
       {/* ─── HERO ───────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[70vh] flex flex-col items-center justify-center px-4 pt-24 pb-12 overflow-hidden">
+      <section className="relative px-4 sm:px-6 pt-20 pb-5 overflow-hidden">
         {/* Canvas BG */}
         <canvas
           ref={canvasRef}
@@ -355,90 +393,104 @@ const SummariesPage = () => {
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background/80 to-accent/5 -z-5" />
 
-        <div className="container mx-auto text-center relative z-10">
-          {/* Badge */}
+        <div className="container mx-auto relative z-10">
+          {/* ── Main Hero Card — full width ── */}
           <div
-            className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-6
-              bg-primary/10 border border-primary/20 text-primary
-              ${isVisible ? "animate-fade-in" : "opacity-0"}`}
+            className={`flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-10 p-6 sm:p-8 lg:p-10 rounded-3xl
+              bg-card/45 backdrop-blur-md border border-border/40 shadow-xl
+              ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
           >
-            <Sparkles className="h-3.5 w-3.5" />
-            Knowledge Marketplace
-          </div>
-
-          {/* Title */}
-          <h1
-            className={`text-5xl md:text-7xl font-extrabold mb-4 tracking-tight ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
-            style={{ animationDelay: "0.1s" }}
-          >
-            <span className="gradient-text">Maher's Hub</span>
-          </h1>
-
-          <p
-            className={`text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-10 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
-            style={{ animationDelay: "0.2s" }}
-          >
-            All my technical summaries, exam resources &amp; learning materials
-            — free for everyone.
-          </p>
-
-          {/* Stats Bar */}
-          <div
-            className={`flex flex-wrap justify-center gap-4 md:gap-8 mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
-            style={{ animationDelay: "0.3s" }}
-          >
-            {stats.map((s) => (
-              <div
-                key={s.label}
-                className="flex flex-col items-center px-6 py-3 rounded-2xl
-                  bg-card/60 backdrop-blur-sm border border-border/60
-                  shadow-sm hover:shadow-md hover:border-primary/30
-                  transition-all duration-300"
-              >
-                <span className="text-2xl mb-1">{s.icon}</span>
-                <span className="text-2xl font-bold gradient-text">
-                  {s.value}
-                </span>
-                <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
-                  {s.label}
-                </span>
+            {/* Left side: Profile Info */}
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 flex-1 w-full">
+              {/* Avatar */}
+              <div className="relative flex-shrink-0">
+                <div className="w-28 h-28 lg:w-36 lg:h-36 rounded-2xl overflow-hidden ring-4 ring-primary/10 ring-offset-4 ring-offset-background shadow-2xl transition-all duration-300 hover:scale-105">
+                  <img
+                    src="/Mahmoud Maher.jpg"
+                    alt="Mahmoud Maher"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <span className="absolute -bottom-1 -right-1 w-4.5 h-4.5 bg-emerald-500 rounded-full border-4 border-background animate-pulse" />
               </div>
-            ))}
-          </div>
 
-          {/* Search + Filter */}
-          <div
-            className={`max-w-3xl mx-auto space-y-4 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
-            style={{ animationDelay: "0.4s" }}
-          >
-            {/* Search */}
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <input
-                id="summaries-search"
-                type="text"
-                placeholder="Search resources, tags, topics…"
-                value={searchQuery}
-                onChange={(e) => handleSearchChange(e.target.value)}
-                className="w-full pl-11 pr-10 py-3.5 rounded-2xl
-                  bg-card/80 backdrop-blur-sm border border-border
-                  text-foreground placeholder:text-muted-foreground
-                  focus:outline-none focus:ring-2 focus:ring-primary/50
-                  focus:border-primary/50 transition-all duration-200
-                  shadow-sm text-sm"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => { handleSearchChange(""); }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              )}
+              {/* Text Block */}
+              <div className="flex-1 min-w-0 text-center sm:text-left space-y-2.5">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold
+                  bg-primary/10 border border-primary/20 text-primary shadow-sm">
+                  <Sparkles className="h-3.5 w-3.5 animate-pulse" />
+                  <span>Knowledge Marketplace</span>
+                </div>
+                <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+                  Maher's Hub
+                </h1>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">
+                  All my technical summaries, exam resources &amp; learning materials — free for everyone.
+                </p>
+              </div>
             </div>
 
-            {/* Category pills */}
-            <div className="flex flex-wrap justify-center gap-2">
+            {/* Right side: Stats */}
+            <div className="flex items-center justify-center gap-6 sm:gap-10 border-t lg:border-t-0 lg:border-l border-border/60 pt-6 lg:pt-0 lg:pl-10 w-full lg:w-auto">
+              {stats.map((s) => (
+                <div key={s.label} className="text-center space-y-1">
+                  <div className="flex items-center gap-1.5 justify-center">
+                    <span className="text-xl sm:text-2xl leading-none">{s.icon}</span>
+                    <span className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight leading-none">
+                      {s.value}
+                    </span>
+                  </div>
+                  <p className="text-[10px] sm:text-xs font-bold text-muted-foreground uppercase tracking-widest leading-none">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ─── GRID ────────────────────────────────────────────────────────── */}
+      <section className="pt-4 pb-20 px-4 sm:px-6">
+        <div className="container mx-auto">
+          {/* ── Toolbar: Search + Filters + Results count ── */}
+          <div className="flex flex-col gap-3 mb-6">
+            {/* Row 1: Search + clear */}
+            <div className="flex items-center gap-3">
+              <div className="relative flex-1">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <input
+                  id="summaries-search"
+                  type="text"
+                  placeholder="Search resources, tags, topics…"
+                  value={searchQuery}
+                  onChange={(e) => handleSearchChange(e.target.value)}
+                  className="w-full pl-10 pr-9 py-2.5 rounded-xl
+                    bg-card/80 border border-border
+                    text-foreground placeholder:text-muted-foreground
+                    focus:outline-none focus:ring-2 focus:ring-primary/50
+                    focus:border-primary/50 transition-all duration-200 text-sm"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => { handleSearchChange(""); }}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Row 2: Results count + Category pills + Clear */}
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="text-sm text-muted-foreground flex items-center gap-1.5 mr-1">
+                <Filter className="h-3.5 w-3.5" />
+                Showing{" "}
+                <span className="font-semibold text-foreground">{filtered.length}</span>{" "}
+                of {summaries.length}
+              </p>
               {CATEGORIES.map((cat) => {
                 const active = activeCategory === cat;
                 return (
@@ -446,11 +498,11 @@ const SummariesPage = () => {
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
                     className={`
-                      px-4 py-1.5 rounded-full text-sm font-semibold
+                      px-3 py-1 rounded-full text-xs font-semibold
                       border transition-all duration-200
                       ${
                         active
-                          ? `bg-gradient-to-r ${categoryColors[cat]} text-white border-transparent shadow-md scale-105`
+                          ? `bg-gradient-to-r ${categoryColors[cat]} text-white border-transparent shadow-sm scale-105`
                           : "bg-card/60 border-border text-muted-foreground hover:text-foreground hover:border-primary/30"
                       }
                     `}
@@ -459,35 +511,15 @@ const SummariesPage = () => {
                   </button>
                 );
               })}
+              {(activeCategory !== "All" || searchQuery) && (
+                <button
+                  onClick={() => { setActiveCategory("All"); setSearchQuery(""); }}
+                  className="text-xs text-primary hover:text-primary/80 flex items-center gap-1 transition-colors ml-auto"
+                >
+                  <X className="h-3 w-3" /> Clear
+                </button>
+              )}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── GRID ────────────────────────────────────────────────────────── */}
-      <section className="py-8 pb-20 px-4">
-        <div className="container mx-auto">
-          {/* Results count */}
-          <div className="flex items-center justify-between mb-8">
-            <p className="text-sm text-muted-foreground flex items-center gap-2">
-              <Filter className="h-4 w-4" />
-              Showing{" "}
-              <span className="font-semibold text-foreground">
-                {filtered.length}
-              </span>{" "}
-              of {summaries.length} resources
-            </p>
-            {(activeCategory !== "All" || searchQuery) && (
-              <button
-                onClick={() => {
-                  setActiveCategory("All");
-                  setSearchQuery("");
-                }}
-                className="text-xs text-primary hover:text-primary/80 flex items-center gap-1 transition-colors"
-              >
-                <X className="h-3 w-3" /> Clear filters
-              </button>
-            )}
           </div>
 
           {filtered.length === 0 ? (
@@ -551,19 +583,22 @@ const SummariesPage = () => {
                             </span>
                           </div>
                         </div>
-                        {/* Category badge on image - solid bg, no backdrop-blur */}
+                        {/* Category badge on image - glassmorphism with backdrop-blur */}
                         <div className="absolute top-3 left-3">
                           <span
-                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold border
-                              ${categoryBadgeColors[summary.category]}`}
+                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold border backdrop-blur-md shadow-sm transition-colors duration-300
+                              ${categoryConfigs[summary.category].badgeClass}`}
                           >
+                            {categoryConfigs[summary.category].icon}
                             {summary.category}
                           </span>
                         </div>
-                        {/* Type badge - solid bg, no backdrop-blur */}
+                        {/* Type badge - solid black bg */}
                         <div className="absolute top-3 right-3">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-black/70 text-white border border-white/10">
-                            {typeIcon(summary.type)}
+                          <span
+                            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-black/70 text-white border border-white/10 shadow-sm backdrop-blur-sm transition-colors duration-300"
+                          >
+                            {typeConfigs[summary.type].icon}
                             {summary.type}
                           </span>
                         </div>
@@ -588,7 +623,7 @@ const SummariesPage = () => {
                           {summary.tags.slice(0, 3).map((tag) => (
                             <span
                               key={tag}
-                              className="px-2 py-0.5 rounded-md text-xs bg-muted text-muted-foreground border border-border/60"
+                              className="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50/85 text-blue-600 border border-blue-200/60 dark:bg-blue-500/15 dark:text-blue-300 dark:border-blue-500/30 hover:bg-blue-100/70 dark:hover:bg-blue-500/25 transition-colors duration-200"
                             >
                               #{tag}
                             </span>
@@ -606,8 +641,9 @@ const SummariesPage = () => {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium
-                                bg-purple-500/10 border border-purple-500/30 text-purple-400
-                                hover:bg-purple-500/20 hover:border-purple-400 transition-all duration-200"
+                                bg-purple-50/85 text-purple-700 border border-purple-200/60
+                                dark:bg-purple-500/15 dark:text-purple-300 dark:border-purple-500/30
+                                hover:bg-purple-100/70 dark:hover:bg-purple-500/25 transition-all duration-200"
                             >
                               <User className="h-2.5 w-2.5" />
                               {m.name}
@@ -651,19 +687,24 @@ const SummariesPage = () => {
                   </div>
 
                   {/* ── Dialog / Full Preview ── */}
-                  <DialogContent className="max-w-full w-full h-full max-h-screen m-0 p-0 overflow-hidden bg-background">
+                  <DialogContent className="w-[95vw] md:max-w-4xl lg:max-w-5xl xl:max-w-6xl h-auto max-h-[90vh] md:max-h-[85vh] p-0 overflow-hidden rounded-2xl flex flex-col border border-border/80 shadow-2xl">
                     {/* Header */}
-                    <div className="p-4 lg:p-6 border-b border-border bg-background/95 backdrop-blur-sm">
+                    <div className="flex-shrink-0 p-4 lg:p-6 border-b border-border bg-background/95 backdrop-blur-sm">
                       <div className="container mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-2">
                             <span
-                              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold border ${categoryBadgeColors[summary.category]}`}
+                              className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold border backdrop-blur-md shadow-sm
+                                ${categoryConfigs[summary.category].badgeClass}`}
                             >
+                              {categoryConfigs[summary.category].icon}
                               {summary.category}
                             </span>
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-muted border border-border text-muted-foreground">
-                              {typeIcon(summary.type)}
+                            <span
+                              className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold border backdrop-blur-md shadow-sm
+                                ${typeConfigs[summary.type].badgeClass}`}
+                            >
+                              {typeConfigs[summary.type].icon}
                               {summary.type}
                             </span>
                           </div>
@@ -689,24 +730,24 @@ const SummariesPage = () => {
                     </div>
 
                     {/* Body */}
-                    <div className="flex flex-1 overflow-auto h-[calc(100vh-140px)]">
-                      <div className="flex-1 flex flex-col lg:flex-row min-h-full">
-                        {/* Image */}
-                        <div className="flex-1 flex items-center justify-center p-4 lg:p-8 bg-muted/10">
-                          <img
-                            src={summary.imageOriginal || summary.image}
-                            alt={summary.title}
-                            loading="lazy"
-                            decoding="async"
-                            className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
-                          />
-                        </div>
+                    <div className="flex-1 overflow-y-auto lg:overflow-hidden flex flex-col lg:flex-row">
+                      {/* Image */}
+                      <div className="w-full h-auto flex-shrink-0 p-4 bg-muted/5 flex items-center justify-center lg:flex-1 lg:h-full lg:overflow-y-auto lg:p-8 lg:bg-muted/10">
+                        <img
+                          src={summary.imageOriginal || summary.image}
+                          alt={summary.title}
+                          loading="lazy"
+                          decoding="async"
+                          className="max-w-full h-auto lg:max-h-full lg:object-contain rounded-xl shadow-2xl"
+                        />
+                      </div>
 
-                        {/* Sidebar */}
-                        {(summary.references?.length ||
-                          summary.mentions?.length) && (
-                          <div className="lg:w-80 border-t lg:border-t-0 lg:border-l border-border bg-background/95">
-                            <div className="p-4 lg:p-6 space-y-6">
+                      {/* Sidebar */}
+                      {(summary.references?.length ||
+                        summary.mentions?.length ||
+                        summary.tags?.length) && (
+                        <div className="w-full border-t border-border bg-background/95 lg:w-80 lg:h-full lg:overflow-y-auto lg:border-t-0 lg:border-l">
+                          <div className="p-4 lg:p-6 space-y-6">
                               {/* References */}
                               {summary.references &&
                                 summary.references.length > 0 && (
@@ -756,8 +797,9 @@ const SummariesPage = () => {
                                           target="_blank"
                                           rel="noopener noreferrer"
                                           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium
-                                            bg-purple-500/10 border border-purple-500/30 text-purple-400
-                                            hover:bg-purple-500/20 hover:scale-105 transition-all duration-200"
+                                            bg-purple-50/85 text-purple-700 border border-purple-200/60
+                                            dark:bg-purple-500/15 dark:text-purple-300 dark:border-purple-500/30
+                                            hover:bg-purple-100/70 dark:hover:bg-purple-500/25 hover:scale-105 transition-all duration-200"
                                         >
                                           <User className="h-3 w-3" />
                                           {m.name}
@@ -777,7 +819,7 @@ const SummariesPage = () => {
                                     {summary.tags.map((tag) => (
                                       <span
                                         key={tag}
-                                        className="px-2 py-0.5 rounded-md text-xs bg-muted text-muted-foreground border border-border"
+                                        className="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50/85 text-blue-600 border border-blue-200/60 dark:bg-blue-500/15 dark:text-blue-300 dark:border-blue-500/30 hover:bg-blue-100/70 dark:hover:bg-blue-500/25 transition-colors duration-200"
                                       >
                                         #{tag}
                                       </span>
@@ -789,8 +831,7 @@ const SummariesPage = () => {
                           </div>
                         )}
                       </div>
-                    </div>
-                  </DialogContent>
+                    </DialogContent>
                 </Dialog>
               ))}
             </div>
@@ -824,7 +865,7 @@ const SummariesPage = () => {
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href="https://www.linkedin.com/in/mahmoud-maher-2002/"
+                href="https://www.linkedin.com/in/mahmoud-maher74/"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="linkedin-follow-btn"

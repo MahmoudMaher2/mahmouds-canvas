@@ -3,7 +3,6 @@
 export type SummaryCategory =
   | "All"
   | "ISTQB"
-  | "Mobile"
   | "Embedded"
   | "College"
   | "Platform";
@@ -120,7 +119,7 @@ export const summaries: Summary[] = [
     imageWebp: "/Summaries/webp/MAT Mocup.webp",
     imageOriginal: "/Summaries/MAT Mocup.png",
     link: "https://www.linkedin.com/feed/update/urn:li:activity:7372632879018717184/",
-    category: "Mobile",
+    category: "ISTQB",
     type: "PDF",
     downloadable: true,
     featured: false,
