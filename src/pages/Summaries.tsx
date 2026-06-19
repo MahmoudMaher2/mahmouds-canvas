@@ -848,7 +848,7 @@ const SummariesPage = () => {
 
         <div className="container mx-auto relative z-10">
           <div
-            className="max-w-2xl mx-auto text-center rounded-3xl border border-border/60 bg-card/60 backdrop-blur-sm p-8 md:p-12
+            className="max-w-2xl mx-auto text-center rounded-3xl border border-border/60 bg-card/90 p-8 md:p-12
             shadow-xl shadow-primary/5"
           >
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 mb-6">
