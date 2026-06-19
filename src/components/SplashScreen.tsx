@@ -78,9 +78,14 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
         setProgress(100);
         clearInterval(progressInterval);
 
-        // Wait 400ms at 100% and then start exit slide-up
+        // Wait 400ms at 100% then start exit, then call onComplete after animation
         const exitTimeout = setTimeout(() => {
           setIsExiting(true);
+          // 850ms matches the exit animation duration — call onComplete regardless
+          // of whether framer-motion fires onAnimationComplete (unreliable in Safari)
+          setTimeout(() => {
+            onComplete();
+          }, 900);
         }, 450);
 
         return () => clearTimeout(exitTimeout);
@@ -110,11 +115,6 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
       initial={{ y: 0 }}
       animate={isExiting ? { y: "-100%" } : { y: 0 }}
       transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
-      onAnimationComplete={() => {
-        if (isExiting) {
-          onComplete();
-        }
-      }}
     >
       {/* Background Grid Pattern */}
       <motion.div

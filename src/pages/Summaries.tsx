@@ -115,7 +115,7 @@ const typeLabel = (s: Summary) => {
 
 const SummariesPage = () => {
   const { showSplash, handleComplete } = useSplashScreen();
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [activeCategory, setActiveCategory] = useState<SummaryCategory>("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
@@ -152,9 +152,10 @@ const SummariesPage = () => {
 
   // ── Canvas BG (pauses when tab hidden, skip entirely on mobile to avoid Safari black-screen) ──
   useEffect(() => {
-    // Skip canvas animation on mobile — Safari's compositor can't handle it during scroll
+    // Skip canvas animation on mobile AND Safari — causes black screen on scroll
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    if (isMobile) return;
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    if (isMobile || isSafari) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -290,8 +291,8 @@ const SummariesPage = () => {
 
   // ── Meta ──
   useEffect(() => {
-    setIsVisible(true);
-    window.scrollTo(0, 0);
+    // Delay visibility to let browser settle after splash exit
+    const t = requestAnimationFrame(() => setIsVisible(true));
     document.title =
       "Maher Summaries | Mahmoud Maher - Software Testing Engineer";
 
@@ -329,6 +330,7 @@ const SummariesPage = () => {
     );
 
     return () => {
+      cancelAnimationFrame(t);
       document.title =
         "Mahmoud Maher | Software Testing Engineer & QC/QA Specialist | ISTQB Certified";
       setMeta(
@@ -384,13 +386,19 @@ const SummariesPage = () => {
   `;
 
   // ── Render ──
+  // Don't render the page content while SplashScreen is active.
+  // Having two position:fixed elements (SplashScreen z-9999 + Navbar) in
+  // the same stacking context causes Safari's compositor to go black.
+  if (showSplash) {
+    return (
+      <Suspense fallback={null}>
+        <SplashScreen onComplete={handleComplete} />
+      </Suspense>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
-      {showSplash && (
-        <Suspense fallback={null}>
-          <SplashScreen onComplete={handleComplete} />
-        </Suspense>
-      )}
       <Navbar />
 
       {/* ─── HERO ───────────────────────────────────────────────────────── */}
@@ -552,8 +560,8 @@ const SummariesPage = () => {
                     className={`marketplace-card group relative flex flex-col rounded-2xl overflow-hidden
                       bg-card border border-border/60
                       shadow-sm hover:shadow-xl hover:shadow-primary/10
-                      hover:-translate-y-1 hover:border-primary/30
-                      [transition:transform_0.3s_ease,box-shadow_0.3s_ease,border-color_0.3s_ease]
+                      hover:border-primary/30
+                      [transition:box-shadow_0.3s_ease,border-color_0.3s_ease]
 
                       ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
                   >

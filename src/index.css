@@ -379,26 +379,18 @@ All colors MUST be HSL.
   animation: marquee-fast 25s linear infinite;
 }
 
+} /* ← close @layer utilities */
+
 /* ── Marketplace performance ─────────────────────────────────────────────── */
 
 /* Defer offscreen card rendering — only on desktop where it's safe.
    On mobile browsers content-visibility: auto causes blank/black cards
    while scrolling, so we disable it below 768px. */
-@media (min-width: 768px) {
-  .marketplace-card {
-    content-visibility: auto;
-    contain-intrinsic-size: auto none auto 420px;
-  }
-}
+/* content-visibility:auto removed — Safari blanks cards during fast scroll */
+/* will-change:transform removed from marketplace-card img —
+   on Safari Mac, promoting each card image to its own GPU layer
+   causes compositor overflow and black screen on fast scroll. */
 
-/* Promote image to own compositor layer so hover scale doesn't repaint parent.
-   Disabled on mobile/tablet to avoid Safari GPU-layer exhaustion (black screen on scroll). */
-@media (min-width: 1024px) {
-  .marketplace-card img {
-    will-change: transform;
-    transform: translateZ(0);
-  }
-}
 
 /* ── Mobile-specific performance ─────────────────────────────────────────── */
 
@@ -406,7 +398,6 @@ All colors MUST be HSL.
    and stale :hover states that never clear on mobile. */
 @media (hover: none) {
   .marketplace-card {
-    /* Remove translate and shadow transitions entirely */
     transition: none !important;
   }
   .marketplace-card:hover {
@@ -419,13 +410,11 @@ All colors MUST be HSL.
   .marketplace-card:hover img {
     transform: none !important;
   }
-  /* Disable card entry animations on mobile to avoid GPU compositing pressure */
   .animate-fade-in-up {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
-  /* Disable all continuous CSS animations to save battery */
   .animate-float,
   .animate-float-slow,
   .animate-pulse-glow {
@@ -451,4 +440,3 @@ All colors MUST be HSL.
   }
 }
 
-}
