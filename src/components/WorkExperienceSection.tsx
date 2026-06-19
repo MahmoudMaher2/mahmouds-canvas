@@ -228,22 +228,10 @@ const WorkExperienceSection: React.FC = () => {
 
     useEffect(() => {
       if (mediaType === 'video' && videoRef.current) {
-        // Set attributes for better mobile support
+        videoRef.current.defaultMuted = true;
+        videoRef.current.muted = true;
         videoRef.current.setAttribute('webkit-playsinline', '');
         videoRef.current.setAttribute('x5-playsinline', '');
-        videoRef.current.setAttribute('playsinline', '');
-
-        // Attempt to play the video programmatically
-        const playPromise = videoRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            // Autoplay was prevented or failed
-            console.warn("Video autoplay prevented");
-            // We don't necessarily fail here, as the poster might show, or user interaction might start it.
-            // But for a background logo, we might want to fallback if it never plays.
-            // For now, let's keep the video element but rely on poster.
-          });
-        }
       }
     }, [mediaType]);
 
@@ -270,7 +258,7 @@ const WorkExperienceSection: React.FC = () => {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             poster={fallbackImage || undefined}
             onError={(e) => {
               console.error("Video error:", e);
