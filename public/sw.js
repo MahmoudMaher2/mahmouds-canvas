@@ -27,6 +27,13 @@ self.addEventListener('install', (event) => {
 self.addEventListener('fetch', (event) => {
   // تجنب طلبات non-GET
   if (event.request.method !== 'GET') return;
+
+  const url = new URL(event.request.url);
+
+  if (event.request.mode === 'navigate' || url.pathname.startsWith('/src/') || url.pathname.startsWith('/@vite/')) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
   
   // طلبات API (بيانات ديناميكية)
   if (event.request.url.includes('/api/') || 

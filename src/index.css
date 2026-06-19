@@ -391,6 +391,45 @@ All colors MUST be HSL.
    on Safari Mac, promoting each card image to its own GPU layer
    causes compositor overflow and black screen on fast scroll. */
 
+.summaries-webkit-safe .animate-fade-in-up {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.summaries-webkit-safe .marketplace-card,
+.summaries-webkit-safe .marketplace-card *,
+.summaries-webkit-safe .marketplace-card *::before,
+.summaries-webkit-safe .marketplace-card *::after {
+  animation: none !important;
+  transition: none !important;
+  filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.summaries-webkit-safe .marketplace-card:hover,
+.summaries-webkit-safe .marketplace-card:hover img,
+.summaries-webkit-safe .marketplace-card button:hover,
+.summaries-webkit-safe .marketplace-card a:hover {
+  transform: none !important;
+}
+
+.summaries-webkit-safe .marketplace-card img {
+  transform: none !important;
+  will-change: auto !important;
+}
+
+.summaries-webkit-safe .marketplace-card .group-hover\:opacity-100 {
+  opacity: 0 !important;
+}
+
+.summaries-webkit-safe nav,
+.summaries-webkit-safe [class*="backdrop-blur"] {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
 
 /* ── Mobile-specific performance ─────────────────────────────────────────── */
 
@@ -439,4 +478,3 @@ All colors MUST be HSL.
     animation: none !important;
   }
 }
-

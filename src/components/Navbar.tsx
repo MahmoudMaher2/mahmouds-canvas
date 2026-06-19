@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { isIOSBrowser, isSafariBrowser } from "@/lib/browser";
 
 const Navbar = () => {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [usesSafariCompositor, setUsesSafariCompositor] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,6 +28,7 @@ const Navbar = () => {
     const defaultTheme = savedTheme || "dark";
     setTheme(defaultTheme);
     document.documentElement.classList.toggle("dark", defaultTheme === "dark");
+    setUsesSafariCompositor(isIOSBrowser() || isSafariBrowser());
   }, []);
 
   useEffect(() => {
@@ -100,7 +103,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-background/80 backdrop-blur-md border-b border-border shadow-lg"
+        ? `${usesSafariCompositor ? "bg-background/95" : "bg-background/80 backdrop-blur-md"} border-b border-border shadow-lg`
         : "bg-transparent"
         }`}
     >

@@ -6,6 +6,8 @@ export const useScrollSpy = (sectionIds: string[]) => {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (window.location.pathname !== '/') return;
+
       const sections = sectionIds.map(id => ({
         id,
         element: document.getElementById(id)

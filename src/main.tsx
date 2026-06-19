@@ -6,8 +6,26 @@ import "aos/dist/aos.css";
 
 AOS.init();
 
-// تسجيل Service Worker
-if ('serviceWorker' in navigator) {
+const clearDevelopmentServiceWorker = async () => {
+  if (!("serviceWorker" in navigator)) return;
+
+  const registrations = await navigator.serviceWorker.getRegistrations();
+  await Promise.all(registrations.map((registration) => registration.unregister()));
+
+  if ("caches" in window) {
+    const cacheNames = await caches.keys();
+    await Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)));
+  }
+};
+
+if (import.meta.env.DEV) {
+  clearDevelopmentServiceWorker().catch((error) => {
+    console.log("Development SW cleanup failed: ", error);
+  });
+}
+
+// تسجيل Service Worker في production فقط
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
       .then((registration) => {

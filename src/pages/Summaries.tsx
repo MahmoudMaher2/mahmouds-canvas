@@ -25,6 +25,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import LinkedInButton from "@/components/LinkedInButton";
 import { summaries, type Summary, type SummaryCategory, type SummaryType } from "@/data/summaries.data";
+import { isIOSBrowser, isSafariBrowser, isTouchBrowser } from "@/lib/browser";
 import { useSplashScreen } from "@/hooks/useSplashScreen";
 
 // Lazy-load heavy components to reduce initial bundle
@@ -111,16 +112,29 @@ const typeLabel = (s: Summary) => {
   return "Open PDF";
 };
 
+const canUseCanvasBackground = () => {
+  return !isTouchBrowser() && !isIOSBrowser() && !isSafariBrowser();
+};
+
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const SummariesPage = () => {
   const { showSplash, handleComplete } = useSplashScreen();
   const [isVisible, setIsVisible] = useState(true);
+  const [usesWebKitSafeRendering, setUsesWebKitSafeRendering] = useState(false);
   const [activeCategory, setActiveCategory] = useState<SummaryCategory>("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [canRenderCanvas, setCanRenderCanvas] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    setCanRenderCanvas(canUseCanvasBackground());
+    setUsesWebKitSafeRendering(
+      isTouchBrowser() || isIOSBrowser() || isSafariBrowser()
+    );
+  }, []);
 
   // Debounce search input (300ms) to avoid filtering on every keystroke
   const handleSearchChange = useCallback((value: string) => {
@@ -150,12 +164,9 @@ const SummariesPage = () => {
     { label: "Free", value: "100%", icon: "🎁" },
   ];
 
-  // ── Canvas BG (pauses when tab hidden, skip entirely on mobile to avoid Safari black-screen) ──
+  // ── Canvas BG (pauses when tab hidden, skip entirely on WebKit/touch to avoid Safari black-screen) ──
   useEffect(() => {
-    // Skip canvas animation on mobile AND Safari — causes black screen on scroll
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    if (isMobile || isSafari) return;
+    if (!canRenderCanvas) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -245,8 +256,7 @@ const SummariesPage = () => {
       }
     }
 
-    // Fewer particles on mobile to save CPU
-    const particleCount = isMobile ? 4 : 8;
+    const particleCount = 8;
     const particles: Particle[] = Array.from(
       { length: particleCount },
       () => new Particle(isDark())
@@ -287,7 +297,7 @@ const SummariesPage = () => {
       obs.disconnect();
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [canRenderCanvas]);
 
   // ── Meta ──
   useEffect(() => {
@@ -398,18 +408,24 @@ const SummariesPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div
+      className={`min-h-screen bg-background ${
+        usesWebKitSafeRendering ? "summaries-webkit-safe" : ""
+      }`}
+    >
       <Navbar />
 
       {/* ─── HERO ───────────────────────────────────────────────────────── */}
       <section className="relative px-4 sm:px-6 pt-20 pb-5 overflow-hidden">
-        {/* Canvas BG — hidden on mobile for performance */}
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 -z-10 pointer-events-none hidden md:block"
-        />
+        {/* Canvas BG — WebKit/touch browsers repaint this layer black on scroll. */}
+        {canRenderCanvas && (
+          <canvas
+            ref={canvasRef}
+            className="absolute inset-0 z-0 pointer-events-none"
+          />
+        )}
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background/80 to-accent/5 -z-5" />
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-primary/5 via-background/80 to-accent/5 pointer-events-none" />
 
         <div className="container mx-auto relative z-10">
           {/* ── Main Hero Card — full width ── */}
@@ -588,7 +604,9 @@ const SummariesPage = () => {
                           alt={summary.title}
                           loading={index < 3 ? "eager" : "lazy"}
                           decoding="async"
-                          fetchPriority={index === 0 ? "high" : "low"}
+                          {...({ fetchpriority: index === 0 ? "high" : "low" } as {
+                            fetchpriority: "high" | "low";
+                          })}
                           width={900}
                           height={520}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
