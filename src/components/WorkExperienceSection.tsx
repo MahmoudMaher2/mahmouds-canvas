@@ -175,6 +175,88 @@ const getMediaType = (logoPath: string): 'image' | 'video' | 'gif' => {
   }
 };
 
+// Helper to get a fallback image path from a video path
+const getVideoFallbackImage = (videoPath: string): string | null => {
+  const basePath = videoPath.substring(0, videoPath.lastIndexOf('/') + 1);
+  const fileName = videoPath.substring(videoPath.lastIndexOf('/') + 1);
+  const baseName = fileName.split(/[\s.-]/)[0];
+  return `${basePath}${baseName}.png`;
+};
+
+// مكون لعرض لوجو الشركة — معرّف خارج الكومبوننت الرئيسي عشان React ميعملوش re-create في كل render
+const CompanyLogo = ({ logo, alt }: { logo: string; alt: string }) => {
+  const mediaType = getMediaType(logo);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoFailed, setVideoFailed] = useState(false);
+
+  useEffect(() => {
+    if (mediaType === 'video' && videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.setAttribute('webkit-playsinline', '');
+      videoRef.current.setAttribute('x5-playsinline', '');
+    }
+  }, [mediaType]);
+
+  if (mediaType === 'video') {
+    const fallbackImage = getVideoFallbackImage(logo);
+
+    if (videoFailed && fallbackImage) {
+      return (
+        <img
+          src={fallbackImage}
+          alt={alt}
+          className="w-full h-full object-cover rounded"
+        />
+      );
+    }
+
+    return (
+      <div className="relative w-full h-full">
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover rounded"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={fallbackImage || undefined}
+          onError={(e) => {
+            console.error("Video error:", e);
+            setVideoFailed(true);
+          }}
+        >
+          <source src={logo} type="video/mp4" />
+          {fallbackImage && (
+            <img
+              src={fallbackImage}
+              alt={alt}
+              className="w-full h-full object-cover rounded"
+            />
+          )}
+        </video>
+      </div>
+    );
+  } else if (mediaType === 'gif') {
+    return (
+      <img
+        src={logo}
+        alt={alt}
+        className="w-full h-full object-cover rounded"
+      />
+    );
+  } else {
+    return (
+      <img
+        src={logo}
+        alt={alt}
+        className="w-10 h-10 object-contain rounded"
+      />
+    );
+  }
+};
+
 const WorkExperienceSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -183,7 +265,9 @@ const WorkExperienceSection: React.FC = () => {
 
   useEffect(() => {
     const obs = new IntersectionObserver(([entry]) => {
-      setIsVisible(entry.isIntersecting);
+      // One-shot trigger فقط — مش بنرجعش false لما نسكرول تاني
+      // عشان منعملش re-render يوقف الفيديو
+      if (entry.isIntersecting) setIsVisible(true);
     }, { threshold: 0.08 });
 
     if (sectionRef.current) obs.observe(sectionRef.current);
@@ -208,93 +292,6 @@ const WorkExperienceSection: React.FC = () => {
     });
     return () => observers.forEach(o => o?.disconnect());
   }, [isVisible]);
-
-  // Helper to get a fallback image path from a video path
-  const getVideoFallbackImage = (videoPath: string): string | null => {
-    // Try to find a matching image by replacing the extension and removing extra words
-    const basePath = videoPath.substring(0, videoPath.lastIndexOf('/') + 1);
-    const fileName = videoPath.substring(videoPath.lastIndexOf('/') + 1);
-    // Extract the first word of the filename as the base name
-    const baseName = fileName.split(/[\s.-]/)[0];
-    // Try common image extensions
-    return `${basePath}${baseName}.png`;
-  };
-
-  // مكون لعرض لوجو الشركة
-  const CompanyLogo = ({ logo, alt }: { logo: string; alt: string }) => {
-    const mediaType = getMediaType(logo);
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const [videoFailed, setVideoFailed] = useState(false);
-
-    useEffect(() => {
-      if (mediaType === 'video' && videoRef.current) {
-        videoRef.current.defaultMuted = true;
-        videoRef.current.muted = true;
-        videoRef.current.setAttribute('webkit-playsinline', '');
-        videoRef.current.setAttribute('x5-playsinline', '');
-      }
-    }, [mediaType]);
-
-    if (mediaType === 'video') {
-      const fallbackImage = getVideoFallbackImage(logo);
-
-      // If video failed (onError), show fallback image tag directly
-      if (videoFailed && fallbackImage) {
-        return (
-          <img
-            src={fallbackImage}
-            alt={alt}
-            className="w-full h-full object-cover rounded"
-          />
-        );
-      }
-
-      return (
-        <div className="relative w-full h-full">
-          <video
-            ref={videoRef}
-            className="w-full h-full object-cover rounded"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={fallbackImage || undefined}
-            onError={(e) => {
-              console.error("Video error:", e);
-              setVideoFailed(true);
-            }}
-          >
-            <source src={logo} type="video/mp4" />
-            {/* Fallback content for older browsers */}
-            {fallbackImage && (
-              <img
-                src={fallbackImage}
-                alt={alt}
-                className="w-full h-full object-cover rounded"
-              />
-            )}
-          </video>
-        </div>
-      );
-    } else if (mediaType === 'gif') {
-      return (
-        <img
-          src={logo}
-          alt={alt}
-          className="w-full h-full object-cover rounded"
-        />
-      );
-    } else {
-      return (
-        <img
-          src={logo}
-          alt={alt}
-          className="w-10 h-10 object-contain rounded"
-        />
-      );
-    }
-  };
 
   return (
     <section ref={sectionRef} id="experience" className="relative overflow-hidden py-8 px-6 sm:px-12">
