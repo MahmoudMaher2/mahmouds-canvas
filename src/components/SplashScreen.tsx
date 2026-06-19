@@ -201,34 +201,14 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
         </div>
       )}
 
-      {/* Floating Glow Blobs */}
+      {/* Floating Glow Blobs — reduced on mobile */}
       {!isExiting && (
         <>
-          <motion.div
-            className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[130px] pointer-events-none"
-            animate={{
-              x: [-50, 50, -50],
-              y: [-30, 30, -30],
-              scale: [1, 1.15, 1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+          <div
+            className="absolute top-1/4 left-1/4 w-[200px] h-[200px] md:w-[500px] md:h-[500px] rounded-full bg-blue-600/10 blur-[60px] md:blur-[130px] pointer-events-none"
           />
-          <motion.div
-            className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] rounded-full bg-cyan-600/10 blur-[120px] pointer-events-none"
-            animate={{
-              x: [50, -50, 50],
-              y: [30, -30, 30],
-              scale: [1, 1.12, 1],
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+          <div
+            className="absolute bottom-1/4 right-1/4 w-[180px] h-[180px] md:w-[450px] md:h-[450px] rounded-full bg-cyan-600/10 blur-[50px] md:blur-[120px] pointer-events-none"
           />
         </>
       )}

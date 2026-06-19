@@ -19,15 +19,19 @@ import {
   GraduationCap,
   Laptop,
 } from "lucide-react";
-import { useEffect, useRef, useState, useMemo, useCallback } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback, lazy, Suspense } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Player } from "@lottiefiles/react-lottie-player";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import LinkedInButton from "@/components/LinkedInButton";
 import { summaries, type Summary, type SummaryCategory, type SummaryType } from "@/data/summaries.data";
-import SplashScreen from "@/components/SplashScreen";
 import { useSplashScreen } from "@/hooks/useSplashScreen";
+
+// Lazy-load heavy components to reduce initial bundle
+const SplashScreen = lazy(() => import("@/components/SplashScreen"));
+const Player = lazy(() =>
+  import("@lottiefiles/react-lottie-player").then((m) => ({ default: m.Player }))
+);
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -382,15 +386,19 @@ const SummariesPage = () => {
   // ── Render ──
   return (
     <div className="min-h-screen bg-background">
-      {showSplash && <SplashScreen onComplete={handleComplete} />}
+      {showSplash && (
+        <Suspense fallback={null}>
+          <SplashScreen onComplete={handleComplete} />
+        </Suspense>
+      )}
       <Navbar />
 
       {/* ─── HERO ───────────────────────────────────────────────────────── */}
       <section className="relative px-4 sm:px-6 pt-20 pb-5 overflow-hidden">
-        {/* Canvas BG */}
+        {/* Canvas BG — hidden on mobile for performance */}
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 -z-10 pointer-events-none"
+          className="absolute inset-0 -z-10 pointer-events-none hidden md:block"
         />
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background/80 to-accent/5 -z-5" />
@@ -551,15 +559,17 @@ const SummariesPage = () => {
                   >
                     {/* Featured star badge */}
                     {summary.featured && (
-                      <div className="absolute -top-10 -left-3 z-20">
-                        <Player
-                          src="/icons/star3.json"
-                          className="w-24 h-24"
-                          loop
-                          autoplay
-                          speed={0.8}
-                        />
-                      </div>
+                      <Suspense fallback={null}>
+                        <div className="absolute -top-10 -left-3 z-20">
+                          <Player
+                            src="/icons/star3.json"
+                            className="w-24 h-24"
+                            loop
+                            autoplay
+                            speed={0.8}
+                          />
+                        </div>
+                      </Suspense>
                     )}
 
                     {/* ── Image ── */}

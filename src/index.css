@@ -400,6 +400,39 @@ All colors MUST be HSL.
   }
 }
 
+/* ── Mobile-specific performance ─────────────────────────────────────────── */
+
+/* Disable hover effects on touch-only devices — they cause tap-delay
+   and stale :hover states that never clear on mobile. */
+@media (hover: none) {
+  .marketplace-card {
+    /* Remove translate and shadow transitions entirely */
+    transition: none !important;
+  }
+  .marketplace-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  .marketplace-card img {
+    transition: none !important;
+  }
+  .marketplace-card:hover img {
+    transform: none !important;
+  }
+  /* Disable card entry animations on mobile to avoid GPU compositing pressure */
+  .animate-fade-in-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* Disable all continuous CSS animations to save battery */
+  .animate-float,
+  .animate-float-slow,
+  .animate-pulse-glow {
+    animation: none !important;
+  }
+}
+
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .marketplace-card {
@@ -408,6 +441,13 @@ All colors MUST be HSL.
   .marketplace-card img {
     transition: none !important;
     will-change: auto;
+  }
+  .animate-fade-in-up,
+  .animate-fade-in,
+  .animate-float,
+  .animate-float-slow,
+  .animate-pulse-glow {
+    animation: none !important;
   }
 }
 
