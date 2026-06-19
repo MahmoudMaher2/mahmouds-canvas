@@ -391,10 +391,13 @@ All colors MUST be HSL.
   }
 }
 
-/* Promote image to own compositor layer so hover scale doesn't repaint parent */
-.marketplace-card img {
-  will-change: transform;
-  transform: translateZ(0);
+/* Promote image to own compositor layer so hover scale doesn't repaint parent.
+   Disabled on mobile/tablet to avoid Safari GPU-layer exhaustion (black screen on scroll). */
+@media (min-width: 1024px) {
+  .marketplace-card img {
+    will-change: transform;
+    transform: translateZ(0);
+  }
 }
 
 /* Respect prefers-reduced-motion */

@@ -146,8 +146,12 @@ const SummariesPage = () => {
     { label: "Free", value: "100%", icon: "🎁" },
   ];
 
-  // ── Canvas BG (pauses when tab hidden, fewer particles on mobile) ──
+  // ── Canvas BG (pauses when tab hidden, skip entirely on mobile to avoid Safari black-screen) ──
   useEffect(() => {
+    // Skip canvas animation on mobile — Safari's compositor can't handle it during scroll
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (isMobile) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -396,7 +400,7 @@ const SummariesPage = () => {
           {/* ── Main Hero Card — full width ── */}
           <div
             className={`flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-10 p-6 sm:p-8 lg:p-10 rounded-3xl
-              bg-card/45 backdrop-blur-md border border-border/40 shadow-xl
+              bg-card/80 border border-border/40 shadow-xl
               ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
           >
             {/* Left side: Profile Info */}
@@ -581,10 +585,10 @@ const SummariesPage = () => {
                             </span>
                           </div>
                         </div>
-                        {/* Category badge on image - glassmorphism with backdrop-blur */}
+                        {/* Category badge on image */}
                         <div className="absolute top-3 left-3">
                           <span
-                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold border backdrop-blur-md shadow-sm transition-colors duration-300
+                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold border shadow-sm transition-colors duration-300
                               ${categoryConfigs[summary.category].badgeClass}`}
                           >
                             {categoryConfigs[summary.category].icon}
@@ -594,7 +598,7 @@ const SummariesPage = () => {
                         {/* Type badge - solid black bg */}
                         <div className="absolute top-3 right-3">
                           <span
-                            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-black/70 text-white border border-white/10 shadow-sm backdrop-blur-sm transition-colors duration-300"
+                            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-black/80 text-white border border-white/10 shadow-sm transition-colors duration-300"
                           >
                             {typeConfigs[summary.type].icon}
                             {summary.type}
