@@ -241,7 +241,6 @@ const SummariesPage = () => {
     }
 
     // Fewer particles on mobile to save CPU
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
     const particleCount = isMobile ? 4 : 8;
     const particles: Particle[] = Array.from(
       { length: particleCount },
