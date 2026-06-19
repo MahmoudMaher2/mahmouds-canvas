@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Play, FileText, Building, ChevronDown, Smartphone } from "lucide-react";
+import { ExternalLink, Github, Play, FileText, Building, ChevronDown, Smartphone, CheckCircle2, Bug, Zap, ShieldCheck, Users, Map, Bell, BarChart3, FlaskConical, Layers, Code2, GitBranch, Target } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Player } from '@lottiefiles/react-lottie-player';
@@ -9,7 +9,14 @@ const projects = [
   {
     id: 1,
     title: "HerokuApp Automation Project",
-    description: "My first hands-on automation testing project, built to apply core automation fundamentals on The Internet (Heroku App) demo site. Designed and executed automated test cases using the TestNG and Cucumber frameworks in IntelliJ IDEA, covering key functional flows and laying the foundation for the automation skills used in later projects.",
+    description: "My first hands-on automation testing project applying core automation fundamentals on The Internet (Heroku App) demo site.",
+    highlights: [
+      { icon: "target", text: "My very first automation project — built from scratch to apply the core fundamentals of test automation on a real demo site (The Internet / Heroku App)" },
+      { icon: "code", text: "Designed and executed automated test cases using both the TestNG and Cucumber frameworks inside IntelliJ IDEA, learning how each differs in structure and reporting" },
+      { icon: "layers", text: "Covered key functional flows across multiple feature modules on the Heroku demo site including login, dynamic elements, file upload/download, and form inputs" },
+      { icon: "git", text: "Managed the project with Maven for dependencies and structured the code for readability from day one" },
+      { icon: "check", text: "This project established the automation foundation — the patterns, mindset, and toolchain — that directly carried into every automation project that came after" },
+    ],
     image: "/projects/1-HerokuApp.png",
     technologies: ["Selenium", "Java", "TestNG", "Maven", "Cucumber"],
     links: {
@@ -30,7 +37,13 @@ const projects = [
   {
     id: 2,
     title: "Talent Kid Website",
-    description: "Tested the demo version of the Talent Kid platform — a landing page paired with an admin dashboard for managing course data. Conducted functional and UI testing on a straightforward but business-critical flow, verifying that data entered through the dashboard reflected correctly and consistently on the public-facing pages.",
+    description: "Functional and UI testing for Talent Kid — a landing page with an admin dashboard for managing course data.",
+    highlights: [
+      { icon: "layers", text: "Tested the full product as a connected system — admin dashboard where course data is entered, and the public landing page where users see it — verifying data consistency end-to-end" },
+      { icon: "check", text: "Validated that every data change made through the admin interface reflected correctly, immediately, and consistently on the live public-facing pages" },
+      { icon: "shield", text: "Although the scope looked simple on the surface, the business impact was high — any mismatch between backend input and frontend display would directly affect the product's credibility with users" },
+      { icon: "flask", text: "Covered functional and UI testing — not just 'does it work' but 'does it look and behave right for the end user'" },
+    ],
     image: "/projects/4-talentkid.png",
     technologies: ["Test Cases", "Bug Reporting"],
     links: { live: "https://talentkid.sa/" },
@@ -46,7 +59,14 @@ const projects = [
   {
     id: 3,
     title: "OpenCart Automation Graduation Project",
-    description: "Graduation project for the DEPI (Digital Egypt Pioneers Initiative) program, built in a 3-person team for the AwesomeQA e-commerce platform. Of 15 automated test scenarios split across the team, owned and implemented 5 end-to-end using the Cucumber framework with the Page Object Model (POM), and collaborated closely with teammates to debug shared blockers. Generated comprehensive Extent Reports in HTML, PDF, and screenshot formats to document results.",
+    description: "DEPI graduation project — automation testing for the AwesomeQA e-commerce platform in a 3-person team.",
+    highlights: [
+      { icon: "users", text: "Graduation project for DEPI (Digital Egypt Pioneers Initiative) — built in a 3-person team testing the AwesomeQA e-commerce platform, with 15 end-to-end automated scenarios split across the team" },
+      { icon: "code", text: "Personally owned and fully implemented 5 of the 15 scenarios end-to-end, following the BDD approach using Cucumber and structuring the code with the Page Object Model (POM) for maintainability" },
+      { icon: "git", text: "Collaborated closely with teammates to debug shared blockers — some failures were environment-related, some were timing issues, and resolving them together was a key learning experience" },
+      { icon: "bar", text: "Generated comprehensive Extent Reports covering all test results in HTML, PDF, and screenshot formats — providing a professional, readable output for documentation and presentation" },
+      { icon: "check", text: "This was the first project where I worked as part of an automation team, understanding how to divide ownership, avoid conflicts, and maintain shared code standards" },
+    ],
     image: "/projects/2-opencart.png",
     technologies: ["Selenium", "Java", "TestNG", "Maven", "Cucumber", "POM", "BDD", "Extent Report"],
     links: {
@@ -68,7 +88,14 @@ const projects = [
   {
     id: 4,
     title: "More English LMS Website",
-    description: "Returned to a previously tested LMS platform to validate two major additions: a role-based permissions system (access levels and feature restrictions) and a rebuilt examination engine covering text styling, exam validation, retake permissions, and timing controls. Also tested a new video-comments feature supporting student-to-admin replies. Identified and reported 56 bugs across these modules through structured functional testing.",
+    description: "Re-engagement on the More English LMS to validate two major new features — permissions system & a rebuilt exam engine.",
+    highlights: [
+      { icon: "shield", text: "Returned to a previously tested LMS platform to validate two major new additions — this required understanding the original system deeply before testing the new layers on top of it" },
+      { icon: "layers", text: "Role-based permissions system: tested access levels and feature visibility restrictions across different user roles, verifying that each role could only see and do exactly what they were supposed to" },
+      { icon: "flask", text: "Rebuilt examination engine: validated every aspect of the new exam flow — text styling inside questions, exam submission rules, score calculation, retake permissions, and timing controls including edge cases like time expiration mid-exam" },
+      { icon: "check", text: "New video-comments feature: validated the student-to-admin reply flow, ensuring comments appeared correctly, notifications worked, and the thread stayed consistent across both sides" },
+      { icon: "bug", text: "Found and reported 56 bugs through structured functional testing across all three new modules — covering both obvious failures and subtle logic gaps" },
+    ],
     image: "/projects/6-moreenglish.png",
     technologies: ["Test Cases", "Bug Reporting"],
     links: { live: "https://www.more-english.net/" },
@@ -85,7 +112,13 @@ const projects = [
   {
     id: 5,
     title: "Buggy Cars Rating Website",
-    description: "Performed exploratory testing on the Buggy Cars Rating website during the Algoriza/AZM Squad internship, identifying 15 functional, UI, and usability bugs across multiple modules within a defined testing window. All findings were documented and tracked in Google Sheets for clear, consistent defect reporting.",
+    description: "Exploratory testing challenge on the Buggy Cars Rating site during the Algoriza/AZM Squad internship.",
+    highlights: [
+      { icon: "zap", text: "Part of the Algoriza/AZM Squad internship program — this was a time-boxed exploratory testing challenge designed to test real skills under pressure with no pre-written test cases" },
+      { icon: "target", text: "Used a structured exploratory approach across multiple modules of the Buggy Cars Rating site — covering registration, voting, model pages, and general UI behavior" },
+      { icon: "bug", text: "Identified and documented 15 functional, UI, and usability bugs within the defined testing window — ranging from broken validations to inconsistent UI states and misleading error messages" },
+      { icon: "check", text: "All findings were logged in a structured Google Sheet with clear severity, steps to reproduce, expected vs. actual results, and environment details — ready for developer handoff" },
+    ],
     image: "/projects/8-carbug.png",
     technologies: ["Bug Reporting", "Exploratory Testing"],
     links: {
@@ -110,7 +143,14 @@ const projects = [
   {
     id: 6,
     title: "Dorra Print Website",
-    description: "Owned functional and UI testing for Dorra Print's custom-built design editor — a from-scratch canvas tool comparable to Canva or Photoshop. Tested every available tool, feature, and keyboard shortcut, validating text, shapes, layers, alignment, undo/redo, drag-and-drop, and export behavior across multiple scenarios. A graphic design background brought a user-centered testing perspective beyond pure functional checks. Identified 100 bugs throughout the editor, making this one of the most demanding manual testing assignments to date.",
+    description: "Full functional & UI testing of Dorra Print's custom canvas design editor — a from-scratch tool built like Canva or Photoshop.",
+    highlights: [
+      { icon: "layers", text: "Dorra Print built a fully custom canvas design editor from scratch — comparable to Canva or Photoshop — and I was responsible for owning the complete functional and UI testing of the entire editor" },
+      { icon: "target", text: "Tested every single available tool and feature: text editing, shape tools, layer management, alignment controls, color pickers, undo/redo behavior, keyboard shortcuts, and multi-select operations" },
+      { icon: "check", text: "Validated complex interaction patterns including drag-and-drop reordering, element grouping, canvas zoom, export to different formats, and edge cases like overlapping elements or deeply nested layers" },
+      { icon: "flask", text: "A graphic design background proved invaluable here — testing went beyond 'does it technically function' to 'does it behave the way a real designer would expect it to', catching UX-level issues that pure functional testing would miss" },
+      { icon: "bug", text: "Identified 100 bugs throughout the editor — making this one of the most demanding and detail-intensive manual testing assignments in this portfolio" },
+    ],
     image: "/projects/5-dorraprint.png",
     technologies: ["Test Cases", "Bug Reporting", "Exploratory Testing"],
     links: { live: "https://dorraprint.com/" },
@@ -128,7 +168,14 @@ const projects = [
   {
     id: 7,
     title: "The Pass AI Exams & Interviews Website",
-    description: "Took on a fast-paced testing challenge during the Algoriza x The Pass bootcamp: exploratory testing of an AI-powered interview platform, where an AI model conducts full live interview conversations with candidates. Within a strict 10-hour window, identified and documented 11 valid functional and UI bugs in a structured Google Sheet organized by predefined categories — testing under time pressure on a non-traditional, AI-driven product.",
+    description: "Speed testing challenge — exploratory testing of an AI-powered interview platform within a strict 10-hour window.",
+    highlights: [
+      { icon: "zap", text: "Part of the Algoriza x The Pass bootcamp challenge — a strict 10-hour testing window with no pre-written test cases, simulating real-world rapid exploratory testing under genuine time pressure" },
+      { icon: "flask", text: "The Pass is an AI-powered platform where an AI model conducts full live interview conversations with candidates in real time — this made it a non-traditional and uniquely challenging product to test, since behavior varied across sessions" },
+      { icon: "target", text: "Designed an exploratory test strategy on the fly — prioritizing high-risk areas like the AI conversation flow, question delivery, timer behavior, candidate recording, and result submission within the time constraint" },
+      { icon: "bug", text: "Identified and documented 11 valid functional and UI bugs under real time pressure — including issues in the interview flow, edge cases in question rendering, and inconsistencies in the results page" },
+      { icon: "check", text: "All findings were recorded in a structured Google Sheet using predefined categories provided by the bootcamp, ensuring every bug report was clear, reproducible, and submission-ready" },
+    ],
     image: "/projects/7-thepass.png",
     technologies: ["Bug Reporting"],
     links: {
@@ -154,7 +201,15 @@ const projects = [
   {
     id: 8,
     title: "Penguin LMS Website",
-    description: "One of the most demanding projects at Pixbyte, covering the full payment and discount system for an educational platform. Tested complex pricing logic — including cart-value-triggered discounts and different rules for individually purchased versus bundled courses — validating backend calculations through API testing in Hoppscotch and frontend behavior across multiple pricing scenarios. Covered edge cases such as overlapping discounts, expired coupons, and dynamic price updates across user roles. Validated a WhatsApp integration and a dual live-session system supporting both Zoom and a custom-built in-house meeting platform, including the switch between them. For the teacher role, verified exam creation/correction, session management, and dashboard access. Identified and reported 160 bugs across these modules.",
+    description: "One of the most demanding projects at Pixbyte — full testing of a complex payment system, live sessions & teacher dashboard on an LMS.",
+    highlights: [
+      { icon: "flask", text: "One of the most demanding projects at Pixbyte — the core scope was the full payment and discount system, which involved highly complex pricing logic: cart-value-triggered discounts, different rules for individually purchased versus bundled courses, dynamic price recalculation across user roles, and overlapping/expired coupon edge cases" },
+      { icon: "zap", text: "Backend pricing calculations were validated directly through API testing in Hoppscotch — not just checking the UI output, but verifying the server returned the correct numbers before the frontend even displayed them" },
+      { icon: "layers", text: "Validated a dual live-session system supporting both Zoom and a custom in-house meeting platform, including the logic for switching between them — and tested that each mode behaved correctly for both students and teachers" },
+      { icon: "check", text: "Covered a WhatsApp integration for session notifications, and for the teacher role: verified exam creation, answer correction workflows, session scheduling, and dashboard access controls" },
+      { icon: "shield", text: "Tested edge cases that most testers would skip: what happens when a coupon expires mid-checkout, when a user switches course bundles after applying a discount, or when two discount rules conflict" },
+      { icon: "bug", text: "Reported 160 bugs across all modules — the highest bug count of any project at Pixbyte, reflecting both the system's complexity and the depth of testing applied" },
+    ],
     image: "/projects/3-penguin.png",
     technologies: ["Test Cases", "Bug Reporting", "API Testing", "Hoppscotch"],
     links: { live: "https://penguin.com.sa/" },
@@ -172,7 +227,15 @@ const projects = [
   {
     id: 9,
     title: "CartLow E-Commerce Website",
-    description: "Developed a complete automation testing framework for CartLow's e-commerce platform as part of my graduation project at Algoriza. The project involved creating and executing manual test cases for selected pages, reporting discovered bugs, and implementing automated test scenarios using Selenium WebDriver. The framework was built following the BDD approach and implemented using the Page Object Model (POM) design pattern, with Maven for dependency management and GitHub for version control.",
+    description: "Algoriza graduation project — a combined manual + automation framework for CartLow's e-commerce platform.",
+    highlights: [
+      { icon: "code", text: "Algoriza internship graduation project — built a complete automation testing framework for CartLow's e-commerce platform from the ground up, combining both manual and automated testing in a single structured engagement" },
+      { icon: "layers", text: "Started with manual test case creation and execution across selected pages to understand the system behavior, then moved into automation — building the framework to run those same scenarios programmatically" },
+      { icon: "flask", text: "Framework built with Selenium WebDriver and structured using the Page Object Model (POM) design pattern — keeping test logic separate from page interaction code for maintainability and scalability" },
+      { icon: "target", text: "Followed the BDD approach with Cucumber, writing scenarios in Gherkin to make tests readable by non-technical stakeholders — a key skill for professional QA environments" },
+      { icon: "git", text: "Used Maven for dependency management and GitHub for version control — maintaining clean commit history and project structure throughout the engagement" },
+      { icon: "bug", text: "Discovered and reported bugs found during both manual execution and automation runs — treating every test failure as a potential defect worth investigating" },
+    ],
     image: "/projects/9-cartlow.png",
     technologies: ["Test Cases", "Bug Reporting", "Selenium", "Java", "TestNG", "Maven", "Cucumber", "POM", "BDD"],
     links: {
@@ -199,8 +262,20 @@ const projects = [
   {
     id: 10,
     title: "SECU Security",
-    description: "Executed comprehensive testing for the Secu platform, covering the Web Dashboard, Mobile Apps (iOS & Android), and backend APIs. I performed extensive API testing to validate business logic, response codes, and data accuracy independent of the user interface. The scope included validating all functional and UI requirements, alongside rigorous performance testing to ensure data integrity and system stability during high-concurrency user scenarios.",
+    description: "A full SaaS attendance & workforce management system for a security guard company — 2 mobile apps (Security Guard & PMO) and 4 web dashboards (Admin, Provider, Client, PMO).",
+    highlights: [
+      { icon: "shield", text: "Full guard lifecycle tested end-to-end: the guard registers on the app, admin approves the account, provider assigns them to a project, the guard accepts, and from that point check-in is only allowed when physically inside their designated zone — step outside and the system automatically triggers a force check-out" },
+      { icon: "map", text: "Location tracking validated in three states: app in foreground, app backgrounded, and app fully closed — in all three cases the guard's location remained trackable and visible on the real-time tracking map, built with Pusher, showing live position, movement trail, and check-in photo for each guard" },
+      { icon: "bell", text: "Full notification system covered: if a guard loses connectivity or closes the app, an alert goes to the admin immediately — providers can also send broadcast notifications to guards directly through the dashboard — and guards have a dedicated SOS button that fires an emergency alert straight to the provider" },
+      { icon: "bar", text: "PMO app tested thoroughly: project managers can generate 9 different report types directly from the mobile app — after filling in the fields, a branded company PDF is auto-generated, saved to the system, and the PMO can also check in a guard on-site using a unique QR code tied to each guard per contract" },
+      { icon: "zap", text: "Testing here was not the usual simulator workflow — I went outside on the street with multiple Android and iOS devices, physically walked in and out of geofenced zones, cut the internet mid-session, and watched what happened in real time — because the behavior on a real device walking around is completely different from anything you can replicate on a desk" },
+      { icon: "layers", text: "Each phone model and OS version had its own restrictions around background location access, battery optimization, and notification delivery — tracking these device-specific differences and reporting them was a significant part of the work, requiring constant coordination with the client as new edge cases surfaced" },
+      { icon: "flask", text: "Ran performance testing specifically on the real-time tracking map — under load (~100 guards checking in simultaneously), the map degraded noticeably. Load tests pinpointed the bottlenecks and the issues were subsequently resolved" },
+      { icon: "users", text: "Worked in an Agile process throughout — regular client-facing demos, and every delivery was accompanied by a structured PDF report covering what was tested, what was found, and what was resolved" },
+      { icon: "bug", text: "490 bugs logged and tracked in Jira across 2 mobile apps and 4 web dashboards — this was one of the most intensive, multi-platform, real-world testing engagements in this portfolio" },
+    ],
     image: "/projects/10- SECU3.png",
+    bugCount: 490,
     technologies: ["Test Cases", "Bug Reporting", "API Testing", "Performance Testing", "Mobile Testing"],
     links: {
       appStore: "https://apps.apple.com/sa/app/secu-security/id6503944413?l=ar",
@@ -526,9 +601,36 @@ const ProjectsSection = () => {
                   </div>
 
                   {/* Description */}
-                  <CardDescription className="text-base mb-4 flex-1">
-                    {project.description}
-                  </CardDescription>
+                  <div className="mb-4 flex-1 space-y-2">
+                    <p className="text-sm text-muted-foreground leading-relaxed">{project.description}</p>
+                    {(project as any).highlights && (
+                      <ul className="mt-2 space-y-1.5">
+                        {(project as any).highlights.map((h: any, i: number) => {
+                          const iconMap: Record<string, React.ReactNode> = {
+                            check: <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />,
+                            bug:   <Bug className="h-3.5 w-3.5 text-red-400 shrink-0 mt-0.5" />,
+                            zap:   <Zap className="h-3.5 w-3.5 text-yellow-500 shrink-0 mt-0.5" />,
+                            shield:<ShieldCheck className="h-3.5 w-3.5 text-blue-400 shrink-0 mt-0.5" />,
+                            users: <Users className="h-3.5 w-3.5 text-violet-400 shrink-0 mt-0.5" />,
+                            map:   <Map className="h-3.5 w-3.5 text-cyan-400 shrink-0 mt-0.5" />,
+                            bell:  <Bell className="h-3.5 w-3.5 text-orange-400 shrink-0 mt-0.5" />,
+                            bar:   <BarChart3 className="h-3.5 w-3.5 text-indigo-400 shrink-0 mt-0.5" />,
+                            flask: <FlaskConical className="h-3.5 w-3.5 text-pink-400 shrink-0 mt-0.5" />,
+                            layers:<Layers className="h-3.5 w-3.5 text-teal-400 shrink-0 mt-0.5" />,
+                            code:  <Code2 className="h-3.5 w-3.5 text-purple-400 shrink-0 mt-0.5" />,
+                            git:   <GitBranch className="h-3.5 w-3.5 text-amber-400 shrink-0 mt-0.5" />,
+                            target:<Target className="h-3.5 w-3.5 text-rose-400 shrink-0 mt-0.5" />,
+                          };
+                          return (
+                            <li key={i} className="flex items-start gap-2 text-xs text-foreground/75">
+                              {iconMap[h.icon] ?? <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />}
+                              <span className="leading-snug">{h.text}</span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </div>
 
                   {/* Technologies + Bug Badge */}
                   <div className="flex flex-wrap gap-2 mb-3 mt-auto">
