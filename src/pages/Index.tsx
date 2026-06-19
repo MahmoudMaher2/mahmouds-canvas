@@ -11,10 +11,15 @@ import ProjectsSection from "@/components/ProjectsSection";
 import CertificatesGallery from "@/components/CertificatesGallery";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import SplashScreen from "@/components/SplashScreen";
+import { useSplashScreen } from "@/hooks/useSplashScreen";
 
 const Index = () => {
+  const { showSplash, handleComplete } = useSplashScreen();
+
   return (
     <div className="min-h-screen relative">
+      {showSplash && <SplashScreen onComplete={handleComplete} />}
       <AnimatedBackground />
       <ScrollProgress />
       <Navbar />

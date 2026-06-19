@@ -125,7 +125,7 @@ const Navbar = () => {
             </button>
           ) : (
             <Link
-              to="/"
+              to="/#home"
               className="text-xl font-bold gradient-text hover:opacity-80 transition-opacity flex-shrink-0"
             >
               Mahmoud Maher

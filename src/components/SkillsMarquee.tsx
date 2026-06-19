@@ -216,7 +216,7 @@ const SkillsMarquee = () => {
       </div>
 
       {/* إضافة الـ CSS */}
-      <style jsx>{`
+      <style>{`
         @keyframes marquee-smooth {
           0% {
             transform: translateX(0);

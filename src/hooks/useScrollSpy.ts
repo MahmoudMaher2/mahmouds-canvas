@@ -23,6 +23,15 @@ export const useScrollSpy = (sectionIds: string[]) => {
       });
 
       setActiveSection(current);
+
+      // Sync URL hash with current section (replaceState to avoid scroll jumps & history clutter)
+      const currentHash = window.location.hash.replace('#', '');
+      if (current !== currentHash) {
+        const newUrl = current === 'home'
+          ? window.location.pathname + window.location.search
+          : `${window.location.pathname}${window.location.search}#${current}`;
+        window.history.replaceState(null, '', newUrl);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);

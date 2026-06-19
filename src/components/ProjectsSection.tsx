@@ -356,6 +356,7 @@ const ProjectsSection = () => {
       'Mobile Testing': 'bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-500/20 dark:border-purple-500/30',
       'Manual Testing': 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/20 dark:border-blue-500/30',
       'Exploratory Testing': 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20 dark:border-amber-500/30',
+      'JMeter': 'bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-500/20 dark:border-orange-500/30',
     };
 
     return colors[tech] || 'bg-gray-500/10 text-gray-700 dark:text-gray-300 border-gray-500/20 dark:border-gray-500/30';
@@ -607,18 +608,18 @@ const ProjectsSection = () => {
                         {(project as any).highlights.map((h: any, i: number) => {
                           const iconMap: Record<string, React.ReactNode> = {
                             check: <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />,
-                            bug:   <Bug className="h-3.5 w-3.5 text-red-400 shrink-0 mt-0.5" />,
-                            zap:   <Zap className="h-3.5 w-3.5 text-yellow-500 shrink-0 mt-0.5" />,
-                            shield:<ShieldCheck className="h-3.5 w-3.5 text-blue-400 shrink-0 mt-0.5" />,
+                            bug: <Bug className="h-3.5 w-3.5 text-red-400 shrink-0 mt-0.5" />,
+                            zap: <Zap className="h-3.5 w-3.5 text-yellow-500 shrink-0 mt-0.5" />,
+                            shield: <ShieldCheck className="h-3.5 w-3.5 text-blue-400 shrink-0 mt-0.5" />,
                             users: <Users className="h-3.5 w-3.5 text-violet-400 shrink-0 mt-0.5" />,
-                            map:   <Map className="h-3.5 w-3.5 text-cyan-400 shrink-0 mt-0.5" />,
-                            bell:  <Bell className="h-3.5 w-3.5 text-orange-400 shrink-0 mt-0.5" />,
-                            bar:   <BarChart3 className="h-3.5 w-3.5 text-indigo-400 shrink-0 mt-0.5" />,
+                            map: <Map className="h-3.5 w-3.5 text-cyan-400 shrink-0 mt-0.5" />,
+                            bell: <Bell className="h-3.5 w-3.5 text-orange-400 shrink-0 mt-0.5" />,
+                            bar: <BarChart3 className="h-3.5 w-3.5 text-indigo-400 shrink-0 mt-0.5" />,
                             flask: <FlaskConical className="h-3.5 w-3.5 text-pink-400 shrink-0 mt-0.5" />,
-                            layers:<Layers className="h-3.5 w-3.5 text-teal-400 shrink-0 mt-0.5" />,
-                            code:  <Code2 className="h-3.5 w-3.5 text-purple-400 shrink-0 mt-0.5" />,
-                            git:   <GitBranch className="h-3.5 w-3.5 text-amber-400 shrink-0 mt-0.5" />,
-                            target:<Target className="h-3.5 w-3.5 text-rose-400 shrink-0 mt-0.5" />,
+                            layers: <Layers className="h-3.5 w-3.5 text-teal-400 shrink-0 mt-0.5" />,
+                            code: <Code2 className="h-3.5 w-3.5 text-purple-400 shrink-0 mt-0.5" />,
+                            git: <GitBranch className="h-3.5 w-3.5 text-amber-400 shrink-0 mt-0.5" />,
+                            target: <Target className="h-3.5 w-3.5 text-rose-400 shrink-0 mt-0.5" />,
                           };
                           return (
                             <li key={i} className="flex items-start gap-2 text-xs text-foreground/75">

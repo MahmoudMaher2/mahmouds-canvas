@@ -72,7 +72,7 @@ const fadeUp = {
 const sectionBgCommon = {
   style: { backgroundSize: "200% 200%", mixBlendMode: "normal" } as React.CSSProperties,
   animate: { backgroundPosition: ["0% 50%", "100% 50%"] },
-  transition: { duration: 12, repeat: Infinity, ease: "linear" },
+  transition: { duration: 12, repeat: Infinity, ease: "linear" as const },
 };
 
 const AboutSection: React.FC = () => {
