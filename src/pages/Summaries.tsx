@@ -543,7 +543,7 @@ const SummariesPage = () => {
                       shadow-sm hover:shadow-xl hover:shadow-primary/10
                       hover:-translate-y-1 hover:border-primary/30
                       [transition:transform_0.3s_ease,box-shadow_0.3s_ease,border-color_0.3s_ease]
-                      [contain:layout_style_paint]
+
                       ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
                   >
                     {/* Featured star badge */}

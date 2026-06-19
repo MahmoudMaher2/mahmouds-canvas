@@ -381,11 +381,14 @@ All colors MUST be HSL.
 
 /* ── Marketplace performance ─────────────────────────────────────────────── */
 
-/* Defer offscreen card rendering — biggest perf win for long grids */
-.marketplace-card {
-  content-visibility: auto;
-  /* Estimated card height to prevent scroll-bar jumping */
-  contain-intrinsic-size: auto none auto 420px;
+/* Defer offscreen card rendering — only on desktop where it's safe.
+   On mobile browsers content-visibility: auto causes blank/black cards
+   while scrolling, so we disable it below 768px. */
+@media (min-width: 768px) {
+  .marketplace-card {
+    content-visibility: auto;
+    contain-intrinsic-size: auto none auto 420px;
+  }
 }
 
 /* Promote image to own compositor layer so hover scale doesn't repaint parent */

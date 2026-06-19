@@ -289,6 +289,32 @@ const projects = [
     ],
     type: ["manual", "mobile", "api", "performance"],
     featured: true
+  },
+  {
+    id: 11,
+    title: "Loqta Website",
+    description: "A SaaS rewards & entertainment platform aggregating multiple local and global brands, with a coin-based economy and a daily wheel-of-fortune feature.",
+    highlights: [
+      { icon: "layers", text: "Multi-brand SaaS architecture tested: the admin dashboard can onboard both local and global brands. Local brands get their own dedicated dashboard and standalone app, while global brands are simply registered and managed directly from the main admin dashboard." },
+      { icon: "users", text: "User onboarding and coin economy validated end-to-end: new users receive 100 coins on signup, 50 coins per successful referral, and 50 coins for registering their email — each earning rule tested independently to confirm the correct coin amount is credited every time." },
+      { icon: "zap", text: "Daily wheel-of-fortune feature tested thoroughly: prizes, free-spin limits, and per-user attempt counts are all configurable from the admin dashboard. Validated that users could spin once per day as intended, that free attempts were correctly enforced, and that the wheel always returned one of the admin-defined rewards." },
+      { icon: "check", text: "Coin redemption flows tested across all three paths: charging/topping up coins, exchanging coins for discount coupons from partner brands, and redeeming coins for physical product gifts — confirming balances updated correctly after every transaction type." },
+      { icon: "flask", text: "API testing was the core focus of this project: validated that rapid, repeated spin requests couldn't double-credit a reward (race condition checks), that wheel-prize probabilities matched the distribution configured by the admin, and that the coin balance stayed consistent and accurate across every earning and spending scenario." },
+      { icon: "bug", text: "Identified and reported 88 bugs across the platform through combined manual and API testing." },
+    ],
+    image: "/projects/PLACEHOLDER-loqta.png",
+    bugCount: 88,
+    technologies: ["Test Cases", "Bug Reporting", "API Testing"],
+    links: {},
+    companies: [
+      {
+        name: "Neop",
+        logo: "/company/neop.png",
+        linkedin: "https://www.linkedin.com/company/neopksa"
+      }
+    ],
+    type: ["manual", "api"],
+    featured: true
   }
 ];
 
