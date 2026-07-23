@@ -129,6 +129,11 @@ const SummariesPage = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // Scroll to top when navigating to this page
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
+
   useEffect(() => {
     setCanRenderCanvas(canUseCanvasBackground());
     setUsesWebKitSafeRendering(

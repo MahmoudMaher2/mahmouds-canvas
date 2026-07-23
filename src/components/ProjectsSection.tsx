@@ -261,6 +261,35 @@ const projects = [
   },
   {
     id: 10,
+    title: "Loqta — Rewards & Loyalty Platform",
+    description: "A Rewards & Loyalty SaaS app for the Arab market — users spin a daily wheel to win coins, coupons, and gift cards, then redeem them at partner merchants. Spans a Flutter user app, Flutter merchant app, and a Laravel backend API.",
+    highlights: [
+      { icon: "zap", text: "Users get one free spin per day to win coins, coupons, gift cards, or physical prizes — the core engagement loop of the app. Tested all reward types, the daily limit per campaign zone, and the stock-exhaustion fallback that silently switches a depleted prize to 'Try Again'." },
+      { icon: "shield", text: "Coins act as virtual currency earned through spins, check-ins, referrals, and gifts — and spent in the marketplace. Focused testing on the checkout failure scenario: coins deducted but redemption never created — verified the balance rolls back correctly every time." },
+      { icon: "flask", text: "Merchant staff redeem coupons through a 2-step scan: preview then confirm. Tested double-scan attempts, expired sessions between the two steps, and unauthorized confirmation — any gap here is a direct fraud risk." },
+      { icon: "target", text: "Loyalty stamp cards show a rotating QR that refreshes every 30 seconds and only works within 50 meters of the store. Tested expired token rejection, offline caching limits, and the real-time stamp counter that updates on screen the moment the cashier scans." },
+      { icon: "bug", text: "Digital gift cards are fulfilled via a third-party API — coins are deducted first, then a webhook delivers the code. Tested the failure path where the webhook never fires: confirmed coins don't disappear silently and the order gets flagged for admin follow-up." },
+    ],
+    image: "/projects/11-loqta.png",
+    bugCount: 105,
+    technologies: ["Test Cases", "Bug Reporting", "API Testing", "Mobile Testing"],
+    links: {
+      live: "https://loqta.app/",
+      playStore: "https://play.google.com/store/apps/details?id=com.neop.loqta",
+      appStore: "https://apps.apple.com/us/app/loqta-%D9%84%D9%82%D8%B7%D8%A9/id6760618273",
+    },
+    companies: [
+      {
+        name: "Neop",
+        logo: "/company/neop.png",
+        linkedin: "https://www.linkedin.com/company/neopksa"
+      }
+    ],
+    type: ["manual", "mobile", "api"],
+    featured: false
+  },
+  {
+    id: 11,
     title: "SECU Security",
     description: "A full SaaS workforce-management platform for a security guard company, spanning 2 mobile apps (Security Guard, PMO) and 4 web dashboards (Admin, Provider, Client, PMO).",
     highlights: [
@@ -290,32 +319,31 @@ const projects = [
     type: ["manual", "mobile", "api", "performance"],
     featured: true
   },
-  // {
-  //   id: 11,
-  //   title: "Loqta Website",
-  //   description: "A SaaS rewards & entertainment platform aggregating multiple local and global brands, with a coin-based economy and a daily wheel-of-fortune feature.",
-  //   highlights: [
-  //     { icon: "layers", text: "Multi-brand SaaS architecture tested: the admin dashboard can onboard both local and global brands. Local brands get their own dedicated dashboard and standalone app, while global brands are simply registered and managed directly from the main admin dashboard." },
-  //     { icon: "users", text: "User onboarding and coin economy validated end-to-end: new users receive 100 coins on signup, 50 coins per successful referral, and 50 coins for registering their email — each earning rule tested independently to confirm the correct coin amount is credited every time." },
-  //     { icon: "zap", text: "Daily wheel-of-fortune feature tested thoroughly: prizes, free-spin limits, and per-user attempt counts are all configurable from the admin dashboard. Validated that users could spin once per day as intended, that free attempts were correctly enforced, and that the wheel always returned one of the admin-defined rewards." },
-  //     { icon: "check", text: "Coin redemption flows tested across all three paths: charging/topping up coins, exchanging coins for discount coupons from partner brands, and redeeming coins for physical product gifts — confirming balances updated correctly after every transaction type." },
-  //     { icon: "flask", text: "API testing was the core focus of this project: validated that rapid, repeated spin requests couldn't double-credit a reward (race condition checks), that wheel-prize probabilities matched the distribution configured by the admin, and that the coin balance stayed consistent and accurate across every earning and spending scenario." },
-  //     { icon: "bug", text: "Identified and reported 88 bugs across the platform through combined manual and API testing." },
-  //   ],
-  //   image: "/projects/PLACEHOLDER-loqta.png",
-  //   bugCount: 88,
-  //   technologies: ["Test Cases", "Bug Reporting", "API Testing"],
-  //   links: {},
-  //   companies: [
-  //     {
-  //       name: "Neop",
-  //       logo: "/company/neop.png",
-  //       linkedin: "https://www.linkedin.com/company/neopksa"
-  //     }
-  //   ],
-  //   type: ["manual", "api"],
-  //   featured: true
-  // }
+  {
+    id: 12,
+    title: "Seen — Omnichannel Customer Engagement Platform",
+    description: "A B2B SaaS platform that brings WhatsApp, Instagram, Facebook Messenger, and Telegram into one workspace — businesses use it to send bulk broadcasts, automate customer conversations with a visual flow builder, and manage their contacts CRM.",
+    highlights: [
+      { icon: "layers", text: "WhatsApp message templates go through Meta's approval cycle before they can be used. Tested the full lifecycle — submitted, rejected with reason, approved and immediately usable — and verified that deleting a template already tied to a live broadcast blocks the send instead of crashing." },
+      { icon: "code", text: "The Flow Builder is a visual canvas where businesses automate customer conversations across 14 different node types. Focused on the Condition node — which routes contacts based on live data — testing what happens when a contact's attributes change mid-flow." },
+      { icon: "shield", text: "Broadcasts go to thousands of contacts at once — if Meta returns errors mid-send, the system should pause automatically instead of wasting the message quota. Tested the auto-pause trigger, the manual resume, and confirmed the analytics numbers (delivery rate, read rate) stay accurate during the pause window." },
+      { icon: "target", text: "Subscription billing runs through Stripe — tested using Stripe's own test simulation environment. Covered card declined, insufficient funds, expired card, 3D Secure authentication, free trial expiry triggering the first charge, failed payment retry logic, and upgrade/downgrade proration. Verified that each payment event cascades correctly: failed charge locks workspace access, successful retry restores it, and the admin dashboard reflects the status in real time." },
+      { icon: "flask", text: "A flow can hand off to a completely different automation mid-conversation. Tested that the handoff only works when both flows share the same channel, that contact data carries over, and that pointing to a deleted flow correctly blocks the automation from publishing." },
+    ],
+    image: "/projects/12-seen.png",
+    bugCount: 312,
+    technologies: ["Test Cases", "Bug Reporting", "API Testing", "Meta API", "Stripe"],
+    links: {},
+    companies: [
+      {
+        name: "Neop",
+        logo: "/company/neop.png",
+        linkedin: "https://www.linkedin.com/company/neopksa"
+      }
+    ],
+    type: ["manual", "api"],
+    featured: true
+  }
 ];
 
 const ProjectsSection = () => {
