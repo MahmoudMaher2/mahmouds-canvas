@@ -17,7 +17,7 @@ const projects = [
       { icon: "git", text: "Managed the project with Maven for dependencies and structured the code for readability from day one" },
       { icon: "check", text: "This project established the automation foundation — the patterns, mindset, and toolchain — that directly carried into every automation project that came after" },
     ],
-    image: "/projects/1-HerokuApp.png",
+    image: "/projects/webp/1-HerokuApp.webp",
     technologies: ["Selenium", "Java", "TestNG", "Maven", "Cucumber"],
     links: {
       github: "https://github.com/MahmoudMaher2/HerokuApp-Test-CucumberDemo",
@@ -44,7 +44,7 @@ const projects = [
       { icon: "shield", text: "Although the scope looked simple on the surface, the business impact was high — any mismatch between backend input and frontend display would directly affect the product's credibility with users" },
       { icon: "flask", text: "Covered functional and UI testing — not just 'does it work' but 'does it look and behave right for the end user'" },
     ],
-    image: "/projects/4-talentkid.png",
+    image: "/projects/webp/4-talentkid.webp",
     technologies: ["Test Cases", "Bug Reporting"],
     links: { live: "https://talentkid.sa/" },
     companies: [
@@ -67,7 +67,7 @@ const projects = [
       { icon: "bar", text: "Generated comprehensive Extent Reports covering all test results in HTML, PDF, and screenshot formats — providing a professional, readable output for documentation and presentation" },
       { icon: "check", text: "This was the first project where I worked as part of an automation team, understanding how to divide ownership, avoid conflicts, and maintain shared code standards" },
     ],
-    image: "/projects/2-opencart.png",
+    image: "/projects/webp/2-opencart.webp",
     technologies: ["Selenium", "Java", "TestNG", "Maven", "Cucumber", "POM", "BDD", "Extent Report"],
     links: {
       github: "https://github.com/MohanadWael1/depi_grad",
@@ -96,7 +96,7 @@ const projects = [
       { icon: "check", text: "New video-comments feature: validated the student-to-admin reply flow, ensuring comments appeared correctly, notifications worked, and the thread stayed consistent across both sides" },
       { icon: "bug", text: "Found and reported 56 bugs through structured functional testing across all three new modules — covering both obvious failures and subtle logic gaps" },
     ],
-    image: "/projects/6-moreenglish.png",
+    image: "/projects/webp/6-moreenglish.webp",
     technologies: ["Test Cases", "Bug Reporting"],
     links: { live: "https://www.more-english.net/" },
     bugCount: 56,
@@ -119,7 +119,7 @@ const projects = [
       { icon: "bug", text: "Identified and documented 15 functional, UI, and usability bugs within the defined testing window — ranging from broken validations to inconsistent UI states and misleading error messages" },
       { icon: "check", text: "All findings were logged in a structured Google Sheet with clear severity, steps to reproduce, expected vs. actual results, and environment details — ready for developer handoff" },
     ],
-    image: "/projects/8-carbug.png",
+    image: "/projects/webp/8-carbug.webp",
     technologies: ["Bug Reporting", "Exploratory Testing"],
     links: {
       live: "https://buggy.justtestit.org/",
@@ -151,7 +151,7 @@ const projects = [
       { icon: "flask", text: "A graphic design background proved invaluable here — testing went beyond 'does it technically function' to 'does it behave the way a real designer would expect it to', catching UX-level issues that pure functional testing would miss" },
       { icon: "bug", text: "Identified 100 bugs throughout the editor — making this one of the most demanding and detail-intensive manual testing assignments in this portfolio" },
     ],
-    image: "/projects/5-dorraprint.png",
+    image: "/projects/webp/5-dorraprint.webp",
     technologies: ["Test Cases", "Bug Reporting", "Exploratory Testing"],
     links: { live: "https://dorraprint.com/" },
     bugCount: 100,
@@ -176,7 +176,7 @@ const projects = [
       { icon: "bug", text: "Identified and documented 11 valid functional and UI bugs under real time pressure — including issues in the interview flow, edge cases in question rendering, and inconsistencies in the results page" },
       { icon: "check", text: "All findings were recorded in a structured Google Sheet using predefined categories provided by the bootcamp, ensuring every bug report was clear, reproducible, and submission-ready" },
     ],
-    image: "/projects/7-thepass.png",
+    image: "/projects/webp/7-thepass.webp",
     technologies: ["Bug Reporting"],
     links: {
       live: "https://thepass.sa/",
@@ -210,7 +210,7 @@ const projects = [
       { icon: "shield", text: "Tested edge cases that most testers would skip: what happens when a coupon expires mid-checkout, when a user switches course bundles after applying a discount, or when two discount rules conflict" },
       { icon: "bug", text: "Reported 160 bugs across all modules — the highest bug count of any project at Pixbyte, reflecting both the system's complexity and the depth of testing applied" },
     ],
-    image: "/projects/3-penguin.png",
+    image: "/projects/webp/3-penguin.webp",
     technologies: ["Test Cases", "Bug Reporting", "API Testing", "Hoppscotch"],
     links: { live: "https://penguin.com.sa/" },
     bugCount: 160,
@@ -236,7 +236,7 @@ const projects = [
       { icon: "git", text: "Used Maven for dependency management and GitHub for version control — maintaining clean commit history and project structure throughout the engagement" },
       { icon: "bug", text: "Discovered and reported bugs found during both manual execution and automation runs — treating every test failure as a potential defect worth investigating" },
     ],
-    image: "/projects/9-cartlow.png",
+    image: "/projects/webp/9-cartlow.webp",
     technologies: ["Test Cases", "Bug Reporting", "Selenium", "Java", "TestNG", "Maven", "Cucumber", "POM", "BDD"],
     links: {
       github: "https://github.com/MahmoudMaher2/CartLow-Automation-Project",
@@ -270,7 +270,7 @@ const projects = [
       { icon: "target", text: "Loyalty stamp cards show a rotating QR that refreshes every 30 seconds and only works within 50 meters of the store. Tested expired token rejection, offline caching limits, and the real-time stamp counter that updates on screen the moment the cashier scans." },
       { icon: "bug", text: "Digital gift cards are fulfilled via a third-party API — coins are deducted first, then a webhook delivers the code. Tested the failure path where the webhook never fires: confirmed coins don't disappear silently and the order gets flagged for admin follow-up." },
     ],
-    image: "/projects/11-loqta.png",
+    image: "/projects/webp/11-loqta.webp",
     bugCount: 105,
     technologies: ["Test Cases", "Bug Reporting", "API Testing", "Mobile Testing"],
     links: {
@@ -302,7 +302,7 @@ const projects = [
       { icon: "flask", text: "When a large on-site event brought over 100 guards checking in simultaneously, the real-time tracking map started freezing — guard markers appeared static instead of updating with live movement, requiring manual refreshes to see current positions. After the fix was implemented, validated it under load using JMeter, simulating 100 concurrent guards on the tracking map to confirm real-time updates held without freezing." },
       { icon: "bug", text: "490 bugs logged and tracked in Jira across 2 mobile apps and 4 web dashboards — this was one of the most intensive, multi-platform, real-world testing engagements in this portfolio." },
     ],
-    image: "/projects/10- SECU3.png",
+    image: "/projects/webp/10- SECU3.webp",
     bugCount: 490,
     technologies: ["Test Cases", "Bug Reporting", "API Testing", "Performance Testing", "Mobile Testing", "JMeter"],
     links: {
@@ -330,7 +330,7 @@ const projects = [
       { icon: "target", text: "Subscription billing runs through Stripe — tested using Stripe's own test simulation environment. Covered card declined, insufficient funds, expired card, 3D Secure authentication, free trial expiry triggering the first charge, failed payment retry logic, and upgrade/downgrade proration. Verified that each payment event cascades correctly: failed charge locks workspace access, successful retry restores it, and the admin dashboard reflects the status in real time." },
       { icon: "flask", text: "A flow can hand off to a completely different automation mid-conversation. Tested that the handoff only works when both flows share the same channel, that contact data carries over, and that pointing to a deleted flow correctly blocks the automation from publishing." },
     ],
-    image: "/projects/12-seen.png",
+    image: "/projects/webp/12-seen.webp",
     bugCount: 312,
     technologies: ["Test Cases", "Bug Reporting", "API Testing", "Meta API", "Stripe"],
     links: {},
@@ -612,6 +612,8 @@ const ProjectsSection = () => {
                     src={project.image}
                     alt={project.title}
                     className="w-full h-auto object-contain transition-all duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-transparent to-transparent" />
                 </div>
@@ -625,6 +627,8 @@ const ProjectsSection = () => {
                         src={project.companies[0].logo}
                         alt={project.companies[0].name}
                         className="w-8 h-8 rounded-full object-cover"
+                        loading="lazy"
+                        decoding="async"
                       />
                     ) : (
                       <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">

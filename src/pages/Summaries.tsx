@@ -18,6 +18,8 @@ import {
   Cpu,
   GraduationCap,
   Laptop,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { useEffect, useRef, useState, useMemo, useCallback, lazy, Suspense } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -126,6 +128,7 @@ const SummariesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [canRenderCanvas, setCanRenderCanvas] = useState(false);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -162,6 +165,30 @@ const SummariesPage = () => {
       return matchCat && matchSearch;
     });
   }, [activeCategory, debouncedQuery]);
+
+  // ── Dialog navigation ──
+  const activeSummary = openIndex !== null ? filtered[openIndex] : null;
+
+  const navigateTo = useCallback((dir: -1 | 1) => {
+    setOpenIndex((prev) => {
+      if (prev === null) return prev;
+      const next = prev + dir;
+      if (next < 0 || next >= filtered.length) return prev;
+      return next;
+    });
+  }, [filtered.length]);
+
+  // Keyboard: ArrowLeft / ArrowRight / Escape
+  useEffect(() => {
+    if (openIndex === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft")  navigateTo(-1);
+      if (e.key === "ArrowRight") navigateTo(1);
+      if (e.key === "Escape")     setOpenIndex(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [openIndex, navigateTo]);
 
   // Stats
   const stats = [
@@ -573,7 +600,7 @@ const SummariesPage = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {filtered.map((summary, index) => (
-                <Dialog
+                <div
                   key={summary.id}
                 >
                   {/* ── Card ── */}
@@ -602,8 +629,10 @@ const SummariesPage = () => {
                     )}
 
                     {/* ── Image ── */}
-                    <DialogTrigger asChild>
-                      <button className="relative w-full h-52 overflow-hidden bg-muted/50 flex-shrink-0 cursor-pointer">
+                    <button
+                      className="relative w-full h-52 overflow-hidden bg-muted/50 flex-shrink-0 cursor-pointer"
+                      onClick={() => setOpenIndex(index)}
+                    >
                         <img
                           src={summary.imageWebp || summary.image}
                           alt={summary.title}
@@ -645,7 +674,6 @@ const SummariesPage = () => {
                           </span>
                         </div>
                       </button>
-                    </DialogTrigger>
 
                     {/* ── Body ── */}
                     <div className="flex flex-col flex-1 p-5">
@@ -697,16 +725,15 @@ const SummariesPage = () => {
                       {/* Actions */}
                       <div className="flex gap-2 mt-auto">
                         {/* Preview button */}
-                        <DialogTrigger asChild>
-                          <button
-                            className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium
-                              bg-muted hover:bg-muted/80 border border-border text-muted-foreground hover:text-foreground
-                              transition-all duration-200"
-                          >
-                            <Eye className="h-3.5 w-3.5" />
-                            Preview
-                          </button>
-                        </DialogTrigger>
+                        <button
+                          onClick={() => setOpenIndex(index)}
+                          className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium
+                            bg-muted hover:bg-muted/80 border border-border text-muted-foreground hover:text-foreground
+                            transition-all duration-200"
+                        >
+                          <Eye className="h-3.5 w-3.5" />
+                          Preview
+                        </button>
 
                         {/* Main CTA */}
                         {summary.link && summary.link !== "#" && (
@@ -728,158 +755,212 @@ const SummariesPage = () => {
                     </div>
                   </div>
 
-                  {/* ── Dialog / Full Preview ── */}
-                  <DialogContent className="w-[95vw] md:max-w-4xl lg:max-w-5xl xl:max-w-6xl h-auto max-h-[90vh] md:max-h-[85vh] p-0 overflow-hidden rounded-2xl flex flex-col border border-border/80 shadow-2xl">
-                    {/* Header */}
-                    <div className="flex-shrink-0 p-4 lg:p-6 border-b border-border bg-background/95 backdrop-blur-sm">
-                      <div className="container mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-2">
-                            <span
-                              className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold border backdrop-blur-md shadow-sm
-                                ${categoryConfigs[summary.category].badgeClass}`}
-                            >
-                              {categoryConfigs[summary.category].icon}
-                              {summary.category}
-                            </span>
-                            <span
-                              className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold border backdrop-blur-md shadow-sm
-                                ${typeConfigs[summary.type].badgeClass}`}
-                            >
-                              {typeConfigs[summary.type].icon}
-                              {summary.type}
-                            </span>
-                          </div>
-                          <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-1">
-                            {summary.title}
-                          </h3>
-                          <div className="text-sm text-muted-foreground line-clamp-2 lg:line-clamp-none">
-                            {renderDesc(summary.description, summary.mentions)}
-                          </div>
-                        </div>
-                        {summary.link && summary.link !== "#" && (
-                          <Button
-                            className={`${primaryBtn} flex-shrink-0 px-5 py-2.5 text-sm`}
-                            onClick={() =>
-                              window.open(summary.link, "_blank")
-                            }
-                          >
-                            <ExternalLink className="h-4 w-4" />
-                            {typeLabel(summary)}
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Body */}
-                    <div className="flex-1 overflow-y-auto lg:overflow-hidden flex flex-col lg:flex-row">
-                      {/* Image */}
-                      <div className="w-full h-auto flex-shrink-0 p-4 bg-muted/5 flex items-center justify-center lg:flex-1 lg:h-full lg:overflow-y-auto lg:p-8 lg:bg-muted/10">
-                        <img
-                          src={summary.imageOriginal || summary.image}
-                          alt={summary.title}
-                          loading="lazy"
-                          decoding="async"
-                          className="max-w-full h-auto lg:max-h-full lg:object-contain rounded-xl shadow-2xl"
-                        />
-                      </div>
-
-                      {/* Sidebar */}
-                      {(summary.references?.length ||
-                        summary.mentions?.length ||
-                        summary.tags?.length) && (
-                          <div className="w-full border-t border-border bg-background/95 lg:w-80 lg:h-full lg:overflow-y-auto lg:border-t-0 lg:border-l">
-                            <div className="p-4 lg:p-6 space-y-6">
-                              {/* References */}
-                              {summary.references &&
-                                summary.references.length > 0 && (
-                                  <div>
-                                    <div className="flex items-center gap-2 mb-3">
-                                      <LinkIcon className="h-4 w-4 text-primary" />
-                                      <h4 className="font-bold text-base text-foreground">
-                                        References
-                                      </h4>
-                                    </div>
-                                    <div className="space-y-2">
-                                      {summary.references.map((ref, i) => (
-                                        <Button
-                                          key={i}
-                                          className={`${refBtn} w-full justify-start p-3 h-auto text-left`}
-                                          onClick={() =>
-                                            window.open(ref.url, "_blank")
-                                          }
-                                        >
-                                          <div className="flex items-center gap-2 text-left w-full">
-                                            <ExternalLink className="h-3.5 w-3.5 flex-shrink-0" />
-                                            <span className="text-xs font-medium flex-1 break-words whitespace-normal">
-                                              {ref.title}
-                                            </span>
-                                          </div>
-                                        </Button>
-                                      ))}
-                                    </div>
-                                  </div>
-                                )}
-
-                              {/* Mentions */}
-                              {summary.mentions &&
-                                summary.mentions.length > 0 && (
-                                  <div>
-                                    <div className="flex items-center gap-2 mb-3">
-                                      <User className="h-4 w-4 text-purple-400" />
-                                      <h4 className="font-bold text-base text-foreground">
-                                        Special Thanks
-                                      </h4>
-                                    </div>
-                                    <div className="flex flex-wrap gap-2">
-                                      {summary.mentions.map((m, i) => (
-                                        <a
-                                          key={i}
-                                          href={m.profileLink}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium
-                                            bg-purple-50/85 text-purple-700 border border-purple-200/60
-                                            dark:bg-purple-500/15 dark:text-purple-300 dark:border-purple-500/30
-                                            hover:bg-purple-100/70 dark:hover:bg-purple-500/25 hover:scale-105 transition-all duration-200"
-                                        >
-                                          <User className="h-3 w-3" />
-                                          {m.name}
-                                        </a>
-                                      ))}
-                                    </div>
-                                  </div>
-                                )}
-
-                              {/* Tags */}
-                              {summary.tags && summary.tags.length > 0 && (
-                                <div>
-                                  <h4 className="font-bold text-sm text-muted-foreground uppercase tracking-wide mb-2">
-                                    Tags
-                                  </h4>
-                                  <div className="flex flex-wrap gap-1.5">
-                                    {summary.tags.map((tag) => (
-                                      <span
-                                        key={tag}
-                                        className="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50/85 text-blue-600 border border-blue-200/60 dark:bg-blue-500/15 dark:text-blue-300 dark:border-blue-500/30 hover:bg-blue-100/70 dark:hover:bg-blue-500/25 transition-colors duration-200"
-                                      >
-                                        #{tag}
-                                      </span>
-                                    ))}
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        )}
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                  {/* ── Body card content ends here — no per-card Dialog anymore ── */}
+                </div>
               ))}
             </div>
           )}
         </div>
       </section>
+
+
+
+      {/* ── Global nav-dialog ─────────────────────────────────────────── */}
+      {activeSummary && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeSummary.title}
+        >
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setOpenIndex(null)}
+          />
+
+          {/* Modal panel — no overflow-hidden so arrows can protrude */}
+          <div className="relative z-10 w-[95vw] md:max-w-4xl lg:max-w-5xl xl:max-w-6xl h-auto max-h-[90vh] md:max-h-[85vh] rounded-2xl flex flex-col border border-border/80 shadow-2xl bg-background">
+
+            {/* Close button */}
+            <button
+              onClick={() => setOpenIndex(null)}
+              className="absolute top-3 right-3 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-background/80 backdrop-blur-md border border-border shadow-md hover:bg-muted transition-colors"
+              aria-label="Close"
+            >
+              <X className="h-4 w-4" />
+            </button>
+
+            {/* Prev arrow — on left edge of modal */}
+            <button
+              onClick={() => navigateTo(-1)}
+              disabled={openIndex === 0}
+              className="absolute -left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center rounded-full
+                bg-background border border-border shadow-xl
+                hover:bg-primary hover:text-white hover:border-primary
+                disabled:opacity-25 disabled:cursor-not-allowed
+                transition-all duration-200"
+              aria-label="Previous"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+
+            {/* Next arrow — on right edge of modal */}
+            <button
+              onClick={() => navigateTo(1)}
+              disabled={openIndex === filtered.length - 1}
+              className="absolute -right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center rounded-full
+                bg-background border border-border shadow-xl
+                hover:bg-primary hover:text-white hover:border-primary
+                disabled:opacity-25 disabled:cursor-not-allowed
+                transition-all duration-200"
+              aria-label="Next"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+
+            {/* Counter pill */}
+            <div className="absolute -bottom-9 left-1/2 -translate-x-1/2 z-20 bg-black/60 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 text-xs text-white font-semibold">
+              {openIndex! + 1} / {filtered.length}
+            </div>
+
+            {/* Inner content wrapper — clipped to rounded corners */}
+            <div className="flex flex-col overflow-hidden rounded-2xl flex-1 max-h-[90vh] md:max-h-[85vh]">
+            {/* Header */}
+            <div className="flex-shrink-0 p-4 lg:p-6 border-b border-border bg-background/95 backdrop-blur-sm">
+              <div className="container mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span
+                      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold border backdrop-blur-md shadow-sm
+                        ${categoryConfigs[activeSummary.category].badgeClass}`}
+                    >
+                      {categoryConfigs[activeSummary.category].icon}
+                      {activeSummary.category}
+                    </span>
+                    <span
+                      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold border backdrop-blur-md shadow-sm
+                        ${typeConfigs[activeSummary.type].badgeClass}`}
+                    >
+                      {typeConfigs[activeSummary.type].icon}
+                      {activeSummary.type}
+                    </span>
+                  </div>
+                  <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-1">
+                    {activeSummary.title}
+                  </h3>
+                  <div className="text-sm text-muted-foreground line-clamp-2 lg:line-clamp-none">
+                    {renderDesc(activeSummary.description, activeSummary.mentions)}
+                  </div>
+                </div>
+                {activeSummary.link && activeSummary.link !== "#" && (
+                  <Button
+                    className={`${primaryBtn} flex-shrink-0 px-5 py-2.5 text-sm`}
+                    onClick={() => window.open(activeSummary.link, "_blank")}
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    {typeLabel(activeSummary)}
+                  </Button>
+                )}
+              </div>
+            </div>
+
+            {/* Body */}
+            <div className="flex-1 overflow-y-auto lg:overflow-hidden flex flex-col lg:flex-row">
+              {/* Image */}
+              <div className="w-full h-auto flex-shrink-0 p-4 bg-muted/5 flex items-center justify-center lg:flex-1 lg:h-full lg:overflow-y-auto lg:p-8 lg:bg-muted/10">
+                <img
+                  src={activeSummary.imageOriginal || activeSummary.image}
+                  alt={activeSummary.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="max-w-full h-auto lg:max-h-full lg:object-contain rounded-xl shadow-2xl"
+                />
+              </div>
+
+              {/* Sidebar */}
+              {(activeSummary.references?.length ||
+                activeSummary.mentions?.length ||
+                activeSummary.tags?.length) && (
+                  <div className="w-full border-t border-border bg-background/95 lg:w-80 lg:h-full lg:overflow-y-auto lg:border-t-0 lg:border-l">
+                    <div className="p-4 lg:p-6 space-y-6">
+                      {/* References */}
+                      {activeSummary.references && activeSummary.references.length > 0 && (
+                        <div>
+                          <div className="flex items-center gap-2 mb-3">
+                            <LinkIcon className="h-4 w-4 text-primary" />
+                            <h4 className="font-bold text-base text-foreground">References</h4>
+                          </div>
+                          <div className="space-y-2">
+                            {activeSummary.references.map((ref, i) => (
+                              <Button
+                                key={i}
+                                className={`${refBtn} w-full justify-start p-3 h-auto text-left`}
+                                onClick={() => window.open(ref.url, "_blank")}
+                              >
+                                <div className="flex items-center gap-2 text-left w-full">
+                                  <ExternalLink className="h-3.5 w-3.5 flex-shrink-0" />
+                                  <span className="text-xs font-medium flex-1 break-words whitespace-normal">
+                                    {ref.title}
+                                  </span>
+                                </div>
+                              </Button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Mentions */}
+                      {activeSummary.mentions && activeSummary.mentions.length > 0 && (
+                        <div>
+                          <div className="flex items-center gap-2 mb-3">
+                            <User className="h-4 w-4 text-purple-400" />
+                            <h4 className="font-bold text-base text-foreground">Special Thanks</h4>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {activeSummary.mentions.map((m, i) => (
+                              <a
+                                key={i}
+                                href={m.profileLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium
+                                  bg-purple-50/85 text-purple-700 border border-purple-200/60
+                                  dark:bg-purple-500/15 dark:text-purple-300 dark:border-purple-500/30
+                                  hover:bg-purple-100/70 dark:hover:bg-purple-500/25 hover:scale-105 transition-all duration-200"
+                              >
+                                <User className="h-3 w-3" />
+                                {m.name}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Tags */}
+                      {activeSummary.tags && activeSummary.tags.length > 0 && (
+                        <div>
+                          <h4 className="font-bold text-sm text-muted-foreground uppercase tracking-wide mb-2">Tags</h4>
+                          <div className="flex flex-wrap gap-1.5">
+                            {activeSummary.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50/85 text-blue-600 border border-blue-200/60 dark:bg-blue-500/15 dark:text-blue-300 dark:border-blue-500/30 hover:bg-blue-100/70 dark:hover:bg-blue-500/25 transition-colors duration-200"
+                              >
+                                #{tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+              )}
+            </div>
+            </div>{/* end inner content wrapper */}
+          </div>{/* end modal panel */}
+        </div>
+      )}
 
       {/* ─── STAY UPDATED ────────────────────────────────────────────────── */}
       <section className="py-16 px-4 relative overflow-hidden">

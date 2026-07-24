@@ -9,7 +9,7 @@ const certificates = [
   {
     id: 1,
     title: "ISTQB Foundation Level V4.0",
-    image: "/Certificates/ISTQB FL Certificate.jpg",
+    image: "/Certificates/webp/ISTQB FL Certificate.webp",
     institution: "International Software Testing Qualifications Board",
     date: "June 2025",
     link: "https://scr.istqb.org/",
@@ -19,7 +19,7 @@ const certificates = [
   {
     id: 2,
     title: "ISTQB MAT Mobile Application Testing V1.0",
-    image: "/Certificates/ISTQB MAT Certificate.png",
+    image: "/Certificates/webp/ISTQB MAT Certificate.webp",
     institution: "International Software Testing Qualifications Board",
     date: "Sep 2025",
     link: "https://scr.istqb.org/",
@@ -29,7 +29,7 @@ const certificates = [
   {
     id: 3,
     title: "Manual and Automation Software Testing internship",
-    image: "/Certificates/Azm Squad 337488.png",
+    image: "/Certificates/webp/Azm Squad 337488.webp",
     institution: "Algoriza & AZM Squad",
     date: "Oct 2025",
     link: "https://interns.azmsquad.com/",
@@ -38,35 +38,35 @@ const certificates = [
   {
     id: 4,
     title: "Manual Testing Basics - Testing Bootcamp Level 1",
-    image: "/Certificates/Manual Testing Basics - Testing Bootcamp Level 1.jpg",
+    image: "/Certificates/webp/Manual Testing Basics - Testing Bootcamp Level 1.webp",
     institution: "Nezam Academy",
     date: "Nov 2025"
   },
   {
     id: 5,
     title: "Agile Testing - Testing Bootcamp Level 2",
-    image: "/Certificates/Agile Testing - Testing Bootcamp Level 2.jpg",
+    image: "/Certificates/webp/Agile Testing - Testing Bootcamp Level 2.webp",
     institution: "Nezam Academy",
     date: "Sep 2025"
   },
   {
     id: 6,
     title: "Mobile Application Testing - Testing Bootcamp Level 3",
-    image: "/Certificates/Mobile Application Testing - Testing Bootcamp Level 3.jpg",
+    image: "/Certificates/webp/Mobile Application Testing - Testing Bootcamp Level 3.webp",
     institution: "Nezam Academy",
     date: "Sep 2025"
   },
   {
     id: 7,
     title: "Java Programming Test Automation Bootcamp Level 1",
-    image: "/Certificates/Java Programming Test Automation Bootcamp Level 1 nezam.jpg",
+    image: "/Certificates/webp/Java Programming Test Automation Bootcamp Level 1 nezam.webp",
     institution: "Nezam Academy",
     date: "Sep 2025"
   },
   {
     id: 8,
     title: "ISTQB Mobile Application Testing Course",
-    image: "/Certificates/ISTQB Mobile Application Testing - Become a Mobile Tester.jpg",
+    image: "/Certificates/webp/ISTQB Mobile Application Testing - Become a Mobile Tester.webp",
     institution: "Udemy - Tarek Roshdy",
     date: "Aug 2025",
     link: "https://www.udemy.com/certificate/UC-3943a2b4-8649-496b-a70b-0b523a69e990/",
@@ -75,7 +75,7 @@ const certificates = [
   {
     id: 9,
     title: "Introduction to Software Testing Concepts & Techniques",
-    image: "/Certificates/Introduction to Software Testing Concepts & Techniques.png",
+    image: "/Certificates/webp/Introduction to Software Testing Concepts & Techniques.webp",
     institution: "MaharaTech - ITI",
     date: "May 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=355&downloadown=1",
@@ -84,7 +84,7 @@ const certificates = [
   {
     id: 10,
     title: "ISTQB Foundation Level",
-    image: "/Certificates/ISTQB Foundation Level.png",
+    image: "/Certificates/webp/ISTQB Foundation Level.webp",
     institution: "MaharaTech - ITI",
     date: "July 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=967&downloadown=1",
@@ -93,7 +93,7 @@ const certificates = [
   {
     id: 11,
     title: "Effective Test Case and Bug Report Writing Techniques",
-    image: "/Certificates/Effective Test Case and Bug Report Writing Techniques.png",
+    image: "/Certificates/webp/Effective Test Case and Bug Report Writing Techniques.webp",
     institution: "MaharaTech - ITI",
     date: "July 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=970&downloadown=1",
@@ -102,7 +102,7 @@ const certificates = [
   {
     id: 12,
     title: "C Programming From Basics to Mastery",
-    image: "/Certificates/C Programming From Basics to Mastery.png",
+    image: "/Certificates/webp/C Programming From Basics to Mastery.webp",
     institution: "MaharaTech - ITI",
     date: "Sep 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=16004&downloadown=1",
@@ -111,7 +111,7 @@ const certificates = [
   {
     id: 13,
     title: "Mastering Object-Oriented Programming (OOP) using C++",
-    image: "/Certificates/Mastering Object-Oriented Programming.png",
+    image: "/Certificates/webp/Mastering Object-Oriented Programming.webp",
     institution: "MaharaTech - ITI",
     date: "Sep 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=14866&downloadown=1",
@@ -120,7 +120,7 @@ const certificates = [
   {
     id: 14,
     title: "Database Fundamentals",
-    image: "/Certificates/Database Fundamentals.png",
+    image: "/Certificates/webp/Database Fundamentals.webp",
     institution: "MaharaTech - ITI",
     date: "Sep 2024",
     link: "https://maharatech.gov.eg/mod/customcert/view.php?id=7655&downloadown=1",
@@ -129,28 +129,28 @@ const certificates = [
   {
     id: 15,
     title: "Software Testing Internship - DEPI [R1]",
-    image: "/Certificates/Certificate DEPI R1 Mahmoud Maher Khater Abdel Razek.jpg",
+    image: "/Certificates/webp/Certificate DEPI R1 Mahmoud Maher Khater Abdel Razek.webp",
     institution: "Digital Egypt Pioneers Initiative [DEPI]",
     date: "Oct 2024"
   },
   {
     id: 16,
     title: "Business English - DEPI [R1]",
-    image: "/Certificates/Certificate DEPI R1 MAHMOUD MAHER KHATER .jpg",
+    image: "/Certificates/webp/Certificate DEPI R1 MAHMOUD MAHER KHATER .webp",
     institution: "Digital Egypt Pioneers Initiative [DEPI]",
     date: "Oct 2024"
   },
   {
     id: 17,
     title: "Smart Environment Hackathon",
-    image: "/Certificates/Smart Environment Hackathon Certificate.jpg",
+    image: "/Certificates/webp/Smart Environment Hackathon Certificate.webp",
     institution: "Mansoura university",
     date: "May 2024"
   },
   {
     id: 18,
     title: "Part One Embedded Systems Diploma",
-    image: "/Certificates/Part 1 certification_Page_1.jpg",
+    image: "/Certificates/webp/Part 1 certification_Page_1.webp",
     institution: "Eng/ Ahmed Abd ElGhafar",
     date: "July 2023"
   }

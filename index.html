@@ -49,9 +49,11 @@
   <meta name="twitter:image" content="https://mahmoud-maher-portfolio.vercel.app/Mahmoud%20Maher.jpg?version=3" />
   <meta name="twitter:creator" content="@mahmoudmaher" />
 
-  <!-- ✅ Favicon (icon shown on Google search results) -->
-  <link rel="icon" type="image/png" href="/Mahmoud Maher FavIcon-01.png" />
-  <link rel="apple-touch-icon" href="/Mahmoud Maher FavIcon-01.png" />
+  <!-- ✅ Favicon (icon shown on browser tab & Google search results) -->
+  <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
+  <link rel="icon" type="image/webp" href="/favicon-192.webp" sizes="192x192" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" sizes="192x192" href="/icons/letter-m192.png" />
 
   <!-- Manifest (Name must be YOUR name to avoid showing Vercel) -->
   <link rel="manifest" href="./manifest.webmanifest" />
@@ -88,10 +90,74 @@
   <div id="root"></div>
 
   <noscript>
-    <div style="text-align: center; padding: 50px;">
-      <h1>Mahmoud Maher - Software Testing Engineer</h1>
-      <img src="/Mahmoud%20Maher.jpg" alt="Mahmoud Maher" style="width: 150px; height: 150px; border-radius: 50%;" />
-      <p>JavaScript is required to view the full portfolio experience.</p>
+    <div style="font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 40px 20px; color: #1a1a1a;">
+      <header style="text-align: center; margin-bottom: 40px;">
+        <h1 style="font-size: 2rem; margin-bottom: 8px;">Mahmoud Maher</h1>
+        <p style="font-size: 1.1rem; color: #444;">Software Testing Engineer &amp; QC/QA Specialist — ISTQB Certified</p>
+        <img src="/Mahmoud%20Maher.jpg" alt="Mahmoud Maher — Software Testing Engineer" width="150" height="150"
+          style="border-radius: 50%; margin: 16px auto; display: block;" />
+        <p>
+          <a href="https://www.linkedin.com/in/mahmoud-maher74/" style="color:#0a66c2;">LinkedIn</a>
+          &nbsp;|&nbsp;
+          <a href="https://github.com/MahmoudMaher2" style="color:#333;">GitHub</a>
+          &nbsp;|&nbsp;
+          <a href="/Mahmoud%20Maher's%20Resume.pdf" style="color:#e25;">Download Resume</a>
+        </p>
+      </header>
+
+      <section style="margin-bottom: 32px;">
+        <h2 style="font-size: 1.4rem; border-bottom: 2px solid #e5e5e5; padding-bottom: 8px;">About</h2>
+        <p>Software Testing Engineer with hands-on experience in manual testing, Selenium test automation, API testing, and mobile application testing (iOS &amp; Android). ISTQB Foundation Level V4.0 and Mobile Application Testing (MAT) V1.0 certified. Worked across freelance, internship, and professional environments on SaaS platforms, e-commerce sites, LMS systems, and mobile apps.</p>
+      </section>
+
+      <section style="margin-bottom: 32px;">
+        <h2 style="font-size: 1.4rem; border-bottom: 2px solid #e5e5e5; padding-bottom: 8px;">Key Skills</h2>
+        <ul style="line-height: 2;">
+          <li><strong>Manual Testing</strong> — Functional, Regression, Integration, System, Exploratory, UAT, Smoke &amp; Sanity</li>
+          <li><strong>Test Automation</strong> — Selenium WebDriver, Java, TestNG, Cucumber (BDD), Page Object Model (POM), Maven, Extent Reports</li>
+          <li><strong>API Testing</strong> — Postman, Hoppscotch, REST API validation</li>
+          <li><strong>Mobile Testing</strong> — iOS &amp; Android, real-device and emulator testing, Flutter apps</li>
+          <li><strong>Performance Testing</strong> — JMeter (load &amp; concurrency testing)</li>
+          <li><strong>Bug Reporting &amp; Tracking</strong> — Jira, Google Sheets, structured defect lifecycle</li>
+          <li><strong>Tools</strong> — Git, GitHub, Stripe test environment, Meta API, Pusher</li>
+        </ul>
+      </section>
+
+      <section style="margin-bottom: 32px;">
+        <h2 style="font-size: 1.4rem; border-bottom: 2px solid #e5e5e5; padding-bottom: 8px;">Certifications</h2>
+        <ul style="line-height: 2;">
+          <li>ISTQB Foundation Level V4.0 — International Software Testing Qualifications Board (June 2025) — Credential ID: 250528036</li>
+          <li>ISTQB Mobile Application Testing V1.0 — ISTQB (Sep 2025) — Credential ID: 250806035</li>
+          <li>Manual &amp; Automation Software Testing Internship — Algoriza &amp; AZM Squad (Oct 2025)</li>
+          <li>ISTQB Mobile Application Testing Course — Udemy / Tarek Roshdy (Aug 2025)</li>
+          <li>Java Programming Test Automation Bootcamp Level 1 — Nezam Academy (Sep 2025)</li>
+          <li>Introduction to Software Testing Concepts &amp; Techniques — MaharaTech ITI (May 2024)</li>
+          <li>ISTQB Foundation Level Course — MaharaTech ITI (July 2024)</li>
+          <li>Database Fundamentals — MaharaTech ITI (Sep 2024)</li>
+          <li>C Programming From Basics to Mastery — MaharaTech ITI (Sep 2024)</li>
+        </ul>
+      </section>
+
+      <section style="margin-bottom: 32px;">
+        <h2 style="font-size: 1.4rem; border-bottom: 2px solid #e5e5e5; padding-bottom: 8px;">Featured Projects</h2>
+        <ul style="line-height: 2;">
+          <li><strong>Seen Omnichannel Platform</strong> — B2B SaaS with WhatsApp, Instagram, Facebook Messenger &amp; Telegram. Manual + API testing incl. Stripe billing &amp; Meta API. 312 bugs reported. (Neop)</li>
+          <li><strong>SECU Security</strong> — SaaS workforce management platform: 2 mobile apps + 4 web dashboards. Geofencing, real-time tracking, JMeter load testing. 490 bugs reported. (Neop)</li>
+          <li><strong>Loqta Rewards &amp; Loyalty</strong> — Flutter mobile app + Laravel API. Spin wheel, QR redemption, third-party webhook testing. 105 bugs reported. (Neop)</li>
+          <li><strong>Penguin LMS</strong> — Complex payment &amp; discount system, dual live-session platforms, WhatsApp integration, API validation via Hoppscotch. 160 bugs reported. (Pixbyte)</li>
+          <li><strong>Dorra Print</strong> — Full testing of a custom Canva-like canvas design editor built from scratch. 100 bugs reported. (Pixbyte)</li>
+          <li><strong>CartLow E-Commerce</strong> — Graduation project: Selenium + Cucumber + POM automation framework. (Algoriza)</li>
+          <li><strong>OpenCart Automation</strong> — DEPI graduation project: 3-person team, 15 e2e BDD scenarios, Extent Reports. (DEPI)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 style="font-size: 1.4rem; border-bottom: 2px solid #e5e5e5; padding-bottom: 8px;">Contact</h2>
+        <p>
+          <a href="https://www.linkedin.com/in/mahmoud-maher74/">linkedin.com/in/mahmoud-maher74</a><br />
+          <a href="https://github.com/MahmoudMaher2">github.com/MahmoudMaher2</a>
+        </p>
+      </section>
     </div>
   </noscript>
 
