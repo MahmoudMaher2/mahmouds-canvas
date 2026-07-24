@@ -129,6 +129,7 @@ const SummariesPage = () => {
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [canRenderCanvas, setCanRenderCanvas] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -170,6 +171,7 @@ const SummariesPage = () => {
   const activeSummary = openIndex !== null ? filtered[openIndex] : null;
 
   const navigateTo = useCallback((dir: -1 | 1) => {
+    setImageLoaded(false);
     setOpenIndex((prev) => {
       if (prev === null) return prev;
       const next = prev + dir;
@@ -631,7 +633,7 @@ const SummariesPage = () => {
                     {/* ── Image ── */}
                     <button
                       className="relative w-full h-52 overflow-hidden bg-muted/50 flex-shrink-0 cursor-pointer"
-                      onClick={() => setOpenIndex(index)}
+                      onClick={() => { setImageLoaded(false); setOpenIndex(index); }}
                     >
                         <img
                           src={summary.imageWebp || summary.image}
@@ -726,7 +728,7 @@ const SummariesPage = () => {
                       <div className="flex gap-2 mt-auto">
                         {/* Preview button */}
                         <button
-                          onClick={() => setOpenIndex(index)}
+                          onClick={() => { setImageLoaded(false); setOpenIndex(index); }}
                           className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium
                             bg-muted hover:bg-muted/80 border border-border text-muted-foreground hover:text-foreground
                             transition-all duration-200"
@@ -869,13 +871,25 @@ const SummariesPage = () => {
             <div className="flex-1 overflow-y-auto lg:overflow-hidden flex flex-col lg:flex-row">
               {/* Image */}
               <div className="w-full h-auto flex-shrink-0 p-4 bg-muted/5 flex items-center justify-center lg:flex-1 lg:h-full lg:overflow-y-auto lg:p-8 lg:bg-muted/10">
-                <img
-                  src={activeSummary.imageOriginal || activeSummary.image}
-                  alt={activeSummary.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="max-w-full h-auto lg:max-h-full lg:object-contain rounded-xl shadow-2xl"
-                />
+                <div className="relative w-full flex items-center justify-center">
+                  {/* Skeleton shown while image is loading */}
+                  {!imageLoaded && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-full max-w-lg aspect-video rounded-xl bg-muted/60 animate-pulse" />
+                    </div>
+                  )}
+                  <img
+                    key={activeSummary.id}
+                    src={activeSummary.imageOriginal || activeSummary.image}
+                    alt={activeSummary.title}
+                    loading="eager"
+                    decoding="async"
+                    onLoad={() => setImageLoaded(true)}
+                    className={`max-w-full h-auto lg:max-h-full lg:object-contain rounded-xl shadow-2xl transition-opacity duration-300 ${
+                      imageLoaded ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                </div>
               </div>
 
               {/* Sidebar */}
