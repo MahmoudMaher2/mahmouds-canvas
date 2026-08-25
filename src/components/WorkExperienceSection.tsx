@@ -149,6 +149,22 @@ const calculateDuration = (period: string) => {
   }
 };
 
+// ألوان مختلفة لكل نوع وظيفة
+const getTypeBadgeClasses = (type: string): string => {
+  switch (type.toLowerCase()) {
+    case "full-time":
+      return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+    case "part-time":
+      return "bg-sky-500/20 text-sky-400 border-sky-500/30";
+    case "freelance":
+      return "bg-amber-500/20 text-amber-400 border-amber-500/30";
+    case "internship":
+      return "bg-violet-500/20 text-violet-400 border-violet-500/30";
+    default:
+      return "bg-muted/20 text-muted-foreground border-border";
+  }
+};
+
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.12, duration: 0.5 } }),
@@ -385,7 +401,7 @@ const WorkExperienceSection: React.FC = () => {
                             <MapPin className="h-3 w-3" />
                             <span>{exp.location}</span>
                           </div>
-                          <Badge variant="outline" className="text-xs capitalize">{exp.type}</Badge>
+                          <Badge variant="outline" className={`text-xs capitalize font-semibold ${getTypeBadgeClasses(exp.type)}`}>{exp.type}</Badge>
                         </div>
 
                         {/* description */}
