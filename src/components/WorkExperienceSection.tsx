@@ -31,7 +31,7 @@ const experience = [
     ],
     logo: "/company/pixbyte.jpg",
     position: "Software Test Engineer",
-    period: "May 2025 - Oct 2025",
+    period: "Oct 2024 - Oct 2025",
     location: "Egypt",
     type: "Full-time",
     description:
